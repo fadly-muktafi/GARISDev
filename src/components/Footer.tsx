@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { MapPin, Phone, Mail, Globe, ArrowUpRight } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle, ArrowUpRight } from 'lucide-react';
 import { COMPANY_INFO, NAV_ITEMS, FLAGSHIP_PRODUCTS } from '@/lib/data';
 
 export function Footer() {
@@ -35,6 +35,17 @@ export function Footer() {
                 <Phone className="w-4 h-4 text-accent-violet-light shrink-0" />
                 <a href={`tel:${COMPANY_INFO.phone}`} className="hover:text-ink-primary transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]">
                   {COMPANY_INFO.phone}
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <MessageCircle className="w-4 h-4 text-accent-emerald shrink-0" />
+                <a
+                  href={COMPANY_INFO.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-ink-primary transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                >
+                  {COMPANY_INFO.whatsapp}
                 </a>
               </div>
               <div className="flex items-center gap-2.5">

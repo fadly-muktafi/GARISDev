@@ -35,10 +35,25 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/assets/garisdev-logo-white-cropped.png',
+        url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'GARISDev Corporate Emblem and Wordmark',
+        alt: 'GARISDev — Rekayasa Perangkat Lunak & Terobosan Solusi Digital Enterprise',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'PT Global Agra Ripta Solusindo (GARISDev) — Official Company Profile',
+    description:
+      'Rekayasa perangkat lunak enterprise, arsitektur sistem cloud native, dan ekosistem platform digital flagship teruji sejak 2014.',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'GARISDev — Rekayasa Perangkat Lunak & Terobosan Solusi Digital Enterprise',
       },
     ],
   },

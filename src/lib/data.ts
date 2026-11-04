@@ -23,28 +23,29 @@ export const COMPANY_INFO = {
   npwp: '41.298.684.6-017.000',
   address: '18 Office Park Suite, Jl. TB. Simatupang No. 18, Jakarta Selatan 12520',
   phone: '(021) 80674603',
-  email: 'Relation@garisdev.co.id',
-  whatsappUrl: 'https://wa.me/6281280674603?text=Halo%20GARISDev%2C%20saya%20ingin%20berkonsultasi%20mengenai%20solusi%20rekayasa%20perangkat%20lunak%20enterprise.',
+  whatsapp: '+62 813-8729-7524',
+  email: 'info@garisdev.co.id',
+  whatsappUrl: 'https://wa.me/6281387297524?text=Halo%20GARISDev%2C%20saya%20ingin%20berkonsultasi%20mengenai%20solusi%20rekayasa%20perangkat%20lunak%20enterprise.',
   pdfPath: '/documents/COMPANY PROFILE GARISDEV.pdf',
   pdfFilename: 'COMPANY PROFILE GARISDEV.pdf',
 };
 
 export interface ClientItem {
   name: string;
-  category: string;
-  iconName: 'shield' | 'landmark' | 'briefcase' | 'sprout' | 'trending-up' | 'shield-check' | 'sparkles' | 'cpu';
-  accentColor: string;
+  logo: string;
+  category?: string;
 }
 
 export const CLIENTS: ClientItem[] = [
-  { name: 'Mabes TNI', category: 'Instansi Pertahanan RI', iconName: 'shield', accentColor: '#818CF8' },
-  { name: 'BNPT RI', category: 'Lembaga Non-Kementerian', iconName: 'landmark', accentColor: '#38BDF8' },
-  { name: 'Kemnaker RI', category: 'Kementerian Ketenagakerjaan', iconName: 'briefcase', accentColor: '#818CF8' },
-  { name: 'Kementan RI', category: 'Kementerian Pertanian', iconName: 'sprout', accentColor: '#22C55E' },
-  { name: 'JFX Exchange', category: 'Bursa Berjangka Jakarta', iconName: 'trending-up', accentColor: '#F59E0B' },
-  { name: 'Asuransi Jasindo', category: 'BUMN Asuransi Jasa Indonesia', iconName: 'shield-check', accentColor: '#38BDF8' },
-  { name: 'Mom N Jo', category: 'Spa & Wellness Network', iconName: 'sparkles', accentColor: '#C084FC' },
-  { name: 'PT ISP', category: 'PT Inti Sinergi Persada', iconName: 'cpu', accentColor: '#818CF8' },
+  { name: 'BNPT RI', logo: '/assets/clients/01_bnpt_ri.png', category: 'Lembaga Non-Kementerian' },
+  { name: 'Mabes TNI', logo: '/assets/clients/02_mabes_tni.png', category: 'Instansi Pertahanan RI' },
+  { name: 'Kemnaker RI', logo: '/assets/clients/03_kemnaker_ri.png', category: 'Kementerian Ketenagakerjaan' },
+  { name: 'JFX Exchange', logo: '/assets/clients/04_jfx_exchange.png', category: 'Bursa Berjangka Jakarta' },
+  { name: 'PT ISP', logo: '/assets/clients/05_isp.png', category: 'PT Inti Sinergi Persada' },
+  { name: 'Asuransi Jasindo', logo: '/assets/clients/06_asuransi_jasindo.png', category: 'BUMN Asuransi Jasa Indonesia' },
+  { name: 'Mom N Jo', logo: '/assets/clients/07_mom_n_jo.png', category: 'Spa & Wellness Network' },
+  { name: 'Kementan RI', logo: '/assets/clients/08_kementan_ri.png', category: 'Kementerian Pertanian' },
+  { name: 'PT Adinata Graha Raya', logo: '/assets/clients/09_adinata_graha_raya.png', category: 'Pengembang Properti Nasional' },
 ];
 
 export interface CoreServiceItem {

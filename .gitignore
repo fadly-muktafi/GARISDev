@@ -13,6 +13,7 @@ out
 .playwright-mcp
 *.png
 !public/assets/*.png
+!public/assets/**/*.png
 !src/app/*.png
 
 # OS artifacts

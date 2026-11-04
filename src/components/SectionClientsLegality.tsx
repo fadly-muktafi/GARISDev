@@ -1,32 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import {
-  Shield,
-  Landmark,
-  Briefcase,
-  Sprout,
-  TrendingUp,
-  ShieldCheck,
-  Sparkles,
-  Cpu,
-  Copy,
-  Check,
-} from 'lucide-react';
+import { ShieldCheck, Copy, Check } from 'lucide-react';
 import { CLIENTS, COMPANY_INFO } from '@/lib/data';
 import { InfiniteMarquee } from './ui/infinite-marquee';
-
-const CLIENT_ICON_MAP = {
-  shield: Shield,
-  landmark: Landmark,
-  briefcase: Briefcase,
-  sprout: Sprout,
-  'trending-up': TrendingUp,
-  'shield-check': ShieldCheck,
-  sparkles: Sparkles,
-  cpu: Cpu,
-};
 
 export function SectionClientsLegality() {
   const [copied, setCopied] = useState(false);
@@ -58,32 +37,21 @@ export function SectionClientsLegality() {
             Klien & Mitra Strategis
           </span>
 
-          <InfiniteMarquee duration={52}>
-            {CLIENTS.map((client) => {
-              const IconComponent = CLIENT_ICON_MAP[client.iconName] || Shield;
-
-              return (
-                <div
-                  key={client.name}
-                  className="group flex w-[228px] shrink-0 items-center gap-3.5 rounded-xl border border-white/5 bg-ground-elevated px-4 py-3.5 transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-white/10 hover:bg-ground-surface sm:w-[272px]"
-                >
-                  <div
-                    className="w-10 h-10 rounded-lg bg-ground-surface border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
-                    style={{ color: client.accentColor }}
-                  >
-                    <IconComponent className="w-5 h-5" strokeWidth={1.8} />
-                  </div>
-                  <div className="flex flex-col min-w-0">
-                    <span className="font-display font-bold text-sm text-ink-primary group-hover:text-white truncate">
-                      {client.name}
-                    </span>
-                    <span className="font-sans text-xs text-ink-secondary truncate">
-                      {client.category}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
+          <InfiniteMarquee duration={38}>
+            {CLIENTS.map((client) => (
+              <div
+                key={client.name}
+                className="group flex items-center justify-center h-16 w-40 md:w-48 px-3 shrink-0"
+              >
+                <Image
+                  src={client.logo}
+                  alt={`Logo Resmi ${client.name}`}
+                  width={400}
+                  height={160}
+                  className="max-h-11 md:max-h-12 w-auto object-contain transition-all duration-300 filter grayscale invert-[0.65] brightness-[1.5] opacity-75 hover:grayscale-0 hover:invert-0 hover:brightness-100 hover:opacity-100 hover:scale-105 group-hover:grayscale-0 group-hover:invert-0 group-hover:brightness-100 group-hover:opacity-100 group-hover:scale-105"
+                />
+              </div>
+            ))}
           </InfiniteMarquee>
         </div>
 
