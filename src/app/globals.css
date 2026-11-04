@@ -62,6 +62,357 @@ body {
   transform: scale(0.97);
 }
 
+/* ============================================================
+   GARISDev — Premium Motion Layer
+   Beams · Shimmer · Spotlight · Marquee · Data Flow
+   ============================================================ */
+
+@property --border-beam-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* ---------- 1. Hero: animated engineering grid + beams ---------- */
+.hero-atmosphere {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-grid-mask {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: radial-gradient(ellipse 95% 70% at 50% 28%, #000 12%, transparent 76%);
+  mask-image: radial-gradient(ellipse 95% 70% at 50% 28%, #000 12%, transparent 76%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: -72px;
+  background-image:
+    linear-gradient(to right, rgba(99, 102, 241, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.09) 1px, transparent 1px);
+  background-size: 72px 72px;
+  animation: hero-grid-drift 42s linear infinite;
+  will-change: transform;
+}
+
+@keyframes hero-grid-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(72px, 72px, 0); }
+}
+
+.hero-glow {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.hero-glow--violet {
+  width: 620px;
+  height: 420px;
+  top: -10%;
+  left: 12%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.26), transparent 68%);
+  filter: blur(90px);
+}
+
+.hero-glow--cyan {
+  width: 460px;
+  height: 340px;
+  top: 18%;
+  right: -4%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.15), transparent 70%);
+  filter: blur(90px);
+}
+
+.hero-beams {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-beam {
+  position: absolute;
+  top: -40%;
+  width: 1px;
+  height: 180%;
+  opacity: 0;
+  transform-origin: center;
+  animation: hero-beam-sweep var(--beam-duration, 18s) linear infinite;
+  animation-delay: var(--beam-delay, 0s);
+  will-change: transform, opacity;
+}
+
+.hero-beam--violet {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(99, 102, 241, 0) 18%,
+    rgba(129, 140, 248, 0.55) 46%,
+    rgba(99, 102, 241, 0.26) 62%,
+    transparent 86%
+  );
+  box-shadow: 0 0 12px rgba(129, 140, 248, 0.22);
+}
+
+.hero-beam--cyan {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(56, 189, 248, 0) 18%,
+    rgba(56, 189, 248, 0.45) 48%,
+    rgba(56, 189, 248, 0.2) 64%,
+    transparent 86%
+  );
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.16);
+}
+
+@keyframes hero-beam-sweep {
+  0% {
+    transform: translate3d(-26vw, 4vh, 0) rotate(var(--beam-angle, 18deg));
+    opacity: 0;
+  }
+  14% { opacity: var(--beam-opacity, 0.4); }
+  82% { opacity: var(--beam-opacity, 0.4); }
+  100% {
+    transform: translate3d(26vw, -6vh, 0) rotate(var(--beam-angle, 18deg));
+    opacity: 0;
+  }
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(9, 10, 15, 0.55) 0%,
+    transparent 22%,
+    transparent 66%,
+    #090A0F 100%
+  );
+}
+
+/* ---------- 2. Shimmer perimeter for primary CTAs ---------- */
+.shimmer-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 14px 38px -18px rgba(79, 70, 229, 0.85);
+}
+
+.shimmer-button__ring {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1px;
+  overflow: hidden;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.shimmer-button__ring-spin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 220%;
+  aspect-ratio: 1;
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 292deg,
+    rgba(129, 140, 248, 0.2) 306deg,
+    rgba(226, 232, 255, 0.7) 328deg,
+    rgba(56, 189, 248, 0.55) 344deg,
+    transparent 356deg,
+    transparent 360deg
+  );
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: shimmer-spin 4.2s linear infinite;
+  will-change: transform;
+}
+
+@keyframes shimmer-spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ---------- 3. Telemetry data-flow beam ---------- */
+.data-comet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1px;
+  width: 26%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56, 189, 248, 0.95),
+    rgba(129, 140, 248, 0.65),
+    transparent
+  );
+  animation: data-comet-travel 3.8s linear infinite;
+  will-change: transform, opacity;
+}
+
+.data-comet--alt {
+  animation-delay: 1.9s;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(129, 140, 248, 0.8),
+    transparent
+  );
+}
+
+@keyframes data-comet-travel {
+  0% { transform: translate3d(-120%, 0, 0); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translate3d(480%, 0, 0); opacity: 0; }
+}
+
+/* ---------- 4. Spotlight + border beam cards ---------- */
+.spotlight-card {
+  --spot-x: 50%;
+  --spot-y: 50%;
+  --spot-color: rgba(99, 102, 241, 0.16);
+  transition:
+    background-color 200ms var(--ease-out),
+    border-color 200ms var(--ease-out),
+    box-shadow 260ms var(--ease-out),
+    transform 200ms var(--ease-out);
+}
+
+.spotlight-card__glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    360px circle at var(--spot-x) var(--spot-y),
+    var(--spot-color),
+    transparent 68%
+  );
+  opacity: 0;
+  transition: opacity 300ms var(--ease-out);
+  pointer-events: none;
+}
+
+.spotlight-card__beam {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--border-beam-angle),
+    transparent 0deg,
+    transparent 236deg,
+    rgba(99, 102, 241, 0.12) 258deg,
+    rgba(99, 102, 241, 0.95) 292deg,
+    rgba(56, 189, 248, 0.95) 322deg,
+    rgba(99, 102, 241, 0.12) 344deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  animation: border-beam-spin 4s linear infinite;
+  animation-play-state: paused;
+  transition: opacity 220ms var(--ease-out);
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .spotlight-card:hover .spotlight-card__glow {
+    opacity: 1;
+  }
+
+  .spotlight-card:hover .spotlight-card__beam {
+    opacity: 1;
+    animation-play-state: running;
+  }
+
+  .spotlight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 26px 64px -40px rgba(79, 70, 229, 0.6);
+  }
+}
+
+@keyframes border-beam-spin {
+  to { --border-beam-angle: 360deg; }
+}
+
+/* ---------- 5. Infinite client marquee ---------- */
+.marquee {
+  --marquee-duration: 48s;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll var(--marquee-duration) linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee__group {
+  display: flex;
+  align-items: stretch;
+  gap: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ---------- 6. Mobile: lighter paint budget ---------- */
+@media (max-width: 640px) {
+  .hero-grid {
+    inset: -48px;
+    background-size: 48px 48px;
+    opacity: 0.55;
+  }
+
+  .hero-beams {
+    opacity: 0.25;
+  }
+
+  .hero-beam:nth-child(n + 4) {
+    display: none;
+  }
+
+  .hero-glow--violet {
+    opacity: 0.7;
+  }
+}
+
 /* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -71,5 +422,34 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .hero-grid,
+  .hero-beam,
+  .data-comet,
+  .shimmer-button__ring-spin,
+  .spotlight-card__beam,
+  .marquee__track {
+    animation: none !important;
+  }
+
+  .hero-beam {
+    opacity: 0.3;
+    transform: rotate(var(--beam-angle, 18deg));
+  }
+
+  .spotlight-card:hover {
+    transform: none;
+  }
+
+  .marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    scrollbar-width: none;
+  }
+
+  .marquee::-webkit-scrollbar {
+    display: none;
   }
 }

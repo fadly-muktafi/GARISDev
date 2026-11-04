@@ -11,6 +11,7 @@ import {
   Wrench,
 } from 'lucide-react';
 import { CORE_SERVICES } from '@/lib/data';
+import { SpotlightCard } from './ui/spotlight-card';
 
 const SERVICE_ICON_MAP = {
   compass: Compass,
@@ -44,6 +45,8 @@ export function SectionCoreServices() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {CORE_SERVICES.map((service, idx) => {
             const IconComponent = SERVICE_ICON_MAP[service.iconName] || Compass;
+            const glowColor =
+              idx % 2 === 0 ? 'rgba(99, 102, 241, 0.16)' : 'rgba(56, 189, 248, 0.13)';
 
             return (
               <motion.div
@@ -52,36 +55,42 @@ export function SectionCoreServices() {
                 whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.32, delay: idx * 0.05, ease: [0.23, 1, 0.32, 1] }}
-                className="group p-7 rounded-2xl bg-ground-elevated hover:bg-ground-surface border border-white/5 hover:border-white/10 transition-all duration-200 flex flex-col justify-between gap-6"
+                className="h-full"
               >
-                <div className="flex flex-col gap-4">
-                  {/* Service Icon */}
-                  <div className="w-12 h-12 rounded-xl bg-ground-surface border border-white/10 flex items-center justify-center text-accent-violet-light group-hover:scale-105 group-hover:text-accent-cyan transition-all">
-                    <IconComponent className="w-6 h-6" strokeWidth={1.8} />
+                <SpotlightCard
+                  glowColor={glowColor}
+                  className="h-full rounded-2xl border border-white/5 bg-ground-elevated p-7 hover:border-white/10 hover:bg-ground-surface"
+                  contentClassName="flex h-full flex-col justify-between gap-6"
+                >
+                  <div className="flex flex-col gap-4">
+                    {/* Service Icon */}
+                    <div className="w-12 h-12 rounded-xl bg-ground-surface border border-white/10 flex items-center justify-center text-accent-violet-light group-hover:scale-105 group-hover:text-accent-cyan transition-all">
+                      <IconComponent className="w-6 h-6" strokeWidth={1.8} />
+                    </div>
+
+                    {/* Title & Description */}
+                    <div className="flex flex-col gap-2">
+                      <h3 className="font-display font-bold text-lg md:text-xl text-ink-primary group-hover:text-white transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="font-sans text-sm text-ink-secondary leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Title & Description */}
-                  <div className="flex flex-col gap-2">
-                    <h3 className="font-display font-bold text-lg md:text-xl text-ink-primary group-hover:text-white transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="font-sans text-sm text-ink-secondary leading-relaxed">
-                      {service.description}
-                    </p>
+                  {/* Tag Pills */}
+                  <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
+                    {service.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="py-1 px-2.5 rounded-md bg-ground-surface text-ink-secondary text-xs font-mono border border-white/5"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                </div>
-
-                {/* Tag Pills */}
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
-                  {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="py-1 px-2.5 rounded-md bg-ground-surface text-ink-secondary text-xs font-mono border border-white/5"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                </SpotlightCard>
               </motion.div>
             );
           })}

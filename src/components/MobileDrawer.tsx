@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLenis } from 'lenis/react';
 import {
   X,
   ChevronRight,
@@ -30,6 +31,8 @@ const MENU_ICONS = [
 ];
 
 export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
+  const lenis = useLenis();
+
   // Prevent body scrolling when drawer is open
   useEffect(() => {
     if (isOpen) {
@@ -55,13 +58,16 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
   const handleNavClick = (href: string) => {
     onClose();
-    // Smooth scroll to anchor after drawer close
+    // Let the drawer unmount and body scroll restore, then glide with Lenis
     setTimeout(() => {
-      const target = document.querySelector(href);
-      if (target) {
+      const target = document.querySelector<HTMLElement>(href);
+      if (!target) return;
+      if (lenis) {
+        lenis.scrollTo(target, { duration: 1.1 });
+      } else {
         target.scrollIntoView({ behavior: 'smooth' });
       }
-    }, 200);
+    }, 220);
   };
 
   return (

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText, MessageCircle, CheckCircle, Mail } from 'lucide-react';
+import { MessageCircle, CheckCircle, Mail } from 'lucide-react';
 import { COMPANY_INFO } from '@/lib/data';
 import { DownloadButton } from './DownloadButton';
 
@@ -22,11 +22,11 @@ export function SectionPrimaryAction() {
         >
           {/* Left Column: CTA Pitch */}
           <div className="flex flex-col gap-6 max-w-2xl">
-            {/* Tagline */}
-            <div className="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-ground-surface border border-accent-violet/30 self-start shadow-sm">
-              <FileText className="w-4 h-4 text-accent-violet-light" />
-              <span className="font-display text-xs font-bold text-accent-violet-light tracking-wider">
-                DOKUMEN RESMI PERSEROAN
+            {/* Eyebrow — line-led, no pill */}
+            <div className="flex items-center gap-3 self-start">
+              <span className="h-px w-8 bg-gradient-to-r from-accent-violet to-transparent" />
+              <span className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-accent-violet-light">
+                Dokumen Resmi Perseroan
               </span>
             </div>
 

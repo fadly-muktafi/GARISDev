@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Download, Loader2, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { COMPANY_INFO } from '@/lib/data';
+import { ShimmerButton } from './ui/shimmer-button';
 
 interface DownloadButtonProps {
   label?: string;
@@ -68,26 +69,25 @@ export function DownloadButton({
 
   const variantClasses = {
     primary:
-      'bg-accent-indigo-btn hover:bg-accent-violet text-white shadow-lg shadow-accent-indigo-btn/25 border border-white/10',
+      'rounded-full bg-accent-indigo-btn hover:bg-accent-violet text-white border border-white/10',
     secondary:
-      'bg-ground-surface hover:bg-ground-elevated text-ink-primary border border-white/10 hover:border-white/20',
+      'rounded-full bg-ground-surface hover:bg-ground-elevated text-ink-primary border border-white/10 hover:border-white/20',
     nav:
-      'bg-accent-indigo-btn hover:bg-accent-violet text-white font-semibold shadow-md shadow-accent-indigo-btn/20 border border-white/10',
+      'rounded-full bg-accent-indigo-btn hover:bg-accent-violet text-white font-semibold border border-white/10',
     drawer:
-      'w-full bg-accent-indigo-btn hover:bg-accent-violet text-white font-bold py-3.5 rounded-xl shadow-lg shadow-accent-indigo-btn/25 border border-white/10',
+      'rounded-xl w-full bg-accent-indigo-btn hover:bg-accent-violet text-white font-bold py-3.5 border border-white/10',
     outline:
-      'bg-transparent hover:bg-white/5 text-ink-primary border border-white/15 hover:border-white/30',
+      'rounded-full bg-transparent hover:bg-white/5 text-ink-primary border border-white/15 hover:border-white/30',
   };
 
   return (
-    <button
+    <ShimmerButton
       type="button"
       onClick={handleDownload}
       disabled={downloadState !== 'idle'}
+      shimmer={variant !== 'secondary' && variant !== 'outline'}
       aria-label="Unduh Dokumen Resmi Company Profile PT Global Agra Ripta Solusindo (PDF)"
       className={cn(
-        'press-feedback relative inline-flex items-center justify-center gap-2 rounded-full font-display font-medium select-none',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet-light focus-visible:ring-offset-2 focus-visible:ring-offset-ground-base',
         sizeClasses[size],
         variantClasses[variant],
         className
@@ -105,6 +105,6 @@ export function DownloadButton({
         </span>
       )}
       <span>{getButtonText()}</span>
-    </button>
+    </ShimmerButton>
   );
 }

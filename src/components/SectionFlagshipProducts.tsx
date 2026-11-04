@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ArrowRight, ExternalLink } from 'lucide-react';
+import { Sparkles, ArrowRight } from 'lucide-react';
 import { FLAGSHIP_PRODUCTS, PRODUCT_CATEGORIES } from '@/lib/data';
 import { COMPANY_INFO } from '@/lib/data';
 import { cn } from '@/lib/utils';
+import { SpotlightCard } from './ui/spotlight-card';
 
 export function SectionFlagshipProducts() {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -70,39 +71,45 @@ export function SectionFlagshipProducts() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-                className="group p-7 rounded-2xl bg-ground-elevated hover:bg-ground-surface border border-white/5 hover:border-white/10 transition-all duration-200 flex flex-col justify-between gap-6"
+                className="h-full"
               >
-                <div className="flex flex-col gap-4">
-                  {/* Card Header: Name & Module Badge */}
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="font-display font-bold text-xl text-ink-primary group-hover:text-white transition-colors">
-                      {product.name}
-                    </h3>
-                    <span
-                      className="py-1 px-3 rounded-full bg-ground-surface text-[11px] font-bold tracking-wider font-display border border-white/5"
-                      style={{ color: product.badgeColor }}
-                    >
-                      {product.badge}
-                    </span>
+                <SpotlightCard
+                  glowColor={`${product.badgeColor}26`}
+                  className="h-full rounded-2xl border border-white/5 bg-ground-elevated p-7 hover:border-white/10 hover:bg-ground-surface"
+                  contentClassName="flex h-full flex-col justify-between gap-6"
+                >
+                  <div className="flex flex-col gap-4">
+                    {/* Card Header: Name & Module Badge */}
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="font-display font-bold text-xl text-ink-primary group-hover:text-white transition-colors">
+                        {product.name}
+                      </h3>
+                      <span
+                        className="py-1 px-3 rounded-full bg-ground-surface text-[11px] font-bold tracking-wider font-display border border-white/5"
+                        style={{ color: product.badgeColor }}
+                      >
+                        {product.badge}
+                      </span>
+                    </div>
+
+                    {/* Description */}
+                    <p className="font-sans text-sm text-ink-secondary leading-relaxed">
+                      {product.description}
+                    </p>
                   </div>
 
-                  {/* Description */}
-                  <p className="font-sans text-sm text-ink-secondary leading-relaxed">
-                    {product.description}
-                  </p>
-                </div>
-
-                {/* Modules Pills */}
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
-                  {product.modules.map((mod) => (
-                    <span
-                      key={mod}
-                      className="py-1 px-2.5 rounded-md bg-ground-surface text-ink-secondary text-xs font-mono border border-white/5"
-                    >
-                      {mod}
-                    </span>
-                  ))}
-                </div>
+                  {/* Modules Pills */}
+                  <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
+                    {product.modules.map((mod) => (
+                      <span
+                        key={mod}
+                        className="py-1 px-2.5 rounded-md bg-ground-surface text-ink-secondary text-xs font-mono border border-white/5"
+                      >
+                        {mod}
+                      </span>
+                    ))}
+                  </div>
+                </SpotlightCard>
               </motion.div>
             ))}
           </AnimatePresence>

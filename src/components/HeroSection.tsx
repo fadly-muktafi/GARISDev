@@ -4,12 +4,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Activity, Server, Cpu } from 'lucide-react';
 import { DownloadButton } from './DownloadButton';
+import { BackgroundBeams } from './ui/background-beams';
+import { NumberTicker } from './ui/number-ticker';
+import { TelemetryFlow } from './ui/telemetry-flow';
 
 export function HeroSection() {
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-ground-base border-b border-white/5">
-      {/* Background Subtle Gradient Atmosphere */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-accent-violet/10 rounded-full blur-[140px] pointer-events-none" />
+      {/* Engineering grid + light beams */}
+      <BackgroundBeams />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -20,12 +23,16 @@ export function HeroSection() {
             transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
             className="lg:col-span-7 flex flex-col gap-6"
           >
-            {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-ground-elevated border border-accent-violet/30 self-start shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-accent-violet animate-pulse" />
-              <span className="font-display text-xs font-bold text-accent-violet-light tracking-wider">
-                REKAYASA ENTERPRISE SEJAK 2014
+            {/* Eyebrow — line-led, no pill */}
+            <div className="flex items-center gap-3 self-start">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-violet/40" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent-violet" />
               </span>
+              <span className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-accent-violet-light">
+                Rekayasa Enterprise Sejak 2014
+              </span>
+              <span className="h-px w-10 bg-gradient-to-r from-accent-violet/50 to-transparent" />
             </div>
 
             {/* Headline (Enforce Max 2 Lines Across All Viewports) */}
@@ -43,7 +50,7 @@ export function HeroSection() {
               <DownloadButton
                 label="Unduh Profil Perusahaan (PDF)"
                 size="lg"
-                className="w-full sm:w-auto text-sm sm:text-base justify-center shadow-indigo-500/20"
+                className="w-full sm:w-auto text-sm sm:text-base justify-center"
               />
 
               <a
@@ -79,7 +86,7 @@ export function HeroSection() {
             transition={{ duration: 0.4, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
             className="lg:col-span-5"
           >
-            <div className="w-full rounded-2xl bg-ground-elevated border border-white/10 p-5 sm:p-6 shadow-2xl flex flex-col gap-6">
+            <div className="relative w-full rounded-2xl bg-ground-elevated/90 backdrop-blur-sm border border-white/10 p-5 sm:p-6 shadow-2xl flex flex-col gap-5">
               {/* Telemetry Header */}
               <div className="flex items-center justify-between pb-4 border-b border-white/5">
                 <div className="flex items-center gap-2.5">
@@ -99,8 +106,9 @@ export function HeroSection() {
                 {/* Pulse Status */}
                 <div className="flex items-center gap-1.5 py-1 px-2.5 rounded-full bg-ground-surface border border-accent-emerald/30">
                   <span className="w-2 h-2 rounded-full bg-accent-emerald animate-pulse" />
-                  <span className="font-mono text-[10px] font-bold text-accent-emerald tracking-wide">
-                    ALL SYSTEMS ONLINE
+                  <span className="font-mono text-[10px] font-bold text-accent-emerald tracking-wide whitespace-nowrap">
+                    <span className="hidden sm:inline">ALL SYSTEMS ONLINE</span>
+                    <span className="sm:hidden">ONLINE</span>
                   </span>
                 </div>
               </div>
@@ -110,7 +118,13 @@ export function HeroSection() {
                 <div className="p-3.5 rounded-xl bg-ground-surface border border-white/5 flex flex-col gap-1">
                   <span className="font-sans text-xs text-ink-secondary">Uptime SLA</span>
                   <span className="font-display font-bold text-xl sm:text-2xl text-ink-primary tracking-tight">
-                    99.98%
+                    <NumberTicker
+                      value={99.98}
+                      decimals={2}
+                      suffix="%"
+                      duration={2}
+                      ariaLabel="99.98 persen uptime SLA"
+                    />
                   </span>
                   <span className="text-[11px] text-accent-emerald font-medium">
                     High-Availability
@@ -120,7 +134,8 @@ export function HeroSection() {
                 <div className="p-3.5 rounded-xl bg-ground-surface border border-white/5 flex flex-col gap-1">
                   <span className="font-sans text-xs text-ink-secondary">Pengalaman</span>
                   <span className="font-display font-bold text-xl sm:text-2xl text-ink-primary tracking-tight">
-                    2014-Now
+                    <NumberTicker value={2014} duration={2.2} ariaLabel="Berdiri sejak 2014" />
+                    <span className="text-ink-muted">-Now</span>
                   </span>
                   <span className="text-[11px] text-accent-cyan font-medium">
                     10+ Tahun Rekayasa
@@ -147,6 +162,9 @@ export function HeroSection() {
                   </span>
                 </div>
               </div>
+
+              {/* Microservice data flow with animated beam */}
+              <TelemetryFlow />
 
               {/* Verified Security Standard Footer */}
               <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs text-ink-secondary">

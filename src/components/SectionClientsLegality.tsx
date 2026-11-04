@@ -15,6 +15,7 @@ import {
   Check,
 } from 'lucide-react';
 import { CLIENTS, COMPANY_INFO } from '@/lib/data';
+import { InfiniteMarquee } from './ui/infinite-marquee';
 
 const CLIENT_ICON_MAP = {
   shield: Shield,
@@ -54,37 +55,45 @@ export function SectionClientsLegality() {
           </p>
         </div>
 
-        {/* 8 Client Logo Emblems Grid (Desktop 4x2, Mobile 2-cols) */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-          {CLIENTS.map((client, idx) => {
-            const IconComponent = CLIENT_ICON_MAP[client.iconName] || Shield;
+        {/* Client logo emblems — infinite seamless marquee with vignette edges */}
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-[10px] tracking-[0.22em] text-ink-muted">
+              KLIEN & MITRA STRATEGIS
+            </span>
+            <span className="hidden sm:inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.16em] text-ink-muted">
+              <span className="h-1 w-1 rounded-full bg-accent-emerald" />
+              8 INSTITUSI TERVERIFIKASI
+            </span>
+          </div>
 
-            return (
-              <motion.div
-                key={client.name}
-                initial={{ opacity: 0, transform: 'translateY(16px)' }}
-                whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.3, delay: idx * 0.04, ease: [0.23, 1, 0.32, 1] }}
-                className="group p-4 rounded-xl bg-ground-elevated hover:bg-ground-surface border border-white/5 hover:border-white/10 transition-all duration-200 flex items-center gap-3.5"
-              >
+          <InfiniteMarquee duration={52}>
+            {CLIENTS.map((client) => {
+              const IconComponent = CLIENT_ICON_MAP[client.iconName] || Shield;
+
+              return (
                 <div
-                  className="w-10 h-10 rounded-lg bg-ground-surface border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform"
-                  style={{ color: client.accentColor }}
+                  key={client.name}
+                  className="group flex w-[228px] shrink-0 items-center gap-3.5 rounded-xl border border-white/5 bg-ground-elevated px-4 py-3.5 transition-colors duration-200 hover:border-white/10 hover:bg-ground-surface sm:w-[272px]"
                 >
-                  <IconComponent className="w-5 h-5" strokeWidth={1.8} />
+                  <div
+                    className="w-10 h-10 rounded-lg bg-ground-surface border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform"
+                    style={{ color: client.accentColor }}
+                  >
+                    <IconComponent className="w-5 h-5" strokeWidth={1.8} />
+                  </div>
+                  <div className="flex flex-col min-w-0">
+                    <span className="font-display font-bold text-sm text-ink-primary group-hover:text-white truncate">
+                      {client.name}
+                    </span>
+                    <span className="font-sans text-xs text-ink-secondary truncate">
+                      {client.category}
+                    </span>
+                  </div>
                 </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="font-display font-bold text-sm text-ink-primary group-hover:text-white truncate">
-                    {client.name}
-                  </span>
-                  <span className="font-sans text-xs text-ink-secondary truncate">
-                    {client.category}
-                  </span>
-                </div>
-              </motion.div>
-            );
-          })}
+              );
+            })}
+          </InfiniteMarquee>
         </div>
 
         {/* Legal Widget Banner */}
