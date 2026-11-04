@@ -101,15 +101,14 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               {/* Header: Brand & Close Button */}
               <div className="flex items-center justify-between pt-1">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-ground-surface border border-accent-violet/20 flex items-center justify-center p-1.5 shadow-sm">
-                    <Image
-                      src="/assets/garisdev-icon-cropped.png"
-                      alt="GARISDev Emblem"
-                      width={28}
-                      height={28}
-                      className="object-contain"
-                    />
-                  </div>
+                  <Image
+                    src="/assets/garisdev-icon-cropped.png"
+                    alt=""
+                    width={525}
+                    height={515}
+                    sizes="36px"
+                    className="h-9 w-auto shrink-0 object-contain"
+                  />
                   <span className="font-display font-bold text-lg text-ink-primary tracking-tight">
                     GARISDev
                   </span>

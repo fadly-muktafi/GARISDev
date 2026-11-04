@@ -13,20 +13,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
           {/* Brand & Address Column (Col 1-5) */}
           <div className="lg:col-span-5 flex flex-col gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-ground-surface border border-white/10 flex items-center justify-center p-1.5">
-                <Image
-                  src="/assets/garisdev-icon-cropped.png"
-                  alt="GARISDev Monogram G Emblem"
-                  width={28}
-                  height={28}
-                  className="object-contain"
-                />
-              </div>
-              <span className="font-display font-bold text-xl text-ink-primary tracking-tight">
-                GARISDev
-              </span>
-            </div>
+            <Image
+              src="/assets/garisdev-logo-white-cropped.png"
+              alt="GARISDev — PT Global Agra Ripta Solusindo"
+              width={1053}
+              height={279}
+              sizes="(min-width: 768px) 162px, 146px"
+              className="h-9 md:h-10 w-auto self-start object-contain"
+            />
 
             <p className="font-sans text-sm text-ink-secondary leading-relaxed max-w-sm">
               Mitra rekayasa perangkat lunak enterprise, integrasi sistem heterogen, dan arsitektur transformasi digital tepercaya bagi korporasi dan institusi pemerintah sejak 2014.

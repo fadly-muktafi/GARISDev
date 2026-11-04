@@ -12,6 +12,8 @@ out
 # Playwright & Debug artifacts
 .playwright-mcp
 *.png
+!public/assets/*.png
+!src/app/*.png
 
 # OS artifacts
 .DS_Store

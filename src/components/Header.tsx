@@ -42,16 +42,15 @@ export function Header() {
             className="press-feedback flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet-light rounded-lg"
             aria-label="PT Global Agra Ripta Solusindo (GARISDev) Beranda"
           >
-            <div className="relative w-8 h-8 md:w-9 md:h-9 shrink-0 rounded-lg overflow-hidden flex items-center justify-center bg-ground-surface border border-white/10">
-              <Image
-                src="/assets/garisdev-icon-cropped.png"
-                alt="GARISDev Monogram G Emblem"
-                width={28}
-                height={28}
-                priority
-                className="object-contain"
-              />
-            </div>
+            <Image
+              src="/assets/garisdev-icon-cropped.png"
+              alt=""
+              width={525}
+              height={515}
+              priority
+              sizes="(min-width: 768px) 36px, 32px"
+              className="h-8 md:h-9 w-auto shrink-0 object-contain"
+            />
             <span className="font-display font-bold text-lg md:text-xl text-ink-primary tracking-tight group-hover:text-white transition-colors">
               GARISDev
             </span>

@@ -25,10 +25,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://garisdev.co.id',
   },
-  icons: {
-    icon: '/assets/garisdev-icon-cropped.png',
-    apple: '/assets/garisdev-icon-cropped.png',
-  },
   openGraph: {
     title: 'PT Global Agra Ripta Solusindo (GARISDev) — Official Company Profile',
     description:
