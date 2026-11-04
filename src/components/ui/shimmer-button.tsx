@@ -20,7 +20,7 @@ export const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonPr
       <button
         ref={ref}
         className={cn(
-          'press-feedback relative inline-flex select-none items-center justify-center gap-2 font-display font-medium',
+          'press-feedback relative inline-flex select-none items-center justify-center gap-2 font-display font-medium transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]',
           shimmer && 'shimmer-button',
           className
         )}

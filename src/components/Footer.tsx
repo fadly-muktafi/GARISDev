@@ -33,13 +33,13 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-accent-violet-light shrink-0" />
-                <a href={`tel:${COMPANY_INFO.phone}`} className="hover:text-ink-primary transition-colors">
+                <a href={`tel:${COMPANY_INFO.phone}`} className="hover:text-ink-primary transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]">
                   {COMPANY_INFO.phone}
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-accent-magenta-light shrink-0" />
-                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-ink-primary transition-colors">
+                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-ink-primary transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]">
                   {COMPANY_INFO.email}
                 </a>
               </div>
@@ -56,10 +56,10 @@ export function Footer() {
                 <li key={item.id}>
                   <a
                     href={item.href}
-                    className="hover:text-ink-primary transition-colors inline-flex items-center gap-1.5 group"
+                    className="hover:text-ink-primary transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] inline-flex items-center gap-1.5 group"
                   >
                     <span>{item.label}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]" />
                   </a>
                 </li>
               ))}
@@ -67,7 +67,7 @@ export function Footer() {
                 <a
                   href={COMPANY_INFO.pdfPath}
                   download={COMPANY_INFO.pdfFilename}
-                  className="text-accent-violet-light hover:text-white transition-colors font-medium inline-flex items-center gap-1.5"
+                  className="text-accent-violet-light hover:text-white transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] font-medium inline-flex items-center gap-1.5"
                 >
                   <span>Unduh Dokumen Profil (PDF)</span>
                 </a>
@@ -85,7 +85,7 @@ export function Footer() {
                 <li key={prod.id}>
                   <a
                     href="#produk"
-                    className="hover:text-ink-primary transition-colors block py-1"
+                    className="hover:text-ink-primary transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] block py-1"
                   >
                     <span className="font-medium text-ink-primary">{prod.name}</span>
                     <span className="block text-[11px] text-ink-muted truncate">
@@ -95,15 +95,6 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-
-            {/* Cloud Status Indicator */}
-            <div className="mt-4 p-3 rounded-xl bg-ground-surface border border-white/5 flex items-center justify-between text-xs">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent-emerald animate-pulse" />
-                <span className="text-ink-secondary">Enterprise Cloud Operations</span>
-              </div>
-              <span className="text-accent-emerald font-mono font-semibold">STABLE</span>
-            </div>
           </div>
         </div>
 

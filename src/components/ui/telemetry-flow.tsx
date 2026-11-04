@@ -17,13 +17,9 @@ export function TelemetryFlow() {
       className="relative overflow-hidden rounded-xl border border-white/5 bg-ground-base/40 px-4 py-3.5"
       aria-hidden="true"
     >
-      <div className="flex items-center justify-between pb-3">
+      <div className="flex items-center pb-3">
         <span className="font-mono text-[9px] tracking-[0.18em] text-ink-muted">
           MICROSERVICE DATA FLOW
-        </span>
-        <span className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.14em] text-accent-cyan">
-          <span className="h-1 w-1 rounded-full bg-accent-cyan animate-pulse" />
-          STREAM
         </span>
       </div>
 

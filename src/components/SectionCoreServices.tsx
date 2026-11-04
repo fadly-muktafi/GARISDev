@@ -27,11 +27,8 @@ export function SectionCoreServices() {
     <section id="layanan" className="py-20 md:py-28 bg-ground-base border-b border-white/5 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="flex flex-col gap-3 max-w-2xl">
-            <span className="font-display text-xs font-bold text-accent-violet-light tracking-wider">
-              KAPABILITAS PERSEROAN
-            </span>
             <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-ink-primary tracking-tight">
               Kapabilitas Rekayasa Teknologi Enterprise
             </h2>
@@ -64,13 +61,13 @@ export function SectionCoreServices() {
                 >
                   <div className="flex flex-col gap-4">
                     {/* Service Icon */}
-                    <div className="w-12 h-12 rounded-xl bg-ground-surface border border-white/10 flex items-center justify-center text-accent-violet-light group-hover:scale-105 group-hover:text-accent-cyan transition-all">
+                    <div className="w-12 h-12 rounded-xl bg-ground-surface border border-white/10 flex items-center justify-center text-accent-violet-light group-hover:scale-105 group-hover:text-accent-cyan transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]">
                       <IconComponent className="w-6 h-6" strokeWidth={1.8} />
                     </div>
 
                     {/* Title & Description */}
                     <div className="flex flex-col gap-2">
-                      <h3 className="font-display font-bold text-lg md:text-xl text-ink-primary group-hover:text-white transition-colors">
+                      <h3 className="font-display font-bold text-lg md:text-xl text-ink-primary group-hover:text-white transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]">
                         {service.title}
                       </h3>
                       <p className="font-sans text-sm text-ink-secondary leading-relaxed">

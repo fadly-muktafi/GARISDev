@@ -69,15 +69,15 @@ export function DownloadButton({
 
   const variantClasses = {
     primary:
-      'rounded-full bg-accent-indigo-btn hover:bg-accent-violet text-white border border-white/10',
+      'rounded-full bg-accent-indigo-btn hover:bg-accent-violet text-white border border-white/10 transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]',
     secondary:
-      'rounded-full bg-ground-surface hover:bg-ground-elevated text-ink-primary border border-white/10 hover:border-white/20',
+      'rounded-full bg-ground-surface hover:bg-white/[0.05] text-ink-primary border border-white/10 hover:border-white/20 transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]',
     nav:
-      'rounded-full bg-accent-indigo-btn hover:bg-accent-violet text-white font-semibold border border-white/10',
+      'rounded-full bg-accent-indigo-btn hover:bg-accent-violet text-white font-semibold border border-white/10 transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]',
     drawer:
-      'rounded-xl w-full bg-accent-indigo-btn hover:bg-accent-violet text-white font-bold py-3.5 border border-white/10',
+      'rounded-xl w-full bg-accent-indigo-btn hover:bg-accent-violet text-white font-bold py-3.5 border border-white/10 transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]',
     outline:
-      'rounded-full bg-transparent hover:bg-white/5 text-ink-primary border border-white/15 hover:border-white/30',
+      'rounded-full bg-transparent hover:bg-white/[0.05] text-ink-primary border border-white/15 hover:border-white/20 transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]',
   };
 
   return (

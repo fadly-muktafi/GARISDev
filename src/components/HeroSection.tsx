@@ -23,18 +23,6 @@ export function HeroSection() {
             transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
             className="lg:col-span-7 flex flex-col gap-6"
           >
-            {/* Eyebrow — line-led, no pill */}
-            <div className="flex items-center gap-3 self-start">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-violet/40" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent-violet" />
-              </span>
-              <span className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-accent-violet-light">
-                Rekayasa Enterprise Sejak 2014
-              </span>
-              <span className="h-px w-10 bg-gradient-to-r from-accent-violet/50 to-transparent" />
-            </div>
-
             {/* Headline (Enforce Max 2 Lines Across All Viewports) */}
             <h1 className="font-display font-bold text-[25px] sm:text-4xl md:text-5xl lg:text-[46px] text-ink-primary tracking-tight leading-[1.2] sm:leading-[1.15]">
               Rekayasa Perangkat Lunak & Terobosan Solusi Digital
@@ -55,7 +43,7 @@ export function HeroSection() {
 
               <a
                 href="#produk"
-                className="press-feedback inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-ground-surface hover:bg-ground-elevated text-ink-primary border border-white/10 hover:border-white/20 font-display font-medium text-sm sm:text-base transition-colors"
+                className="press-feedback inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-ground-surface hover:bg-white/[0.05] text-ink-primary border border-white/10 hover:border-white/20 font-display font-medium text-sm sm:text-base"
               >
                 <span>Eksplorasi Solusi</span>
                 <ArrowRight className="w-4 h-4 text-accent-cyan" strokeWidth={2} />
@@ -101,15 +89,6 @@ export function HeroSection() {
                       Live Operational Cluster
                     </span>
                   </div>
-                </div>
-
-                {/* Pulse Status */}
-                <div className="flex items-center gap-1.5 py-1 px-2.5 rounded-full bg-ground-surface border border-accent-emerald/30">
-                  <span className="w-2 h-2 rounded-full bg-accent-emerald animate-pulse" />
-                  <span className="font-mono text-[10px] font-bold text-accent-emerald tracking-wide whitespace-nowrap">
-                    <span className="hidden sm:inline">ALL SYSTEMS ONLINE</span>
-                    <span className="sm:hidden">ONLINE</span>
-                  </span>
                 </div>
               </div>
 
@@ -165,17 +144,6 @@ export function HeroSection() {
 
               {/* Microservice data flow with animated beam */}
               <TelemetryFlow />
-
-              {/* Verified Security Standard Footer */}
-              <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs text-ink-secondary">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-accent-violet" />
-                  <span>Arsitektur Microservices</span>
-                </div>
-                <span className="font-mono text-accent-violet-light font-medium">
-                  ISO Compliance Ready
-                </span>
-              </div>
             </div>
           </motion.div>
         </div>

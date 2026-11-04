@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, CheckCircle, Mail } from 'lucide-react';
+import { MessageCircle, Mail } from 'lucide-react';
 import { COMPANY_INFO } from '@/lib/data';
 import { DownloadButton } from './DownloadButton';
 
@@ -22,14 +22,6 @@ export function SectionPrimaryAction() {
         >
           {/* Left Column: CTA Pitch */}
           <div className="flex flex-col gap-6 max-w-2xl">
-            {/* Eyebrow — line-led, no pill */}
-            <div className="flex items-center gap-3 self-start">
-              <span className="h-px w-8 bg-gradient-to-r from-accent-violet to-transparent" />
-              <span className="font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-accent-violet-light">
-                Dokumen Resmi Perseroan
-              </span>
-            </div>
-
             {/* Headline */}
             <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-ink-primary tracking-tight leading-tight">
               Pelajari Rekam Jejak & Kapabilitas Lengkap Kami
@@ -52,7 +44,7 @@ export function SectionPrimaryAction() {
                 href={COMPANY_INFO.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="press-feedback inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-full bg-ground-surface hover:bg-ground-base border border-accent-emerald/40 hover:border-accent-emerald/70 text-ink-primary font-display font-semibold text-sm sm:text-base transition-colors min-h-[48px]"
+                className="press-feedback inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-full bg-ground-surface hover:bg-white/[0.05] border border-accent-emerald/40 hover:border-white/20 text-ink-primary font-display font-semibold text-sm sm:text-base transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] min-h-[48px]"
               >
                 <MessageCircle className="w-5 h-5 text-accent-emerald" />
                 <span>Konsultasi WhatsApp</span>
@@ -66,7 +58,7 @@ export function SectionPrimaryAction() {
                 Ingin konsultasi langsung? Hubungi representatif kami di{' '}
                 <a
                   href={`mailto:${COMPANY_INFO.email}`}
-                  className="text-accent-violet-light hover:underline font-medium"
+                  className="text-accent-violet-light hover:text-white font-medium transition-colors duration-200"
                 >
                   {COMPANY_INFO.email}
                 </a>
@@ -100,15 +92,6 @@ export function SectionPrimaryAction() {
               <p className="font-sans text-xs text-ink-secondary leading-relaxed pt-1">
                 Enterprise Software Engineering, Architecture Strategy, & 6 Flagship Platform Ecosystem.
               </p>
-            </div>
-
-            {/* Card Footer */}
-            <div className="flex items-center justify-between pt-4 border-t border-white/5 text-xs">
-              <div className="flex items-center gap-2 text-accent-emerald font-medium">
-                <CheckCircle className="w-4 h-4" />
-                <span>Verified Perseroan</span>
-              </div>
-              <span className="text-ink-muted font-mono">Ref: GRSDV-2026</span>
             </div>
           </div>
         </motion.div>

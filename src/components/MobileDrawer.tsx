@@ -119,18 +119,10 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                   type="button"
                   onClick={onClose}
                   aria-label="Tutup menu navigasi"
-                  className="press-feedback w-11 h-11 rounded-xl bg-ground-surface border border-white/10 flex items-center justify-center text-ink-primary hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet-light"
+                  className="press-feedback w-11 h-11 rounded-xl bg-ground-surface border border-white/10 flex items-center justify-center text-ink-primary hover:bg-white/[0.05] hover:border-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet-light"
                 >
                   <X className="w-5 h-5 text-ink-primary" strokeWidth={2} />
                 </button>
-              </div>
-
-              {/* Status Badge */}
-              <div className="inline-flex items-center gap-2 py-1.5 px-3 rounded-full bg-ground-elevated border border-white/5 self-start">
-                <span className="w-2 h-2 rounded-full bg-accent-emerald animate-pulse" />
-                <span className="font-sans text-xs font-medium text-ink-secondary tracking-wider">
-                  NAVIGASI SISTEM PERSEROAN
-                </span>
               </div>
 
               {/* Vertical Menu Items */}
@@ -144,7 +136,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                       key={item.id}
                       type="button"
                       onClick={() => handleNavClick(item.href)}
-                      className="press-feedback w-full min-h-[52px] flex items-center justify-between py-3.5 px-4 rounded-xl bg-ground-elevated hover:bg-ground-surface border border-white/5 hover:border-white/10 transition-colors text-left"
+                      className="press-feedback w-full min-h-[52px] flex items-center justify-between py-3.5 px-4 rounded-xl bg-ground-elevated hover:bg-ground-surface border border-white/5 hover:border-white/10 transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] text-left"
                     >
                       <div className="flex items-center gap-3">
                         <div
@@ -179,7 +171,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                 href={COMPANY_INFO.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="press-feedback w-full min-h-[48px] py-3 px-4 rounded-xl bg-ground-surface hover:bg-ground-elevated border border-accent-emerald/30 hover:border-accent-emerald/60 flex items-center justify-center gap-2 font-display font-semibold text-sm text-ink-primary transition-colors"
+                className="press-feedback w-full min-h-[48px] py-3 px-4 rounded-xl bg-ground-surface hover:bg-white/[0.05] border border-accent-emerald/30 hover:border-white/20 flex items-center justify-center gap-2 font-display font-semibold text-sm text-ink-primary transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
               >
                 <MessageCircle className="w-4 h-4 text-accent-emerald" strokeWidth={2} />
                 <span>Konsultasi WhatsApp</span>

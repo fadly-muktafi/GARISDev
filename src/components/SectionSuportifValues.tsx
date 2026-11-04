@@ -9,11 +9,8 @@ export function SectionSuportifValues() {
     <section id="nilai" className="py-20 md:py-28 bg-ground-base border-b border-white/5 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="flex flex-col gap-3 max-w-2xl">
-            <span className="font-display text-xs font-bold text-accent-violet-light tracking-wider">
-              BUDAYA & ETOS KERJA
-            </span>
             <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-ink-primary tracking-tight">
               Nilai Inti Korporasi: Filosofi SUPORTIF
             </h2>
@@ -32,24 +29,19 @@ export function SectionSuportifValues() {
               whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.3, delay: idx * 0.04, ease: [0.23, 1, 0.32, 1] }}
-              className="group p-5 sm:p-6 rounded-2xl bg-ground-elevated hover:bg-ground-surface border border-white/5 hover:border-white/10 transition-all duration-200 flex flex-col justify-between gap-4"
+              className="group p-5 sm:p-6 rounded-2xl bg-ground-elevated hover:bg-ground-surface border border-white/5 hover:border-white/10 transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] flex flex-col justify-between gap-4"
             >
               <div className="flex flex-col gap-3">
-                {/* Top Badge & Pillar Tag */}
-                <div className="flex items-center justify-between">
-                  <div
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-ground-surface border border-white/10 flex items-center justify-center font-display font-bold text-base sm:text-lg group-hover:scale-105 transition-transform"
-                    style={{ color: val.color }}
-                  >
-                    {val.letter}
-                  </div>
-                  <span className="font-sans text-xs text-ink-secondary tracking-wider">
-                    {val.pillar}
-                  </span>
+                {/* Letter Badge */}
+                <div
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-ground-surface border border-white/10 flex items-center justify-center font-display font-bold text-base sm:text-lg group-hover:scale-105 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                  style={{ color: val.color }}
+                >
+                  {val.letter}
                 </div>
 
                 {/* Title */}
-                <h3 className="font-display font-bold text-base sm:text-lg text-ink-primary group-hover:text-white transition-colors">
+                <h3 className="font-display font-bold text-base sm:text-lg text-ink-primary group-hover:text-white transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]">
                   {val.title}
                 </h3>
               </div>

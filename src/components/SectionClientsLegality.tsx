@@ -44,9 +44,6 @@ export function SectionClientsLegality() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
         {/* Section Header */}
         <div className="flex flex-col gap-3 max-w-3xl">
-          <span className="font-display text-xs font-bold text-accent-violet-light tracking-wider">
-            TRUST & CREDENTIALS
-          </span>
           <h2 className="font-display font-bold text-xl sm:text-3xl md:text-4xl text-ink-primary tracking-tight">
             Dipercaya Institusi Pemerintah & Enterprise Skala Nasional
           </h2>
@@ -57,15 +54,9 @@ export function SectionClientsLegality() {
 
         {/* Client logo emblems — infinite seamless marquee with vignette edges */}
         <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <span className="font-mono text-[10px] tracking-[0.22em] text-ink-muted">
-              KLIEN & MITRA STRATEGIS
-            </span>
-            <span className="hidden sm:inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.16em] text-ink-muted">
-              <span className="h-1 w-1 rounded-full bg-accent-emerald" />
-              8 INSTITUSI TERVERIFIKASI
-            </span>
-          </div>
+          <span className="font-display text-xs font-semibold tracking-wider text-ink-muted">
+            Klien & Mitra Strategis
+          </span>
 
           <InfiniteMarquee duration={52}>
             {CLIENTS.map((client) => {
@@ -74,10 +65,10 @@ export function SectionClientsLegality() {
               return (
                 <div
                   key={client.name}
-                  className="group flex w-[228px] shrink-0 items-center gap-3.5 rounded-xl border border-white/5 bg-ground-elevated px-4 py-3.5 transition-colors duration-200 hover:border-white/10 hover:bg-ground-surface sm:w-[272px]"
+                  className="group flex w-[228px] shrink-0 items-center gap-3.5 rounded-xl border border-white/5 bg-ground-elevated px-4 py-3.5 transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-white/10 hover:bg-ground-surface sm:w-[272px]"
                 >
                   <div
-                    className="w-10 h-10 rounded-lg bg-ground-surface border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform"
+                    className="w-10 h-10 rounded-lg bg-ground-surface border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
                     style={{ color: client.accentColor }}
                   >
                     <IconComponent className="w-5 h-5" strokeWidth={1.8} />
@@ -131,7 +122,7 @@ export function SectionClientsLegality() {
               <span className="font-sans text-xs text-ink-secondary">
                 Nomor Induk Berusaha (NIB)
               </span>
-              <span className="font-display font-bold text-sm sm:text-base text-ink-primary font-mono tracking-tight">
+              <span className="font-mono font-bold text-sm sm:text-base text-ink-primary tracking-tight">
                 {COMPANY_INFO.nib}
               </span>
             </div>
@@ -141,7 +132,7 @@ export function SectionClientsLegality() {
               <span className="font-sans text-xs text-ink-secondary">
                 NPWP Perseroan
               </span>
-              <span className="font-display font-bold text-sm sm:text-base text-ink-primary font-mono tracking-tight">
+              <span className="font-mono font-bold text-sm sm:text-base text-ink-primary tracking-tight">
                 {COMPANY_INFO.npwp}
               </span>
             </div>
@@ -150,7 +141,7 @@ export function SectionClientsLegality() {
             <button
               type="button"
               onClick={handleCopyNIB}
-              className="press-feedback inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-ground-surface hover:bg-white/5 border border-white/10 text-xs sm:text-sm font-display font-medium text-ink-primary min-h-[44px]"
+              className="press-feedback inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-ground-surface hover:bg-white/[0.05] border border-white/10 hover:border-white/20 text-xs sm:text-sm font-display font-medium text-ink-primary min-h-[44px] transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
               aria-label="Salin Nomor Induk Berusaha (NIB) ke clipboard"
             >
               {copied ? (

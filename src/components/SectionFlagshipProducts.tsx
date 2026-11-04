@@ -20,11 +20,8 @@ export function SectionFlagshipProducts() {
     <section id="produk" className="py-20 md:py-28 bg-ground-base border-b border-white/5 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="flex flex-col gap-3 max-w-2xl">
-            <span className="font-display text-xs font-bold text-accent-violet-light tracking-wider">
-              PRODUK UNGGULAN
-            </span>
             <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-ink-primary tracking-tight">
               Solusi Digital Flagship Siap Implementasi
             </h2>
@@ -35,7 +32,7 @@ export function SectionFlagshipProducts() {
         </div>
 
         {/* Filter Tabs (Interactive with Clear Active State & Touch Targets >= 44px) */}
-        <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none" role="tablist">
+        <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none md:flex-wrap md:overflow-visible md:pb-0" role="tablist">
           {PRODUCT_CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat.id;
 
@@ -47,10 +44,10 @@ export function SectionFlagshipProducts() {
                 aria-selected={isActive}
                 onClick={() => setActiveCategory(cat.id)}
                 className={cn(
-                  'press-feedback whitespace-nowrap px-5 py-3 rounded-full text-xs sm:text-sm font-display font-semibold transition-all min-h-[44px] flex items-center justify-center',
+                  'press-feedback whitespace-nowrap px-4 py-3 rounded-full text-xs sm:text-sm font-display font-semibold transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] min-h-[44px] flex items-center justify-center active:scale-[0.97]',
                   isActive
                     ? 'bg-accent-indigo-btn text-white shadow-md shadow-accent-indigo-btn/30 border border-white/10'
-                    : 'bg-transparent hover:bg-white/5 text-ink-secondary hover:text-ink-primary border border-white/15'
+                    : 'bg-transparent hover:bg-white/[0.05] text-ink-secondary hover:text-ink-primary border border-white/15 hover:border-white/20'
                 )}
               >
                 <span className="hidden sm:inline">{cat.label}</span>
@@ -81,7 +78,7 @@ export function SectionFlagshipProducts() {
                   <div className="flex flex-col gap-4">
                     {/* Card Header: Name & Module Badge */}
                     <div className="flex items-center justify-between gap-2">
-                      <h3 className="font-display font-bold text-xl text-ink-primary group-hover:text-white transition-colors">
+                      <h3 className="font-display font-bold text-xl text-ink-primary group-hover:text-white transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]">
                         {product.name}
                       </h3>
                       <span
@@ -129,10 +126,10 @@ export function SectionFlagshipProducts() {
           <a
             href={COMPANY_INFO.pdfPath}
             download={COMPANY_INFO.pdfFilename}
-            className="press-feedback inline-flex items-center gap-2 text-xs sm:text-sm font-display font-semibold text-accent-violet-light hover:text-white shrink-0 group self-start sm:self-auto min-h-[44px] items-center"
+            className="press-feedback inline-flex items-center gap-2 text-xs sm:text-sm font-display font-semibold text-accent-violet-light hover:text-white shrink-0 group self-start sm:self-auto min-h-[44px] transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
           >
             <span>Lihat di Dokumen Profil</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]" />
           </a>
         </div>
       </div>
