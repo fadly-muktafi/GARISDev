@@ -1,0 +1,18 @@
+# Node modules
+node_modules
+/.pnpm-store
+
+# Next.js build output
+.next
+out
+
+# Environment variables
+.env*.local
+
+# Playwright & Debug artifacts
+.playwright-mcp
+*.png
+
+# OS artifacts
+.DS_Store
+Thumbs.db

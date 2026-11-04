@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-plus-jakarta: 'Plus Jakarta Sans', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+html {
+  scroll-behavior: initial;
+  background-color: #090A0F;
+  color: #F8FAFC;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #090A0F;
+  color: #F8FAFC;
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #4F46E5;
+  color: #FFFFFF;
+}
+
+/* Custom Obsidian Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090A0F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #181B26;
+  border-radius: 9999px;
+  border: 2px solid #090A0F;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #38BDF840;
+}
+
+/* Tactile Active Feedback for interactive controls (Emil Kowalski Craft Standard) */
+.press-feedback {
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.press-feedback:active {
+  transform: scale(0.97);
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
