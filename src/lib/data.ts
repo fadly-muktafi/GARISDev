@@ -8,7 +8,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Layanan', href: '#layanan', id: 'layanan' },
   { label: 'Produk Unggulan', href: '#produk', id: 'produk' },
   { label: 'Nilai SUPORTIF', href: '#nilai', id: 'nilai' },
-  { label: 'Legalitas', href: '#legalitas', id: 'legalitas' },
+  { label: 'Klien', href: '#klien', id: 'klien' },
   { label: 'Kontak', href: '#kontak', id: 'kontak' },
 ];
 
@@ -16,8 +16,6 @@ export const COMPANY_INFO = {
   legalName: 'PT Global Agra Ripta Solusindo',
   brandName: 'GARISDev',
   foundedYear: '2014',
-  nib: '124700220599',
-  npwp: '41.298.684.6-017.000',
   address: '18 Office Park Suite, Jl. TB. Simatupang No. 18, Jakarta Selatan 12520',
   phone: '(021) 80674603',
   whatsapp: '+62 813-8729-7524',
@@ -83,9 +81,9 @@ export const CORE_SERVICES: CoreServiceItem[] = [
   },
   {
     title: 'Maintenance & Technology Support',
-    description: 'Pengawalan infrastruktur 24/7, pembaruan keamanan preventif, mitigasi risiko, dan optimalisasi sistem berkelanjutan.',
+    description: 'Dukungan pemeliharaan sistem terencana, mitigasi risiko keamanan, dan optimalisasi performa berkelanjutan.',
     iconName: 'wrench',
-    tags: ['24/7 SLA', 'Security Audit'],
+    tags: ['Dedicated Support', 'Security Audit'],
   },
 ];
 

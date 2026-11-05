@@ -34,7 +34,7 @@ export function SectionCoreServices() {
             </h2>
           </div>
           <p className="font-sans text-sm sm:text-base text-ink-secondary max-w-md">
-            Enam pilar layanan terintegrasi dari perancangan arsitektur sistem, pembangunan aplikasi modern, hingga pengawalan operasional infrastruktur 24/7.
+            Enam pilar layanan terintegrasi dari perancangan arsitektur sistem, pembangunan aplikasi modern, hingga pengawalan stabilitas infrastruktur teknologi.
           </p>
         </div>
 

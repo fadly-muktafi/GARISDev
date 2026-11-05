@@ -101,15 +101,10 @@ export function Footer() {
         </div>
 
         {/* Bottom Legal Copyright */}
-        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-muted">
+        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-center text-center gap-4 text-xs text-ink-muted">
           <span>
             © 2026 {COMPANY_INFO.legalName} ({COMPANY_INFO.brandName}). Seluruh Hak Cipta Dilindungi Undang-Undang.
           </span>
-          <div className="flex items-center gap-4">
-            <span>NIB: {COMPANY_INFO.nib}</span>
-            <span>•</span>
-            <span>NPWP: {COMPANY_INFO.npwp}</span>
-          </div>
         </div>
       </div>
     </footer>

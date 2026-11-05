@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
-import { SectionClientsLegality } from '@/components/SectionClientsLegality';
+import { SectionClients } from '@/components/SectionClients';
 import { SectionCoreServices } from '@/components/SectionCoreServices';
 import { SectionFlagshipProducts } from '@/components/SectionFlagshipProducts';
 import { SectionSuportifValues } from '@/components/SectionSuportifValues';
@@ -19,8 +19,8 @@ export default function HomePage() {
         {/* Section 2: Hero */}
         <HeroSection />
 
-        {/* Section 3: Trust & Legal */}
-        <SectionClientsLegality />
+        {/* Section 3: Klien & Mitra Strategis */}
+        <SectionClients />
 
         {/* Section 4: Core Services */}
         <SectionCoreServices />

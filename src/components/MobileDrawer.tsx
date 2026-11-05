@@ -10,7 +10,7 @@ import {
   Layers,
   Box,
   Compass,
-  ShieldCheck,
+  Building2,
   Phone,
   MessageCircle,
 } from 'lucide-react';
@@ -25,7 +25,7 @@ const MENU_ICONS = [
   { icon: Layers, color: '#818CF8' },
   { icon: Box, color: '#38BDF8' },
   { icon: Compass, color: '#C084FC' },
-  { icon: ShieldCheck, color: '#F59E0B' },
+  { icon: Building2, color: '#F59E0B' },
   { icon: Phone, color: '#22C55E' },
 ];
 
@@ -170,9 +170,8 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               </a>
 
               {/* Corporate Footer Meta */}
-              <div className="flex items-center justify-between pt-2 text-xs text-ink-muted">
+              <div className="flex items-center justify-center pt-2 text-xs text-ink-muted">
                 <span>PT Global Agra Ripta Solusindo</span>
-                <span className="text-accent-violet-light font-mono">NIB: {COMPANY_INFO.nib}</span>
               </div>
             </div>
           </motion.div>

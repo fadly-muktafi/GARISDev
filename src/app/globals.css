@@ -269,42 +269,7 @@ a:active,
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* ---------- 3. Telemetry data-flow beam ---------- */
-.data-comet {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 1px;
-  width: 26%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(56, 189, 248, 0.95),
-    rgba(129, 140, 248, 0.65),
-    transparent
-  );
-  animation: data-comet-travel 3.8s linear infinite;
-  will-change: transform, opacity;
-}
-
-.data-comet--alt {
-  animation-delay: 1.9s;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(129, 140, 248, 0.8),
-    transparent
-  );
-}
-
-@keyframes data-comet-travel {
-  0% { transform: translate3d(-120%, 0, 0); opacity: 0; }
-  12% { opacity: 1; }
-  88% { opacity: 1; }
-  100% { transform: translate3d(480%, 0, 0); opacity: 0; }
-}
-
-/* ---------- 4. Spotlight + border beam cards ---------- */
+/* ---------- 3. Spotlight + border beam cards ---------- */
 .spotlight-card {
   --spot-x: 50%;
   --spot-y: 50%;
