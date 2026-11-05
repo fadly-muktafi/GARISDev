@@ -5,10 +5,10 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
+  { label: 'Klien', href: '#klien', id: 'klien' },
   { label: 'Layanan', href: '#layanan', id: 'layanan' },
   { label: 'Produk Unggulan', href: '#produk', id: 'produk' },
   { label: 'Nilai SUPORTIF', href: '#nilai', id: 'nilai' },
-  { label: 'Klien', href: '#klien', id: 'klien' },
   { label: 'Kontak', href: '#kontak', id: 'kontak' },
 ];
 

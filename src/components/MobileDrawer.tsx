@@ -22,10 +22,10 @@ interface MobileDrawerProps {
 }
 
 const MENU_ICONS = [
+  { icon: Building2, color: '#38BDF8' },
   { icon: Layers, color: '#818CF8' },
-  { icon: Box, color: '#38BDF8' },
+  { icon: Box, color: '#60A5FA' },
   { icon: Compass, color: '#C084FC' },
-  { icon: Building2, color: '#F59E0B' },
   { icon: Phone, color: '#22C55E' },
 ];
 
