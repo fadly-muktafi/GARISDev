@@ -68,17 +68,12 @@ export function SectionClientsLegality() {
             <div className="w-11 h-11 rounded-xl bg-ground-surface border border-accent-amber/30 flex items-center justify-center shrink-0">
               <ShieldCheck className="w-6 h-6 text-accent-amber" strokeWidth={2} />
             </div>
-            <div className="flex flex-col gap-1.5">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <span className="font-display font-bold text-base md:text-lg text-ink-primary">
-                  {COMPANY_INFO.legalName}
-                </span>
-                <span className="inline-flex py-1 px-3 rounded-full bg-ground-surface border border-accent-amber/40 text-[11px] font-bold text-accent-amber tracking-wider">
-                  AKTA NO. 394 TGL 29 JAN 2021
-                </span>
-              </div>
+            <div className="flex flex-col gap-1">
+              <span className="font-display font-bold text-base md:text-lg text-ink-primary">
+                {COMPANY_INFO.legalName}
+              </span>
               <p className="font-sans text-xs sm:text-sm text-ink-secondary">
-                Notaris: {COMPANY_INFO.notaris} • {COMPANY_INFO.siup}
+                Badan Hukum Perseroan Terdaftar Resmi di Republik Indonesia
               </p>
             </div>
           </div>

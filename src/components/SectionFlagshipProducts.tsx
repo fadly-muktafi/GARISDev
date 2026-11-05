@@ -2,9 +2,8 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { FLAGSHIP_PRODUCTS, PRODUCT_CATEGORIES } from '@/lib/data';
-import { COMPANY_INFO } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { SpotlightCard } from './ui/spotlight-card';
 
@@ -113,24 +112,13 @@ export function SectionFlagshipProducts() {
         </motion.div>
 
         {/* Tested Other Solutions Banner */}
-        <div className="p-5 md:p-6 rounded-2xl bg-ground-surface border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
-            <div className="w-9 h-9 rounded-xl bg-ground-elevated border border-accent-amber/25 flex items-center justify-center shrink-0">
-              <Sparkles className="w-4 h-4 text-accent-amber" />
-            </div>
-            <p className="font-sans text-xs sm:text-sm text-ink-secondary">
-              <strong className="text-ink-primary font-semibold">Solusi Teruji Lainnya:</strong> E-Government Application, Geospatial Housing Mapping (GIS), Agricultural Insurance Claim (E-Claim Jasindo), & Matkomlek Asset Management.
-            </p>
+        <div className="p-5 md:p-6 rounded-2xl bg-ground-surface border border-white/5 flex items-center gap-3.5">
+          <div className="w-9 h-9 rounded-xl bg-ground-elevated border border-accent-amber/25 flex items-center justify-center shrink-0">
+            <Sparkles className="w-4 h-4 text-accent-amber" />
           </div>
-
-          <a
-            href={COMPANY_INFO.pdfPath}
-            download={COMPANY_INFO.pdfFilename}
-            className="press-feedback inline-flex items-center gap-2 text-xs sm:text-sm font-display font-semibold text-accent-violet-light hover:text-white shrink-0 group self-start sm:self-auto min-h-[44px] transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
-          >
-            <span>Lihat di Dokumen Profil</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]" />
-          </a>
+          <p className="font-sans text-xs sm:text-sm text-ink-secondary">
+            <strong className="text-ink-primary font-semibold">Solusi Teruji Lainnya:</strong> E-Government Application, Geospatial Housing Mapping (GIS), Agricultural Insurance Claim (E-Claim Jasindo), & Matkomlek Asset Management.
+          </p>
         </div>
       </div>
     </section>

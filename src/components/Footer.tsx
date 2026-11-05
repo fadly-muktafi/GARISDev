@@ -7,7 +7,7 @@ import { COMPANY_INFO, NAV_ITEMS, FLAGSHIP_PRODUCTS } from '@/lib/data';
 
 export function Footer() {
   return (
-    <footer id="kontak" className="bg-ground-base border-t border-white/5 pt-16 pb-12 text-ink-secondary scroll-mt-20">
+    <footer className="bg-ground-base border-t border-white/5 pt-16 pb-12 text-ink-secondary scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
         {/* Main Footer Content Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
@@ -74,15 +74,6 @@ export function Footer() {
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href={COMPANY_INFO.pdfPath}
-                  download={COMPANY_INFO.pdfFilename}
-                  className="text-accent-violet-light hover:text-white transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] font-medium inline-flex items-center gap-1.5"
-                >
-                  <span>Unduh Dokumen Profil (PDF)</span>
-                </a>
-              </li>
             </ul>
           </div>
 

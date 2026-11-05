@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ShieldCheck, Activity, Server, Cpu } from 'lucide-react';
-import { DownloadButton } from './DownloadButton';
+import { ShieldCheck, Activity, Server, Cpu, MessageCircle } from 'lucide-react';
+import { COMPANY_INFO } from '@/lib/data';
 import { BackgroundBeams } from './ui/background-beams';
 import { NumberTicker } from './ui/number-ticker';
 import { TelemetryFlow } from './ui/telemetry-flow';
@@ -35,18 +35,21 @@ export function HeroSection() {
 
             {/* Dual CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-              <DownloadButton
-                label="Unduh Profil Perusahaan (PDF)"
-                size="lg"
-                className="w-full sm:w-auto text-sm sm:text-base justify-center"
-              />
+              <a
+                href={COMPANY_INFO.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="press-feedback inline-flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-full bg-gradient-to-r from-accent-indigo-btn via-accent-violet to-accent-indigo-btn text-white font-display font-semibold text-sm sm:text-base hover:brightness-110 hover:shadow-[0_0_24px_rgba(99,102,241,0.25)] transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]"
+              >
+                <MessageCircle className="w-5 h-5 text-accent-emerald shrink-0" strokeWidth={2} />
+                <span>Konsultasi Solusi</span>
+              </a>
 
               <a
-                href="#produk"
-                className="press-feedback inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-ground-surface hover:bg-white/[0.05] text-ink-primary border border-white/10 hover:border-white/20 font-display font-medium text-sm sm:text-base"
+                href="#layanan"
+                className="press-feedback inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-ground-surface hover:bg-white/[0.05] text-ink-primary border border-white/10 hover:border-white/20 font-display font-medium text-sm sm:text-base transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]"
               >
-                <span>Eksplorasi Solusi</span>
-                <ArrowRight className="w-4 h-4 text-accent-cyan" strokeWidth={2} />
+                <span>Eksplorasi Solusi ↓</span>
               </a>
             </div>
 
@@ -133,11 +136,11 @@ export function HeroSection() {
 
                 <div className="p-3.5 rounded-xl bg-ground-surface border border-white/5 flex flex-col gap-1">
                   <span className="font-sans text-xs text-ink-secondary">Legalitas Resmi</span>
-                  <span className="font-display font-bold text-xl sm:text-2xl text-ink-primary tracking-tight">
-                    Akta 394
+                  <span className="font-mono font-bold text-xs sm:text-sm text-ink-primary tracking-tight truncate">
+                    NIB {COMPANY_INFO.nib}
                   </span>
                   <span className="text-[11px] text-accent-amber font-medium">
-                    Kemenkumham RI
+                    Terdaftar Resmi
                   </span>
                 </div>
               </div>

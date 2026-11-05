@@ -15,7 +15,6 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import { COMPANY_INFO, NAV_ITEMS } from '@/lib/data';
-import { DownloadButton } from './DownloadButton';
 
 interface MobileDrawerProps {
   isOpen: boolean;
@@ -158,20 +157,13 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
             {/* Bottom Actions */}
             <div className="flex flex-col gap-3 pt-6 border-t border-white/10 mt-6">
-              {/* Primary Action Button */}
-              <DownloadButton
-                label="Unduh Profil Perusahaan (PDF)"
-                variant="drawer"
-                size="lg"
-                className="w-full text-sm"
-              />
-
-              {/* Secondary WhatsApp Action */}
+              {/* WhatsApp Consultation Action */}
               <a
                 href={COMPANY_INFO.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="press-feedback w-full min-h-[48px] py-3 px-4 rounded-xl bg-ground-surface hover:bg-white/[0.05] border border-accent-emerald/30 hover:border-white/20 flex items-center justify-center gap-2 font-display font-semibold text-sm text-ink-primary transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                onClick={onClose}
+                className="press-feedback w-full min-h-[48px] py-3 px-4 rounded-xl bg-gradient-to-r from-accent-indigo-btn via-accent-violet to-accent-indigo-btn text-white flex items-center justify-center gap-2 font-display font-semibold text-sm hover:brightness-110 hover:shadow-[0_0_24px_rgba(99,102,241,0.25)] transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
               >
                 <MessageCircle className="w-4 h-4 text-accent-emerald" strokeWidth={2} />
                 <span>Konsultasi WhatsApp</span>
@@ -180,7 +172,7 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               {/* Corporate Footer Meta */}
               <div className="flex items-center justify-between pt-2 text-xs text-ink-muted">
                 <span>PT Global Agra Ripta Solusindo</span>
-                <span className="text-accent-violet-light font-mono">NIB: 124700220599</span>
+                <span className="text-accent-violet-light font-mono">NIB: {COMPANY_INFO.nib}</span>
               </div>
             </div>
           </motion.div>

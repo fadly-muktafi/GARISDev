@@ -16,9 +16,6 @@ export const COMPANY_INFO = {
   legalName: 'PT Global Agra Ripta Solusindo',
   brandName: 'GARISDev',
   foundedYear: '2014',
-  akta: 'Akta No. 394 Tanggal 29 Jan 2021',
-  notaris: 'Nurlisa Uke Desy, S.H., M.Kn.',
-  siup: 'SIUP PP No. 24 Th. 2018',
   nib: '124700220599',
   npwp: '41.298.684.6-017.000',
   address: '18 Office Park Suite, Jl. TB. Simatupang No. 18, Jakarta Selatan 12520',
@@ -26,8 +23,6 @@ export const COMPANY_INFO = {
   whatsapp: '+62 813-8729-7524',
   email: 'info@garisdev.co.id',
   whatsappUrl: 'https://wa.me/6281387297524?text=Halo%20GARISDev%2C%20saya%20ingin%20berkonsultasi%20mengenai%20solusi%20rekayasa%20perangkat%20lunak%20enterprise.',
-  pdfPath: '/documents/COMPANY PROFILE GARISDEV.pdf',
-  pdfFilename: 'COMPANY PROFILE GARISDEV.pdf',
 };
 
 export interface ClientItem {

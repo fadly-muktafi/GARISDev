@@ -2,10 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Menu } from 'lucide-react';
-import { NAV_ITEMS } from '@/lib/data';
+import { Menu, MessageCircle } from 'lucide-react';
+import { NAV_ITEMS, COMPANY_INFO } from '@/lib/data';
 import { cn } from '@/lib/utils';
-import { DownloadButton } from './DownloadButton';
 import { MobileDrawer } from './MobileDrawer';
 
 export function Header() {
@@ -72,23 +71,26 @@ export function Header() {
           {/* Desktop & Mobile Actions */}
           <div className="flex items-center gap-3">
             {/* Desktop Primary CTA */}
-            <div className="hidden sm:block">
-              <DownloadButton
-                label="Unduh Profil (PDF)"
-                variant="nav"
-                size="md"
-              />
-            </div>
+            <a
+              href={COMPANY_INFO.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="press-feedback hidden sm:inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-accent-indigo-btn via-accent-violet to-accent-indigo-btn hover:brightness-110 hover:shadow-[0_0_24px_rgba(99,102,241,0.25)] rounded-xl transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]"
+            >
+              <MessageCircle className="w-4 h-4 text-accent-emerald shrink-0" strokeWidth={2} />
+              <span>Konsultasi Proyek</span>
+            </a>
 
             {/* Mobile Compact CTA */}
-            <div className="block sm:hidden">
-              <DownloadButton
-                label="Unduh PDF"
-                variant="nav"
-                size="sm"
-                className="text-xs px-3 py-2 min-h-[44px]"
-              />
-            </div>
+            <a
+              href={COMPANY_INFO.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="press-feedback inline-flex sm:hidden items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-gradient-to-r from-accent-indigo-btn via-accent-violet to-accent-indigo-btn hover:brightness-110 rounded-xl transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] min-h-[44px]"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-accent-emerald shrink-0" strokeWidth={2} />
+              <span>Konsultasi</span>
+            </a>
 
             {/* Hamburger Button (Mobile / Tablet) */}
             <button
