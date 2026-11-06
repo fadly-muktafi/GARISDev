@@ -5,12 +5,22 @@ import { motion } from 'framer-motion';
 import { Server, Cpu, MessageCircle, Layers } from 'lucide-react';
 import { COMPANY_INFO } from '@/lib/data';
 import { BackgroundBeams } from './ui/background-beams';
+import { ShimmerButton } from './ui/shimmer-button';
 
 export function HeroSection() {
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-ground-base border-b border-white/5">
       {/* Engineering grid + light beams */}
       <BackgroundBeams />
+
+      {/* Ambient Top Spotlight (Soft Violet-Indigo #5846F6 glow at 15-20% opacity) */}
+      <div
+        className="absolute -top-24 left-1/2 -translate-x-1/2 w-[720px] sm:w-[980px] lg:w-[1240px] h-[420px] sm:h-[500px] pointer-events-none -z-0 opacity-20 blur-[120px] rounded-full"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 20%, #5846F6 0%, #4338CA 40%, transparent 72%)',
+        }}
+        aria-hidden="true"
+      />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -29,17 +39,17 @@ export function HeroSection() {
             PT Global Agra Ripta Solusindo (GARISDev) merancang arsitektur sistem enterprise, produk digital terukur, dan transformasi teknologi terpercaya bagi korporasi dan institusi pemerintah.
           </p>
 
-          {/* Dual CTAs (Centered) */}
+          {/* Dual CTAs (Centered with Shimmer Button) */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 w-full sm:w-auto">
-            <a
+            <ShimmerButton
               href={COMPANY_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="press-feedback w-full sm:w-auto inline-flex items-center justify-center gap-2.5 py-3.5 px-7 rounded-full bg-gradient-to-r from-accent-indigo-btn via-accent-violet to-accent-indigo-btn text-white font-display font-semibold text-sm sm:text-base hover:brightness-110 hover:shadow-[0_0_24px_rgba(99,102,241,0.25)] transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] min-h-[48px]"
+              className="w-full sm:w-auto py-3.5 px-8 rounded-full bg-gradient-to-r from-accent-indigo-btn via-accent-violet to-accent-indigo-btn text-white font-display font-semibold text-sm sm:text-base hover:brightness-110 hover:shadow-[0_0_28px_rgba(99,102,241,0.3)] min-h-[48px]"
             >
               <MessageCircle className="w-5 h-5 text-accent-emerald shrink-0" strokeWidth={2} />
               <span>Konsultasi Solusi</span>
-            </a>
+            </ShimmerButton>
 
             <a
               href="#layanan"

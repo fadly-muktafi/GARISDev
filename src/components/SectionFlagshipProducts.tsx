@@ -30,8 +30,11 @@ export function SectionFlagshipProducts() {
           </p>
         </div>
 
-        {/* Filter Tabs (Interactive with Clear Active State & Touch Targets >= 44px) */}
-        <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none md:flex-wrap md:overflow-visible md:pb-0" role="tablist">
+        {/* Filter Tabs with Framer Motion Sliding Pill (layoutId="productTab") */}
+        <div
+          className="flex items-center gap-1.5 p-1 rounded-full bg-ground-surface/70 border border-white/[0.08] backdrop-blur-sm overflow-x-auto pb-1 scrollbar-none md:flex-wrap md:overflow-visible md:pb-1 w-fit max-w-full"
+          role="tablist"
+        >
           {PRODUCT_CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat.id;
 
@@ -43,20 +46,27 @@ export function SectionFlagshipProducts() {
                 aria-selected={isActive}
                 onClick={() => setActiveCategory(cat.id)}
                 className={cn(
-                  'press-feedback whitespace-nowrap px-4 py-3 rounded-full text-xs sm:text-sm font-display font-semibold transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] min-h-[44px] flex items-center justify-center active:scale-[0.97]',
+                  'relative press-feedback whitespace-nowrap px-4 py-2.5 rounded-full text-xs sm:text-sm font-display font-semibold transition-colors duration-200 min-h-[44px] flex items-center justify-center z-10',
                   isActive
-                    ? 'bg-accent-indigo-btn text-white shadow-md shadow-accent-indigo-btn/30 border border-white/10'
-                    : 'bg-transparent hover:bg-white/[0.05] text-ink-secondary hover:text-ink-primary border border-white/15 hover:border-white/20'
+                    ? 'text-white font-semibold'
+                    : 'text-ink-secondary hover:text-ink-primary'
                 )}
               >
-                <span className="hidden sm:inline">{cat.label}</span>
-                <span className="inline sm:hidden">{cat.mobileLabel}</span>
+                {isActive && (
+                  <motion.div
+                    layoutId="productTab"
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-accent-indigo-btn to-accent-violet shadow-[0_0_20px_rgba(99,102,241,0.35)] -z-10"
+                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                  />
+                )}
+                <span className="hidden sm:inline relative z-10">{cat.label}</span>
+                <span className="inline sm:hidden relative z-10">{cat.mobileLabel}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Product Cards Grid (3 Cols Desktop, 2 Tablet, 1 Mobile) */}
+        {/* Product Cards Grid with 3D Micro-Tilt Interaction */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
             {filteredProducts.map((product) => (
@@ -67,11 +77,11 @@ export function SectionFlagshipProducts() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-                className="h-full"
+                className="h-full [perspective:1000px] group/card3d"
               >
                 <SpotlightCard
-                  glowColor={`${product.badgeColor}26`}
-                  className="h-full rounded-2xl border border-white/5 bg-ground-elevated p-7 hover:border-white/10 hover:bg-ground-surface"
+                  glowColor={`${product.badgeColor}28`}
+                  className="h-full rounded-2xl border border-white/[0.08] hover:border-violet-500/40 bg-ground-elevated p-7 hover:bg-ground-surface transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/card3d:[transform:rotateX(2deg)_rotateY(-2deg)_translateY(-6px)] group-hover/card3d:shadow-[0_20px_40px_-15px_rgba(99,102,241,0.25)]"
                   contentClassName="flex h-full flex-col justify-between gap-6"
                 >
                   <div className="flex flex-col gap-4">

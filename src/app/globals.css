@@ -283,16 +283,37 @@ a:active,
 
 .spotlight-card__glow {
   position: absolute;
-  inset: 0;
+  inset: -1px;
+  border-radius: inherit;
   z-index: 1;
   background: radial-gradient(
-    360px circle at var(--spot-x) var(--spot-y),
+    400px circle at var(--spot-x) var(--spot-y),
     var(--spot-color),
-    transparent 68%
+    transparent 80%
   );
   opacity: 0;
   transition: opacity 300ms var(--ease-out);
   pointer-events: none;
+}
+
+.spotlight-card__border-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  background: radial-gradient(
+    400px circle at var(--spot-x) var(--spot-y),
+    rgba(167, 139, 250, 0.45),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 300ms var(--ease-out);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .spotlight-card__beam {
@@ -316,14 +337,15 @@ a:active,
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
   opacity: 0;
-  animation: border-beam-spin 4s linear infinite;
+  animation: border-beam-spin-legacy 4s linear infinite;
   animation-play-state: paused;
   transition: opacity 220ms var(--ease-out);
   pointer-events: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .spotlight-card:hover .spotlight-card__glow {
+  .spotlight-card:hover .spotlight-card__glow,
+  .spotlight-card:hover .spotlight-card__border-glow {
     opacity: 1;
   }
 
@@ -338,8 +360,51 @@ a:active,
   }
 }
 
-@keyframes border-beam-spin {
+@keyframes border-beam-spin-legacy {
   to { --border-beam-angle: 360deg; }
+}
+
+/* ---------- 4. Border Beam (Magic UI / 21st.dev) ---------- */
+.border-beam-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--border-width, 1.5px);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.border-beam-ring::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 250%;
+  aspect-ratio: 1;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    transparent 55deg,
+    var(--color-from, #818CF8) 75deg,
+    var(--color-to, #38BDF8) 100deg,
+    transparent 125deg,
+    transparent 360deg
+  );
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: border-beam-spin var(--duration, 12s) linear infinite;
+  will-change: transform;
+}
+
+@keyframes border-beam-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 /* ---------- 5. Infinite client marquee ---------- */
@@ -428,6 +493,7 @@ a:active,
   .data-comet,
   .shimmer-button__ring-spin,
   .spotlight-card__beam,
+  .border-beam-ring::before,
   .marquee__track {
     animation: none !important;
   }

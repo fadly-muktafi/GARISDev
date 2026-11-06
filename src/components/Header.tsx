@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Menu, MessageCircle } from 'lucide-react';
 import { NAV_ITEMS, COMPANY_INFO } from '@/lib/data';
 import { cn } from '@/lib/utils';
@@ -10,28 +11,51 @@ import { MobileDrawer } from './MobileDrawer';
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('klien');
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Active link intersection observer for smooth sliding pill
+    const sectionIds = NAV_ITEMS.map((item) => item.id);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: '-25% 0px -60% 0px',
+        threshold: 0,
+      }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   return (
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-40 transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]',
+          'fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]',
+          'bg-ground-base/80 backdrop-blur-md border-b border-white/[0.08]',
           isScrolled
-            ? 'bg-ground-base/85 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/20 py-3 md:py-4'
-            : 'bg-transparent border-b border-transparent py-4 md:py-5'
+            ? 'py-3 md:py-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.4)]'
+            : 'py-4 md:py-5'
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -55,17 +79,36 @@ export function Header() {
             </span>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Navigasi Utama">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.id}
-                href={item.href}
-                className="font-display font-medium text-sm text-ink-secondary hover:text-ink-primary transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] focus-visible:outline-none focus-visible:text-white"
-              >
-                {item.label}
-              </a>
-            ))}
+          {/* Desktop Navigation Links with Framer Motion Sliding Pill */}
+          <nav
+            className="hidden lg:flex items-center gap-1.5 p-1 rounded-full bg-ground-elevated/60 border border-white/[0.06] backdrop-blur-sm"
+            aria-label="Navigasi Utama"
+          >
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  onClick={() => setActiveSection(item.id)}
+                  className={cn(
+                    'relative px-4 py-1.5 rounded-full text-xs font-display font-medium transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] focus-visible:outline-none focus-visible:text-white',
+                    isActive
+                      ? 'text-white font-semibold'
+                      : 'text-ink-secondary hover:text-ink-primary'
+                  )}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="navActivePill"
+                      className="absolute inset-0 rounded-full bg-white/[0.08] border border-white/[0.12] shadow-[0_0_12px_rgba(99,102,241,0.2)] -z-10"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                </a>
+              );
+            })}
           </nav>
 
           {/* Desktop & Mobile Actions */}

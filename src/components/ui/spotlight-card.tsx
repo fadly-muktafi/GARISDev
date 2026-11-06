@@ -59,6 +59,7 @@ export function SpotlightCard({
       style={{ '--spot-color': glowColor } as React.CSSProperties}
       className={cn('spotlight-card group relative overflow-hidden', className)}
     >
+      <span className="spotlight-card__border-glow" aria-hidden="true" />
       <span className="spotlight-card__beam" aria-hidden="true" />
       <span className="spotlight-card__glow" aria-hidden="true" />
       <div className={cn('relative z-10', contentClassName)}>{children}</div>

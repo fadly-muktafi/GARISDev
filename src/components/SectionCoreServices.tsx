@@ -38,12 +38,12 @@ export function SectionCoreServices() {
           </p>
         </div>
 
-        {/* 6 Services Grid (3 Cols on Desktop, 2 on Tablet, 1 on Mobile) */}
+        {/* 6 Services Bento Grid (3 Cols on Desktop, 2 on Tablet, 1 on Mobile) with Card Spotlight */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {CORE_SERVICES.map((service, idx) => {
             const IconComponent = SERVICE_ICON_MAP[service.iconName] || Compass;
             const glowColor =
-              idx % 2 === 0 ? 'rgba(99, 102, 241, 0.16)' : 'rgba(56, 189, 248, 0.13)';
+              idx % 2 === 0 ? 'rgba(129, 140, 248, 0.20)' : 'rgba(56, 189, 248, 0.16)';
 
             return (
               <motion.div
@@ -56,7 +56,7 @@ export function SectionCoreServices() {
               >
                 <SpotlightCard
                   glowColor={glowColor}
-                  className="h-full rounded-2xl border border-white/5 bg-ground-elevated p-7 hover:border-white/10 hover:bg-ground-surface"
+                  className="h-full rounded-2xl border border-white/[0.08] hover:border-violet-500/40 bg-ground-elevated p-7 hover:bg-ground-surface transition-colors duration-300"
                   contentClassName="flex h-full flex-col justify-between gap-6"
                 >
                   <div className="flex flex-col gap-4">
