@@ -1,14 +1,14 @@
 # AGENTS.md — GARISDev Company Profile
 
 Official single-page company profile & landing page for **PT Global Agra Ripta Solusindo (GARISDev)**.
-Current state: **Phase 1 (MVP — Planning & Design)**. Specifications are locked; implementation is pending.
+Current state: **Phase 1 implemented** — the full single page is built on the light editorial system. Docs below describe the shipped implementation.
 
 ---
 
 ## Source of Truth & Session Start Order
 
 1. `PRD.md` — Scope, personas, non-goals, and primary conversion targets.
-2. `DESIGN.md` — Art direction (Dark Obsidian Luxury), design tokens, typography, and motion curves.
+2. `DESIGN.md` — Art direction (Light Editorial Premium), design tokens, typography, and motion curves.
 3. `SCREENS.md` — Mobile-first (390px) responsive layout matrix across all 8 page sections.
 4. `COMPONENTS.md` — Engineering specs and micro-interactions for the 8 core UI components.
 5. `garisdev.fig` — Design source canvas, managed via OpenPencil (`tab-2`, page `0:3`).
@@ -29,10 +29,12 @@ Current state: **Phase 1 (MVP — Planning & Design)**. Specifications are locke
 - **No Eyebrow / Pill Badges**: Never add floating pill badges above headings (e.g. `New · Solution` or `#1 IT Company`).
 - **No Faux Monospace or Arbitrary Numbers**: Monospace is reserved strictly for real code/technical data; use sans display with tabular figures for numbers. Omit artificial indices (`01 / 02 / 03`).
 - **No Perimeter Hairline Borders**: Do not enclose every card in a 1px border. Delineate depth through background tone steps:
-  - `--ground-base`: `#090A0F` (pure obsidian ground)
-  - `--ground-elevated`: `#11131B` (cards and elevated panels)
-  - `--ground-surface`: `#181B26` (interactive elements and surfaces)
-- **Gradient Discipline**: Solid dark obsidian backgrounds only. Violet-indigo gradients are reserved exclusively for the official GARISDev monogram G emblem and active indicators.
+  - `--paper`: `#F6F4EF` (default ground)
+  - `--paper-deep`: `#EDE9E1` (alternating light section)
+  - `--night`: `#0E0D0B` (dark sections)
+  - `--night-elevated`: `#171411` (cards on dark)
+- **Gradient Discipline**: Solid backgrounds only. Gradients are permitted solely as photo scrims for text legibility — never as decorative backgrounds.
+- **Contrast Floor**: Micro-labels (≤11px) must clear 4.5:1; large type (≥24px) 3:1. Never use a lighter grey than `--ink-faint` (`#6B655B`) for text on paper.
 
 ---
 
@@ -60,7 +62,7 @@ Do not invent or alter corporate facts. Use these exact verified records:
 - **Registrations**: NIB `124700220599`, NPWP `41.298.684.6-017.000`, SIUP PP No. 24 Th. 2018.
 - **6 Core Services**: Digital Strategy & Consulting, Web Application Development, Mobile App Development, System Integration, Dashboard & Business Intelligence, Maintenance & Technology Support.
 - **6 Flagship Products**: Wellora (Spa/POS), ApartHub (Apartment Resident App), TenantHub (Mall Tenant Portal), Stayora (Hotel PMS), GoAmbulan (Ambulance Dispatch), AIRA (AI Sentiment & Public Intel).
-- **7 Corporate Values (SUPORTIF)**: Sustainability, Professional, Observe, Relationship, Trust, Innovation, Flexible.
+- **8 Corporate Values (SUPORTIF)**: Sustainability, Unggul, Professional, Observe, Relationship, Trust, Innovation, Flexible — one value per letter of the acronym.
 - **Official Clients**: BNPT, Mabes TNI, Kemnaker, Kementan, Jakarta Futures Exchange (JFX), Mom N Jo, PT ISP, Asuransi Jasindo, PT Adinata Graha Raya.
 - **Headquarters**: 18 Office Park Suite, Jl. TB. Simatupang No. 18, Jakarta Selatan 12520. Tel: `(021) 80674603`. Email: `Relation@garisdev.co.id`.
 

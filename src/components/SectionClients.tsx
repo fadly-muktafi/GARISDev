@@ -1,47 +1,71 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import { CLIENTS } from '@/lib/data';
 import { InfiniteMarquee } from './ui/infinite-marquee';
+import { Reveal } from './ui/reveal';
 
 export function SectionClients() {
   return (
-    <section id="klien" className="py-20 md:py-28 bg-ground-base border-b border-white/5 scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
-        {/* Section Header */}
-        <div className="flex flex-col gap-3 max-w-3xl">
-          <h2 className="font-display font-bold text-xl sm:text-3xl md:text-4xl text-ink-primary tracking-tight">
-            Dipercaya Institusi Pemerintah & Enterprise Skala Nasional
-          </h2>
-          <p className="font-sans text-sm sm:text-base text-ink-secondary leading-relaxed">
-            Membuktikan legitimasi rekayasa dan integritas teknologi melalui kemitraan strategis jangka panjang sejak 2014.
-          </p>
+    <section id="klien" className="bg-paper pb-16 pt-20 md:pb-24 md:pt-28">
+      <div className="shell">
+        <div className="grid gap-7 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:gap-16">
+          <Reveal>
+            <h2 className="max-w-[22ch] text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em]">
+              Institusi yang menuntut keandalan mutlak.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <p className="max-w-[42ch] text-[14px] leading-relaxed text-ink-muted lg:text-[15px]">
+              Sejak 2014, GARISDev dipercaya lembaga negara dan korporasi nasional
+              untuk membangun sistem yang harus tetap bekerja, tanpa toleransi
+              terhadap kegagalan.
+            </p>
+          </Reveal>
         </div>
 
-        {/* Client logo emblems — infinite smooth marquee with vignette edges */}
-        <div className="flex flex-col gap-4">
-          <span className="font-display text-xs font-semibold tracking-wider text-ink-muted">
-            Klien & Mitra Strategis
-          </span>
+        <div className="mt-12 md:mt-16">
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-[10px] uppercase tracking-[0.18em] text-ink-faint">Klien &amp; mitra strategis</span>
+            <span className="tnum hidden text-[11px] text-ink-faint sm:block">2014 / 2026</span>
+          </div>
+          <div className="rule mt-4" />
 
-          <InfiniteMarquee duration={38}>
+          <InfiniteMarquee duration={58} className="py-6 md:py-9">
             {CLIENTS.map((client) => (
               <div
                 key={client.name}
-                className="group/logo flex items-center justify-center h-16 w-40 md:w-48 px-3 shrink-0"
+                className="group/logo flex h-12 w-24 shrink-0 items-center justify-center sm:h-14 sm:w-40"
+                title={client.name}
               >
                 <Image
                   src={client.logo}
-                  alt={`Logo Resmi ${client.name}`}
+                  alt={`Logo ${client.name}`}
                   width={400}
                   height={160}
-                  className="max-h-11 md:max-h-12 w-auto object-contain transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] filter grayscale-[70%] invert-[0.3] brightness-[1.5] opacity-80 hover:grayscale-0 hover:invert-0 hover:brightness-100 hover:opacity-100 hover:scale-105 group-hover/logo:grayscale-0 group-hover/logo:invert-0 group-hover/logo:brightness-100 group-hover/logo:opacity-100 group-hover/logo:scale-105 cursor-pointer"
+                  className="max-h-7 w-auto max-w-[92px] object-contain opacity-80 mix-blend-multiply grayscale transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/logo:opacity-100 group-hover/logo:grayscale-0 sm:max-h-10 sm:max-w-[132px]"
                 />
               </div>
             ))}
           </InfiniteMarquee>
         </div>
+
+        <div className="rule" />
+
+        <ul className="grid grid-cols-2 gap-x-8 sm:grid-cols-3 sm:gap-x-10">
+          {CLIENTS.map((client) => (
+            <li
+              key={client.name}
+              className="flex flex-col gap-1 border-b border-line py-3.5 sm:py-5"
+            >
+              <span className="text-[13px] font-medium tracking-[-0.01em] text-ink">
+                {client.name}
+              </span>
+              <span className="hidden text-[10px] uppercase leading-relaxed tracking-[0.14em] text-ink-faint sm:block">
+                {client.category}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

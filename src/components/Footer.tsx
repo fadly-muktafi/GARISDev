@@ -1,110 +1,148 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
-import { MapPin, Phone, Mail, MessageCircle, ArrowUpRight } from 'lucide-react';
-import { COMPANY_INFO, NAV_ITEMS, FLAGSHIP_PRODUCTS } from '@/lib/data';
+import { ArrowUpRight } from 'lucide-react';
+import {
+  COMPANY_INFO,
+  CREDENTIALS,
+  FLAGSHIP_PRODUCTS,
+  NAV_ITEMS,
+} from '@/lib/data';
+
+const COLUMN_LABEL =
+  'text-[10px] uppercase tracking-[0.18em] text-paper/40';
 
 export function Footer() {
   return (
-    <footer className="bg-ground-base border-t border-white/5 pt-16 pb-12 text-ink-secondary scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
-        {/* Main Footer Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
-          {/* Brand & Address Column (Col 1-5) */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
+    <footer className="bg-night pt-16 text-paper md:pt-20">
+      <div className="shell">
+        <div className="flex flex-col gap-8 border-b border-paper/10 pb-12 md:flex-row md:items-end md:justify-between md:pb-16">
+          <h2 className="max-w-[19ch] text-balance font-display text-[clamp(1.7rem,4.2vw,3rem)] font-medium leading-[1.02] tracking-[-0.04em]">
+            Bertahan setelah{' '}
+            <span className="font-serif font-normal italic">serah terima</span>
+            <span className="text-brand-light">.</span>
+          </h2>
+
+          <a
+            href="#kontak"
+            className="press group inline-flex w-fit items-center gap-3 border-b border-paper/25 pb-2 text-[11px] uppercase tracking-[0.16em] text-paper/70 hover:border-brand-light hover:text-paper"
+          >
+            Mulai percakapan
+            <ArrowUpRight
+              className="h-4 w-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              strokeWidth={1.5}
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+
+        <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-[1.5fr_0.85fr_0.85fr_1.1fr] lg:gap-12">
+          <div>
             <Image
               src="/assets/garisdev-logo-white-cropped.png"
-              alt="GARISDev — PT Global Agra Ripta Solusindo"
+              alt="GARISDev, PT Global Agra Ripta Solusindo"
               width={1053}
               height={279}
-              sizes="(min-width: 768px) 162px, 146px"
-              className="h-9 md:h-10 w-auto self-start object-contain"
+              sizes="130px"
+              className="h-7 w-auto object-contain"
             />
-
-            <p className="font-sans text-sm text-ink-secondary leading-relaxed max-w-sm">
-              Mitra rekayasa perangkat lunak enterprise, integrasi sistem heterogen, dan arsitektur transformasi digital tepercaya bagi korporasi dan institusi pemerintah sejak 2014.
+            <p className="mt-6 max-w-[34ch] text-[13px] leading-relaxed text-paper/60">
+              Mitra rekayasa perangkat lunak enterprise untuk korporasi dan
+              institusi pemerintah Indonesia. Beroperasi sejak 2014.
             </p>
 
-            <div className="flex flex-col gap-2.5 text-xs sm:text-sm pt-2">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-accent-cyan shrink-0 mt-0.5" />
-                <span>{COMPANY_INFO.address}</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-accent-violet-light shrink-0" />
-                <a href={`tel:${COMPANY_INFO.phone}`} className="hover:text-ink-primary transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]">
-                  {COMPANY_INFO.phone}
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <MessageCircle className="w-4 h-4 text-accent-emerald shrink-0" />
-                <a
-                  href={COMPANY_INFO.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-ink-primary transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]"
-                >
-                  {COMPANY_INFO.whatsapp}
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-accent-magenta-light shrink-0" />
-                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-ink-primary transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]">
-                  {COMPANY_INFO.email}
-                </a>
-              </div>
+            <div className="mt-6 flex flex-col gap-2 text-[12px]">
+              <a
+                href={COMPANY_INFO.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline w-fit max-w-[38ch] leading-relaxed text-paper/70 hover:text-paper"
+              >
+                {COMPANY_INFO.address}
+              </a>
+              <a
+                href={`tel:${COMPANY_INFO.phone.replace(/[^+\d]/g, '')}`}
+                className="link-underline w-fit text-paper/70 hover:text-paper"
+              >
+                {COMPANY_INFO.phone}
+              </a>
+              <a
+                href={`mailto:${COMPANY_INFO.email}`}
+                className="link-underline w-fit text-paper/70 hover:text-paper"
+              >
+                {COMPANY_INFO.email}
+              </a>
             </div>
           </div>
 
-          {/* Navigation Column (Col 6-8) */}
-          <div className="lg:col-span-3 flex flex-col gap-4">
-            <span className="font-display font-bold text-sm text-ink-primary tracking-wider">
-              NAVIGASI UTAMA
-            </span>
-            <ul className="flex flex-col gap-2.5 text-xs sm:text-sm">
+          <nav aria-label="Navigasi footer">
+            <p className={`${COLUMN_LABEL} border-t border-paper/15 pt-4`}>Navigasi</p>
+            <ul className="mt-5 flex flex-col gap-2.5">
               {NAV_ITEMS.map((item) => (
                 <li key={item.id}>
                   <a
                     href={item.href}
-                    className="hover:text-ink-primary transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] inline-flex items-center gap-1.5 group"
+                    className="link-underline text-[12.5px] text-paper/75 hover:text-paper"
                   >
-                    <span>{item.label}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]" />
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <p className={`${COLUMN_LABEL} border-t border-paper/15 pt-4`}>Platform</p>
+            <ul className="mt-5 flex flex-col gap-2.5">
+              {FLAGSHIP_PRODUCTS.map((product) => (
+                <li key={product.id}>
+                  <a
+                    href="#produk"
+                    className="link-underline text-[12.5px] text-paper/75 hover:text-paper"
+                  >
+                    {product.name}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Flagship Platforms Column (Col 9-12) */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
-            <span className="font-display font-bold text-sm text-ink-primary tracking-wider">
-              SOLUSI DIGITAL FLAGSHIP
-            </span>
-            <ul className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
-              {FLAGSHIP_PRODUCTS.map((prod) => (
-                <li key={prod.id}>
-                  <a
-                    href="#produk"
-                    className="hover:text-ink-primary transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] block py-1"
-                  >
-                    <span className="font-medium text-ink-primary">{prod.name}</span>
-                    <span className="block text-[11px] text-ink-muted truncate">
-                      {prod.badge}
-                    </span>
-                  </a>
-                </li>
+          <div>
+            <p className={`${COLUMN_LABEL} border-t border-paper/15 pt-4`}>Legalitas</p>
+            <dl className="mt-5 flex flex-col gap-4">
+              {CREDENTIALS.map((item) => (
+                <div key={item.label}>
+                  <dt className="text-[9px] uppercase tracking-[0.16em] text-paper/40">
+                    {item.label}
+                  </dt>
+                  <dd className="tnum mt-1 text-[11.5px] leading-snug text-paper/70">
+                    {item.value}
+                  </dd>
+                </div>
               ))}
-            </ul>
+            </dl>
           </div>
         </div>
 
-        {/* Bottom Legal Copyright */}
-        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-center text-center gap-4 text-xs text-ink-muted">
+        <div className="mt-16 overflow-hidden md:mt-20" aria-hidden="true">
+          <p className="select-none font-display text-[clamp(2.6rem,25vw,22rem)] font-medium leading-[0.76] tracking-[-0.06em] text-paper">
+            GARISDEV<span className="text-brand-light">.</span>
+          </p>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 border-t border-paper/10 pt-5 text-[10px] uppercase tracking-[0.14em] text-paper/45 sm:flex-row sm:items-center sm:justify-between">
           <span>
-            © 2026 {COMPANY_INFO.legalName} ({COMPANY_INFO.brandName}). Seluruh Hak Cipta Dilindungi Undang-Undang.
+            © 2026 {COMPANY_INFO.legalName}. Seluruh hak cipta dilindungi.
           </span>
+          <div className="flex items-center gap-5">
+            <span>Jakarta, Indonesia</span>
+            <a
+              href="#atas"
+              className="press inline-flex items-center gap-1 text-paper/60 hover:text-paper"
+            >
+              Ke atas
+              <ArrowUpRight className="h-3 w-3 -rotate-45" strokeWidth={1.5} />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

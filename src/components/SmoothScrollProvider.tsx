@@ -24,15 +24,19 @@ export function SmoothScrollProvider({ children }: Props) {
 }
 
 /**
- * AnchorScroll — routes every in-page `#hash` link through Lenis so the jump
- * becomes a gliding scroll that respects each section's `scroll-mt` (fixed
- * header clearance). Modified clicks (new tab, etc.) keep native behaviour.
+ * AnchorScroll: routes every in-page `#hash` link through Lenis so the jump
+ * becomes a gliding scroll. The fixed header height is subtracted from the
+ * target position, replacing the old per-section `scroll-mt` utilities.
+ * Modified clicks (new tab, etc.) keep native behaviour.
  */
 function AnchorScroll() {
   const lenis = useLenis();
 
   useEffect(() => {
     if (!lenis) return;
+
+    const headerOffset = () =>
+      -(document.querySelector('header')?.offsetHeight ?? 80);
 
     const handleClick = (event: MouseEvent) => {
       if (
@@ -57,7 +61,10 @@ function AnchorScroll() {
       if (id && !target) return;
 
       event.preventDefault();
-      lenis.scrollTo(target ?? 0, { duration: 1.1 });
+      lenis.scrollTo(target ?? 0, {
+        duration: 1.1,
+        offset: target ? headerOffset() : 0,
+      });
 
       if (id) {
         window.history.replaceState(null, '', `#${id}`);

@@ -1,7 +1,7 @@
 # COMPONENTS.md — Component Registry & Engineering Specs
 ## PT Global Agra Ripta Solusindo (GARISDev) — Interactive UI Elements
 
-Dokumen ini mendefinisikan spesifikasi komponen kode, token perilaku interaksi, serta audit craft berdasarkan kaidah `@emil-design-eng` dan `@ui-taste`.
+Spesifikasi komponen yang benar-benar ada di `src/components/`, beserta token perilaku interaksi berdasarkan `@emil-design-eng` dan `@ui-taste`.
 
 ---
 
@@ -9,174 +9,94 @@ Dokumen ini mendefinisikan spesifikasi komponen kode, token perilaku interaksi, 
 
 | Before | After | Why |
 |---|---|---|
-| `transition: all 300ms` | `transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), opacity 160ms ease-out` | Menghindari overhead performa browser pada properti `all`; tentukan properti spesifik |
-| `transform: scale(0)` pada modal/popover | `transform: scale(0.95); opacity: 0` | Benda fisik di dunia nyata tidak muncul dari nol; `scale(0.95)` memberikan ilusi kehadiran natural |
-| `ease-in` pada dropdown/drawer | `cubic-bezier(0.32, 0.72, 0, 1)` | `ease-in` membuat UI terasa lambat dan lagging; kurva responsif memberikan feedback instan |
-| Tidak ada feedback saat tombol ditekan | `transform: scale(0.97)` pada `:active` | Memberikan kepastian taktil bahwa input sentuhan/klik pengguna telah didengar oleh aplikasi |
-| Animasi Framer Motion menggunakan `x` / `y` | Menggunakan `transform: "translateY(16px)"` | Memaksa hardware-acceleration di GPU tanpa drop-frame di main thread saat halaman me-render DOM |
-| Tooltip selalu memiliki delay statis | Delay pada tooltip pertama, namun instan (`0ms`) pada tooltip kedua | Menghindari animasi berulang yang membuat pengguna merasa lambat saat menelusuri toolbar |
-| Modal membesar dari titik acuan sembarang | `transform-origin: center` pada modal, origin-aware pada popover | Modal harus stabil di tengah layar, sedangkan popover mekar dari tombol pemicunya |
+| `transition: all 300ms` | properti spesifik, `160–220ms` | Menghindari biaya compositing untuk properti yang tidak berubah |
+| `transform: scale(0)` pada entrance | `opacity: 0` + `translateY(16–18px)` | Benda nyata tidak muncul dari ketiadaan |
+| `ease-in` pada drawer | `cubic-bezier(0.32, 0.72, 0, 1)` | Kurva responsif memberi feedback instan |
+| Tanpa feedback saat ditekan | `.press:active { transform: scale(0.97) }` | Kepastian taktil bahwa input diterima |
+| Framer Motion `x`/`y` | `transform: "translateY(...)"` | GPU-only, tanpa drop frame di main thread |
+| Border 1px keliling kartu | divider horizontal + tone latar | Menghindari "sangkar" visual |
+| Label abu 9px `#9B958A` | `ink-faint #6B655B` | Kontras 2.5:1 → 4.8:1 (lolos AA) |
 
 ---
 
-### 2. Component Registry & Technical Specs
+### 2. Component Registry
 
-#### 2.1 Primary Action Button (`DownloadButton`)
-Komponen tombol paling vital di halaman, bertugas memicu pengunduhan dokumen resmi Company Profile PDF.
+#### 2.1 `DownloadButton` — `ui/download-button.tsx`
+Satu-satunya aksi konversi. Selalu `<a href={COMPANY_PROFILE.href} download>` — bukan JavaScript handler, agar tetap bekerja tanpa JS.
 
-- **Props**:
-  - `variant`: `'primary'` (violet gradient accent) | `'secondary'` (obsidian surface) | `'ghost'` (borderless).
-  - `size`: `'sm'` (38px - mobile nav) | `'md'` (44px - standard) | `'lg'` (52px - hero & CTA).
-  - `icon`: Lucide icon (`Download`, `ArrowRight`, `FileText`).
-  - `label`: String teks aksi.
-- **Interaksi & Motion**:
-  ```css
-  .btn-download {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-weight: 600;
-    border-radius: 9999px; /* Pill luxury shape */
-    transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1),
-                background-color 160ms ease-out,
-                box-shadow 200ms ease-out;
-  }
-  .btn-download:hover {
-    box-shadow: 0 0 24px rgba(99, 102, 241, 0.25);
-  }
-  .btn-download:active {
-    transform: scale(0.97);
-  }
-  ```
-- **Micro-State Behavior**:
-  Saat diklik, teks berubah sementara selama 1200ms:
-  `"Unduh Profil (PDF)"` $\rightarrow$ `"Menyiapkan Dokumen..."` $\rightarrow$ `"Mengunduh..."` $\rightarrow$ kembali normal.
+- **Props**: `variant` (`ink` | `paper` | `crimson` | `outline`), `compact`, `label`, `showMeta`, `className`.
+- **State machine** (`aria-live="polite"`):
+  `idle → preparing (420ms) → downloading (830ms) → done (2150ms) → idle`
+  Label: `Unduh Profil` → `Menyiapkan…` → `Mengunduh…` → `Tersimpan`.
+- **Ikon**: `ArrowDownToLine` → `Loader2` (spin) → `Check`, `strokeWidth 1.5`.
+- **Bentuk**: sudut tegas (bukan pill), tinggi minimum 52px (44px di header), `text 13px/500`.
+- **Feedback**: `.press` (`scale 0.97` pada `:active`), ikon bergeser `translateY(2px)` saat hover.
+- **Metadata**: ukuran file `11,7 MB` ditampilkan `opacity-80`, disembunyikan di bawah `sm`.
 
----
+#### 2.2 `Header` — `Header.tsx`
+- **Perilaku**: `scrollY > 32` menukar state. Transparan (logo putih, teks `paper/80`, tombol `paper`) → `paper/95` + `backdrop-blur-md` + `border-b line` (logo gelap, teks `ink-soft`, tombol `crimson`).
+- **Active section**: `IntersectionObserver` dengan `rootMargin: '-35% 0px -55% 0px'`; link aktif memakai `data-active` pada `.link-underline`.
+- **Transisi**: `transition-[background-color,border-color,box-shadow] 300ms`.
+- **Breakpoint**: nav inline hanya `lg+`; di bawahnya tombol hamburger 40×40.
 
-#### 2.2 Navigation Bar (`Navbar`) & Mobile Drawer
-Header sticky dengan visual *scrim glass* gelap tanpa efek blur tebal yang berat.
+#### 2.3 `MobileDrawer` — `MobileDrawer.tsx`
+- Slide dari kanan, `translateX(100%) → 0`, `320ms`, `--ease-drawer`.
+- Overlay `ink/45` + `backdrop-blur-sm`, klik untuk menutup.
+- Saat terbuka: `body.overflow = hidden` dan `lenis.stop()`; ditutup: `lenis.start()`.
+- **Keyboard**: `Escape` menutup, `autoFocus` pada tombol tutup, focus trap manual pada `Tab`/`Shift+Tab`, `role="dialog"` + `aria-modal`.
+- **Navigasi**: tombol per section memanggil `lenis.scrollTo(target, { duration: 1.1 })` setelah drawer mulai menutup (240ms).
 
-- **Struktur**:
-  ```jsx
-  <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-200">
-    <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
-      <LogoMark />
-      <DesktopNavLinks />
-      <ActionGroup />
-    </nav>
-  </header>
-  ```
-- **Perilaku Scroll**:
-  - Posisi `scrollY === 0`: Transparan, menyatu dengan latar belakang Hero.
-  - Posisi `scrollY > 24px`: Berubah menjadi latar obsidian semi-pekat (`rgba(9, 10, 15, 0.85)`) dengan `backdrop-filter: blur(12px)` dan border bawah subtle `rgba(255, 255, 255, 0.05)`.
-- **Mobile Drawer**:
-  - Animasi slide dari samping kanan dengan kurva `--ease-drawer` (`cubic-bezier(0.32, 0.72, 0, 1)`).
-  - Background overlay gelap dengan opasitas `0.7` yang dapat di-tap untuk menutup seketika.
-  - Jarak target sentuh menu mobile minimal `48px` untuk kenyamanan jempol (*thumb-zone friendly*).
+#### 2.4 `HeroSection` — `HeroSection.tsx`
+- `motion.div` bertahap (`0.05 → 0.30s`, stagger 60ms) dengan `transform: translateY(16px) → 0`.
+- `useReducedMotion()` melepas seluruh `initial`/`animate`.
+- Foto `next/image priority` + dua scrim (gradien arah teks + pita 96px di bawah header).
+- Statistik memakai `.tnum`.
 
----
+#### 2.5 `SectionClients` + `InfiniteMarquee` — `SectionClients.tsx`, `ui/infinite-marquee.tsx`
+- Marquee: dua `.marquee__group` identik, `translate3d(0 → -50%)` linear, durasi via CSS variable `--marquee-duration` (58s), `will-change: transform`, pause saat hover, mask 8% kiri/kanan.
+- Logo: `grayscale`, `mix-blend-multiply`, `opacity 80%` → `100%` saat hover grup; `max-h-7` mobile / `max-h-10` desktop.
+- Roster klien: `<ul>` 2 kolom mobile (nama saja) / 3 kolom `sm+` (nama + kategori), `border-b line` per item.
 
-#### 2.3 Flagship Product Showcase Card (`ProductCard`)
-Komponen visual untuk mempresentasikan 6 produk unggulan (Wellora, ApartHub, TenantHub, Stayora, GoAmbulan, AIRA).
+#### 2.6 `SectionCoreServices` — `SectionCoreServices.tsx`
+- Grid 1 → 2 kolom (`lg`), tiap item `grid-cols-[auto_1fr]` dengan ikon Lucide `strokeWidth 1.25`.
+- Divider `border-t line` per baris; stagger `Reveal` `(index % 2) * 0.05s`.
+- Hover: ikon `translateX(2px)` + crimson, judul crimson.
 
-- **Struktur Kartu**:
-  1. **Header**: Nama produk (`h3`, tegap), industri sasaran (misal: "Residential & Property Management").
-  2. **Deskripsi Solusi**: 2–3 kalimat lugas mengenai masalah operasional yang dipecahkan.
-  3. **Feature Tags (Pill Minimalis)**: Modul-modul kunci (misal: `Billing Otomatis`, `Visitor Pass`, `Work Order`, `Executive Dashboard`).
-  4. **Live Metric / Platform Indicator**: Label status kesiapan (misal: `Web & Mobile App`, `Cloud Native`, `Enterprise Ready`).
-- **State & Transisi**:
-  - Latar kartu: `--ground-elevated` (`#11131B`).
-  - Hover: Border berubah halus dari `rgba(255, 255, 255, 0.06)` menjadi `rgba(99, 102, 241, 0.35)`.
-  - Transform saat hover: `transform: translateY(-2px)` (sangat halus, tanpa gerakan melompat drastis).
+#### 2.7 `SectionFlagshipProducts` + `ProductPreview`
+- **Filter**: `role="group"` + `aria-pressed` (ini filter, bukan tab panel); state `activeCategory`; hasil difilter di klien. Animasi grid memakai `<motion.div layout>` + `AnimatePresence mode="popLayout"` (`240ms`). Exit memakai `scale(0.98)`, tidak pernah `scale(0)`.
+- **Kartu**: `article` non-interaktif (tanpa panah) — tidak ada halaman detail, jadi tidak ada affordance palsu. Hover hanya mengubah tone latar, memindahkan blueprint, dan menarik garis crimson di tepi bawah.
+- **`ProductPreview`**: blueprint antarmuka dari CSS murni (`chart` | `list` | `map`), `aria-hidden`, `pointer-events-none`. Posisi `absolute` kanan-atas, `top-14` mobile / `top-9` desktop, `max-h-[124px] overflow-hidden` di mobile agar tidak pernah menabrak judul kartu.
+
+#### 2.8 `SectionSuportifValues` — `SectionSuportifValues.tsx`
+- 8 huruf = 8 nilai (SUPORTIF): S, U, P, O, R, T, I, F — termasuk **Unggul**.
+- Rail `role="tablist"` dengan roving tabindex (`0` hanya pada huruf aktif, panah kiri/kanan, Home/End): 4 kolom mobile, 8 kolom `sm+`; huruf tidak aktif `ink/50`, aktif `crimson` + garis 32px.
+- Panel `role="tabpanel"` + `aria-labelledby` ke tab aktif, dengan `AnimatePresence mode="wait"`: masuk `translateY(8px)`, keluar `translateY(-6px)`, `200ms`; `md:min-h-[164px]` mencegah layout shift.
+
+#### 2.9 `SectionPrimaryAction` — `SectionPrimaryAction.tsx`
+- Latar `crimson`; 3 baris kontak (`mailto:`, `tel:`, WhatsApp `target="_blank"`) dengan `border-t paper/25` dan panah ↗ yang bergeser saat hover.
+- Kartu dokumen: `paper` `max-w-[460px]`, bar hitam 4px di atas, tabel 2×2 (`Format`, `Ukuran`, `Bahasa`, `Edisi`) memakai `.tnum`, lalu `DownloadButton variant="ink"`.
+
+#### 2.10 `Footer` — `Footer.tsx`
+- Grid 2 kolom mobile → 4 kolom `lg` (`1.5fr .85fr .85fr 1.1fr`).
+- Wordmark `GARISDEV.` `clamp(3.5rem, 17vw, 15.5rem)`, titik crimson, `aria-hidden`.
+- Data legalitas dari `CREDENTIALS`; bar bawah memuat copyright dan tautan "Ke atas".
+
+#### 2.11 `Reveal` — `ui/reveal.tsx`
+- `whileInView`, `once: true`, `margin: '-60px'`, `320ms`, `translateY(18px) → 0`.
+- `useReducedMotion()` → render `<div>` polos tanpa style animasi.
+
+#### 2.12 `SmoothScrollProvider`
+- Lenis: `duration 1.15`, easing Expo-out, `smoothWheel`, `touchMultiplier 1.5`, RAF loop, cleanup `lenis.destroy()`.
+- Menghormati `prefers-reduced-motion` lewat aturan CSS global (`scroll-behavior: auto`).
 
 ---
 
-#### 2.4 Service Pillar Card (`ServiceCard`)
-Menampilkan 6 pilar layanan rekayasa IT GARISDev.
+### 3. Design Token Checklist untuk Komponen Baru
 
-- **Visual Style**:
-  - Datar (*flat*), tenang, dan elegan.
-  - Ikon rekayasa minimalis dengan garis ramping (*1.5px stroke width*).
-  - Judul layanan tebal (`1.25rem`), deskripsi ringkas berbobot 400 (`0.95rem`), warna `--ink-secondary`.
-- **Stagger Effect**:
-  Menggunakan Framer Motion `variants` dengan stagger `0.06s` antar kartu saat section memasuki viewport:
-  ```jsx
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.06 }
-    }
-  };
-  const cardVariants = {
-    hidden: { opacity: 0, transform: "translateY(16px)" },
-    visible: {
-      opacity: 1,
-      transform: "translateY(0px)",
-      transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] }
-    }
-  };
-  ```
-
----
-
-#### 2.5 Corporate Value Card (`ValueCard`) — Nilai SUPORTIF
-Menampilkan 7 pilar etos kerja perseroan (Sustainability, Professional, Observe, Relationship, Trust, Innovation, Flexible).
-
-- **Anatomi**:
-  - Monogram huruf besar berkarakter (S, P, O, R, T, I, F) dengan aksen warna violet pudar di sudut kanan atas.
-  - Nama nilai dalam font tebal.
-  - Penjelasan 1 kalimat mengenai bagaimana nilai tersebut diwujudkan dalam pengerjaan proyek klien.
-
----
-
-#### 2.6 Trust & Legal Verification Widget (`LegalWidget`)
-Komponen kepatuhan dan legitimasi legalitas korporasi.
-
-- **Data Grid**:
-  - Mengelompokkan NIB, NPWP, Akta Notaris, dan SIUP dalam format tabular dua kolom yang bersih.
-  - Dilengkapi tombol satu-klik *"Salin NIB"* dengan feedback teks *"Tersalin!"* (menggunakan `navigator.clipboard`).
-
----
-
-#### 2.7 Interactive Telemetry Visualizer (`HeroTelemetry`)
-Widget visual di Hero Section untuk memberikan kesan rekayasa sistem berkecepatan tinggi:
-- Menampilkan grafik SVG minimalis dengan garis telemetri live (animasi *dashoffset* lembut).
-- Indikator status sistem: Titik hijau berdenyut halus (*pulsing green dot*) dengan teks `"GARISDev Infrastructure • All Systems Operational"`.
-- Angka metrik tabular: Uptime `99.98%`, Tahun Pengalaman `2014–Present`, Solusi Sektor `Enterprise & GovTech`.
-
----
-
-#### 2.8 Smooth Scroll Wrapper (`SmoothScroll`)
-Komponen pembungkus utama aplikasi Next.js menggunakan Lenis.
-
-```jsx
-"use client";
-import { useEffect } from "react";
-import Lenis from "@studio-freight/lenis";
-
-export default function SmoothScroll({ children }) {
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.15,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 1.5,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
-
-  return <>{children}</>;
-}
-```
+1. Latar hanya dari `paper` / `paper-deep` / `night` / `night-elevated` / `crimson`.
+2. Teks memakai `ink`, `ink-soft`, `ink-muted`, `ink-faint` (bukan hex baru).
+3. Setiap elemen klik memakai `.press` atau `active:scale-[0.97]`.
+4. Setiap transisi ≤ `350ms` dengan `cubic-bezier(0.23, 1, 0.32, 1)`.
+5. Setiap komponen client-side yang beranimasi memeriksa `useReducedMotion()`.
+6. Ikon Lucide selalu `strokeWidth 1.5` (1.25 untuk ikon layanan 22px).
+7. Tidak menambah route baru — semua navigasi adalah anchor `#id`.

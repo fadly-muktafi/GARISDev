@@ -1,26 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-plus-jakarta: 'Plus Jakarta Sans', sans-serif;
-  --font-inter: 'Inter', sans-serif;
+  --paper: #f6f4ef;
+  --paper-deep: #ede9e1;
+  --ink: #14120f;
+  --brand: #5b21b6;
+  --brand-deep: #3f1277;
+  --brand-light: #a78bfa;
+  --line: rgba(20, 18, 15, 0.14);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 html {
   scroll-behavior: initial;
-  background-color: #090A0F;
-  color: #F8FAFC;
-  color-scheme: dark;
+  background-color: var(--paper);
+  color: var(--ink);
+  color-scheme: light;
 }
 
 body {
-  background-color: #090A0F;
-  color: #F8FAFC;
+  background-color: var(--paper);
+  color: var(--ink);
   min-height: 100vh;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
@@ -29,399 +32,111 @@ body {
 }
 
 ::selection {
-  background-color: #4F46E5;
-  color: #FFFFFF;
+  background-color: var(--brand);
+  color: #fff;
 }
 
-/* Custom Obsidian Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090A0F;
+  background: var(--paper);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #181B26;
+  background: #c9c3b8;
   border-radius: 9999px;
-  border: 2px solid #090A0F;
+  border: 3px solid var(--paper);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #38BDF840;
+  background: var(--brand);
 }
 
-/* Interaction rhythm — every control eases at the same cadence */
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12;
+  }
+
+  .rule {
+    @apply h-px w-full;
+    background-color: var(--line);
+  }
+
+  .rule-light {
+    @apply h-px w-full;
+    background-color: rgba(246, 244, 239, 0.16);
+  }
+
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1px;
+    width: 100%;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 220ms var(--ease-out);
+  }
+
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .link-underline[data-active='true']::after {
+    transform: scaleX(1);
+  }
+}
+
+/* Tactile feedback: every control eases at the same cadence */
 button,
-a,
-[role='tab'] {
-  transition-property: color, background-color, border-color, box-shadow, transform, opacity, filter;
+a {
+  transition-property: color, background-color, border-color, opacity, transform, filter;
   transition-duration: 200ms;
   transition-timing-function: var(--ease-out);
 }
 
-button:active,
-a:active,
-[role='tab']:active {
-  transform: scale(0.97);
-}
-
-/* Tactile Active Feedback for interactive controls (Emil Kowalski Craft Standard) */
-.press-feedback {
-  transition-property: color, background-color, border-color, box-shadow, transform, opacity, filter;
-  transition-duration: 200ms;
+.press {
+  transition-property: color, background-color, border-color, opacity, transform, filter;
+  transition-duration: 160ms;
   transition-timing-function: var(--ease-out);
 }
 
-.press-feedback:active {
+.press:active {
   transform: scale(0.97);
 }
 
-/* ============================================================
-   GARISDev — Premium Motion Layer
-   Beams · Shimmer · Spotlight · Marquee · Data Flow
-   ============================================================ */
-
-@property --border-beam-angle {
-  syntax: '<angle>';
-  inherits: false;
-  initial-value: 0deg;
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
 }
 
-/* ---------- 1. Hero: animated engineering grid + beams ---------- */
-.hero-atmosphere {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.hero-grid-mask {
-  position: absolute;
-  inset: 0;
-  -webkit-mask-image: radial-gradient(ellipse 95% 70% at 50% 28%, #000 12%, transparent 76%);
-  mask-image: radial-gradient(ellipse 95% 70% at 50% 28%, #000 12%, transparent 76%);
-}
-
-.hero-grid {
-  position: absolute;
-  inset: -72px;
-  background-image:
-    linear-gradient(to right, rgba(99, 102, 241, 0.09) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.09) 1px, transparent 1px);
-  background-size: 72px 72px;
-  animation: hero-grid-drift 42s linear infinite;
-  will-change: transform;
-}
-
-@keyframes hero-grid-drift {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(72px, 72px, 0); }
-}
-
-.hero-glow {
-  position: absolute;
-  border-radius: 9999px;
-  pointer-events: none;
-}
-
-.hero-glow--violet {
-  width: 620px;
-  height: 420px;
-  top: -10%;
-  left: 12%;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.26), transparent 68%);
-  filter: blur(90px);
-}
-
-.hero-glow--cyan {
-  width: 460px;
-  height: 340px;
-  top: 18%;
-  right: -4%;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.15), transparent 70%);
-  filter: blur(90px);
-}
-
-.hero-beams {
-  position: absolute;
-  inset: 0;
-}
-
-.hero-beam {
-  position: absolute;
-  top: -40%;
-  width: 1px;
-  height: 180%;
-  opacity: 0;
-  transform-origin: center;
-  animation: hero-beam-sweep var(--beam-duration, 18s) linear infinite;
-  animation-delay: var(--beam-delay, 0s);
-  will-change: transform, opacity;
-}
-
-.hero-beam--violet {
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(99, 102, 241, 0) 18%,
-    rgba(129, 140, 248, 0.55) 46%,
-    rgba(99, 102, 241, 0.26) 62%,
-    transparent 86%
-  );
-  box-shadow: 0 0 12px rgba(129, 140, 248, 0.22);
-}
-
-.hero-beam--cyan {
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(56, 189, 248, 0) 18%,
-    rgba(56, 189, 248, 0.45) 48%,
-    rgba(56, 189, 248, 0.2) 64%,
-    transparent 86%
-  );
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.16);
-}
-
-@keyframes hero-beam-sweep {
-  0% {
-    transform: translate3d(-26vw, 4vh, 0) rotate(var(--beam-angle, 18deg));
-    opacity: 0;
-  }
-  14% { opacity: var(--beam-opacity, 0.4); }
-  82% { opacity: var(--beam-opacity, 0.4); }
-  100% {
-    transform: translate3d(26vw, -6vh, 0) rotate(var(--beam-angle, 18deg));
-    opacity: 0;
-  }
-}
-
-.hero-vignette {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(9, 10, 15, 0.55) 0%,
-    transparent 22%,
-    transparent 66%,
-    #090A0F 100%
-  );
-}
-
-/* ---------- 2. Shimmer perimeter for primary CTAs ---------- */
-.shimmer-button {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 14px 38px -18px rgba(79, 70, 229, 0.85);
-}
-
-@media (hover: hover) {
-  .shimmer-button:hover {
-    filter: brightness(1.1);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.18),
-      0 14px 38px -18px rgba(79, 70, 229, 0.85),
-      0 0 24px rgba(99, 102, 241, 0.25);
-  }
-}
-
-.shimmer-button__ring {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  border-radius: inherit;
-  padding: 1px;
-  overflow: hidden;
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-.shimmer-button__ring-spin {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 220%;
-  aspect-ratio: 1;
-  background: conic-gradient(
-    transparent 0deg,
-    transparent 292deg,
-    rgba(129, 140, 248, 0.2) 306deg,
-    rgba(226, 232, 255, 0.7) 328deg,
-    rgba(56, 189, 248, 0.55) 344deg,
-    transparent 356deg,
-    transparent 360deg
-  );
-  transform: translate(-50%, -50%) rotate(0deg);
-  animation: shimmer-spin 4.2s linear infinite;
-  will-change: transform;
-}
-
-@keyframes shimmer-spin {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* ---------- 3. Spotlight + border beam cards ---------- */
-.spotlight-card {
-  --spot-x: 50%;
-  --spot-y: 50%;
-  --spot-color: rgba(99, 102, 241, 0.16);
-  transition:
-    background-color 200ms var(--ease-out),
-    border-color 200ms var(--ease-out),
-    box-shadow 260ms var(--ease-out),
-    transform 200ms var(--ease-out);
-}
-
-.spotlight-card__glow {
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  z-index: 1;
-  background: radial-gradient(
-    400px circle at var(--spot-x) var(--spot-y),
-    var(--spot-color),
-    transparent 80%
-  );
-  opacity: 0;
-  transition: opacity 300ms var(--ease-out);
-  pointer-events: none;
-}
-
-.spotlight-card__border-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  background: radial-gradient(
-    400px circle at var(--spot-x) var(--spot-y),
-    rgba(167, 139, 250, 0.45),
-    transparent 65%
-  );
-  opacity: 0;
-  transition: opacity 300ms var(--ease-out);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.spotlight-card__beam {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(
-    from var(--border-beam-angle),
-    transparent 0deg,
-    transparent 236deg,
-    rgba(99, 102, 241, 0.12) 258deg,
-    rgba(99, 102, 241, 0.95) 292deg,
-    rgba(56, 189, 248, 0.95) 322deg,
-    rgba(99, 102, 241, 0.12) 344deg,
-    transparent 360deg
-  );
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  opacity: 0;
-  animation: border-beam-spin-legacy 4s linear infinite;
-  animation-play-state: paused;
-  transition: opacity 220ms var(--ease-out);
-  pointer-events: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .spotlight-card:hover .spotlight-card__glow,
-  .spotlight-card:hover .spotlight-card__border-glow {
-    opacity: 1;
-  }
-
-  .spotlight-card:hover .spotlight-card__beam {
-    opacity: 1;
-    animation-play-state: running;
-  }
-
-  .spotlight-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 26px 64px -40px rgba(79, 70, 229, 0.6);
-  }
-}
-
-@keyframes border-beam-spin-legacy {
-  to { --border-beam-angle: 360deg; }
-}
-
-/* ---------- 4. Border Beam (Magic UI / 21st.dev) ---------- */
-.border-beam-ring {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: var(--border-width, 1.5px);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-.border-beam-ring::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 250%;
-  aspect-ratio: 1;
-  background: conic-gradient(
-    from 0deg at 50% 50%,
-    transparent 0deg,
-    transparent 55deg,
-    var(--color-from, #818CF8) 75deg,
-    var(--color-to, #38BDF8) 100deg,
-    transparent 125deg,
-    transparent 360deg
-  );
-  transform: translate(-50%, -50%) rotate(0deg);
-  animation: border-beam-spin var(--duration, 12s) linear infinite;
-  will-change: transform;
-}
-
-@keyframes border-beam-spin {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-/* ---------- 5. Infinite client marquee ---------- */
+/* ---------- Infinite client marquee ---------- */
 .marquee {
-  --marquee-duration: 48s;
+  --marquee-duration: 46s;
+  --marquee-fade: #f6f4ef;
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
-    #000 9%,
-    #000 91%,
+    #000 8%,
+    #000 92%,
     transparent 100%
   );
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    #000 9%,
-    #000 91%,
+    #000 8%,
+    #000 92%,
     transparent 100%
   );
 }
@@ -440,44 +155,41 @@ a:active,
 .marquee__group {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
-  padding-right: 2.5rem;
+  gap: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 @media (min-width: 768px) {
   .marquee__group {
-    gap: 3.5rem;
-    padding-right: 3.5rem;
+    gap: 4rem;
+    padding-right: 4rem;
   }
 }
 
 @keyframes marquee-scroll {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
-}
-
-/* ---------- 6. Mobile: lighter paint budget ---------- */
-@media (max-width: 640px) {
-  .hero-grid {
-    inset: -48px;
-    background-size: 48px 48px;
-    opacity: 0.55;
+  from {
+    transform: translate3d(0, 0, 0);
   }
-
-  .hero-beams {
-    opacity: 0.25;
-  }
-
-  .hero-beam:nth-child(n + 4) {
-    display: none;
-  }
-
-  .hero-glow--violet {
-    opacity: 0.7;
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
-/* Reduced Motion Override */
+/* Hide scrollbars on horizontal filter rails */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tabular figures for stats and document metadata */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
@@ -488,40 +200,17 @@ a:active,
     scroll-behavior: auto !important;
   }
 
-  .hero-grid,
-  .hero-beam,
-  .data-comet,
-  .shimmer-button__ring-spin,
-  .spotlight-card__beam,
-  .border-beam-ring::before,
   .marquee__track {
     animation: none !important;
-  }
-
-  .hero-beam {
-    opacity: 0.3;
-    transform: rotate(var(--beam-angle, 18deg));
-  }
-
-  .spotlight-card:hover {
-    transform: none;
-  }
-
-  .press-feedback:active,
-  button:active,
-  a:active,
-  [role='tab']:active {
-    transform: none;
   }
 
   .marquee {
     overflow-x: auto;
     -webkit-mask-image: none;
     mask-image: none;
-    scrollbar-width: none;
   }
 
-  .marquee::-webkit-scrollbar {
-    display: none;
+  .press:active {
+    transform: none;
   }
 }

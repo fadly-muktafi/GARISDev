@@ -8,7 +8,7 @@
 - **Problem Statement**:
   Meskipun PT Global Agra Ripta Solusindo (GARISDev) memiliki jam terbang rekayasa IT sejak 2014 dengan portofolio tingkat tinggi (seperti sistem Mabes TNI, BNPT, JFX, Mom N Jo, hingga Asuransi Jasindo), kehadiran digital publik perusahaan belum memiliki touchpoint web modern yang merefleksikan skala, prestise, dan kapabilitas teknis enterprise secara terpadu.
 - **Proposed Solution**:
-  Membangun website *single-page company profile & landing page* kelas dunia beraliran **Dark Obsidian Luxury** dengan arsitektur *mobile-first*, didukung *smooth scrolling* (Lenis), koreografi gerak tingkat lanjut (Framer Motion), dan arsitektur Next.js + Tailwind CSS yang sangat ringan (*sub-second initial load*). Website ini menonjolkan 6 pilar layanan rekayasa, 6 produk *flagship*, rekam jejak legalitas, serta menjadikan pengunduhan resmi dokumen profil korporat (**Company Profile PDF**) sebagai aksi konversi utama (*single primary action*).
+  Membangun website *single-page company profile & landing page* kelas dunia beraliran **Light Editorial Premium** — kertas gading, tipografi hitam besar, satu aksen crimson, dan fotografi interior kantor — dengan arsitektur *mobile-first*, didukung *smooth scrolling* (Lenis), koreografi gerak tingkat lanjut (Framer Motion), dan arsitektur Next.js + Tailwind CSS yang sangat ringan (*sub-second initial load*). Website ini menonjolkan 6 pilar layanan rekayasa, 6 produk *flagship*, rekam jejak legalitas, serta menjadikan pengunduhan resmi dokumen profil korporat (**Company Profile PDF**) sebagai aksi konversi utama (*single primary action*).
 - **Success Criteria**:
   1. **Lighthouse Performance Score**: $\ge 92$ pada mobile dan $\ge 98$ pada desktop (FCP $< 1.2\text{s}$, LCP $< 2.0\text{s}$, CLS $= 0$).
   2. **Company Profile Download Conversion Rate**: $\ge 8.5\%$ dari total pengunjung unik melakukan *click-to-download* dokumen profil resmi.
@@ -54,10 +54,10 @@
     - Tata letak responsif: kartu produk dapat digeser horizontal atau di-tap secara natural di mobile, dan tersusun dalam grid presisi di desktop.
 
 - **Story 4 (Corporate Values - SUPORTIF)**:
-  - *Story*: Sebagai stakeholder, saya ingin memahami etos kerja dan nilai dasar GARISDev (SUPORTIF: Sustainability, Professional, Observe, Relationship, Trust, Innovation, Flexible) agar dapat menilai kecocokan budaya kerja sama.
+  - *Story*: Sebagai stakeholder, saya ingin memahami etos kerja dan nilai dasar GARISDev (SUPORTIF: Sustainability, Unggul, Professional, Observe, Relationship, Trust, Innovation, Flexible) agar dapat menilai kecocokan budaya kerja sama.
   - *Acceptance Criteria*:
-    - Nilai SUPORTIF disajikan sebagai kartu interaktif yang informatif, bukan sekadar daftar teks biasa.
-    - Teks jelas, kontras tinggi terhadap latar obsidian, dan mudah dibaca di layar smartphone.
+    - Nilai SUPORTIF disajikan sebagai rail huruf interaktif dengan panel penjelasan, bukan sekadar daftar teks biasa.
+    - Teks jelas, kontras tinggi terhadap latar kertas, dan mudah dibaca di layar smartphone.
 
 #### 2.3 Non-Goals (Batasan Rilis v1.0)
 - **Bukan Sistem Multi-Page**: Seluruh navigasi adalah *single-page scroll* dengan anchor links halus (Lenis), tanpa halaman `/about`, `/services`, atau `/contact` terpisah.
@@ -69,8 +69,8 @@
 
 ### 3. AI System & Interactive Features
 
-- **Interactive Telemetry Visualizer**: Komponen visual dinamis di hero section yang menampilkan simulasi metrik uptime, arsitektur microservices, dan enkripsi data untuk memberikan kesan "rekayasa teknologi berkecepatan tinggi".
-- **Dynamic Solution Matcher (Optional Micro-Tool)**: Modul interaktif mini sederhana (1-klik selector industri: "Healthcare", "Property", "GovTech", "Hospitality") yang langsung menyorot produk flagship yang relevan tanpa reload halaman.
+- **Product Filter Rail**: Rail 7 kategori di section Produk yang langsung menyaring 6 kartu platform tanpa reload, dengan transisi `layout` Framer Motion dan `aria-selected` untuk pembaca layar.
+- **Dynamic Solution Matcher**: Kategori filter (`Hospitality & Wellness`, `Property Management`, `Commercial & Retail`, `Hotel & Resort`, `Healthcare Dispatch`, `AI & Intelligence`) berfungsi sebagai selector industri satu klik yang menyorot produk flagship yang relevan.
 
 ---
 
@@ -78,7 +78,7 @@
 
 #### 4.1 Architecture & Stack
 - **Framework**: Next.js 14/15 (App Router, Server Components untuk konten statis demi SEO maksimal, Client Components untuk interaktivitas motion).
-- **Styling**: Tailwind CSS v3/v4 dengan konfigurasi tema khusus Obsidian Luxury (`bg-obsidian-950`, `text-slate-100`, aksen `violet-electric` dan `amber-gold`).
+- **Styling**: Tailwind CSS v3 dengan tema Light Editorial (`bg-paper`, `text-ink`, aksen `crimson`, section gelap `night`).
 - **Animation Engine**:
   - `framer-motion` (atau `motion` v11) untuk deklarasi transisi komponen, stagger entrance, dan hardware-accelerated transforms (`transform: "translateY()"`).
   - `@studio-freight/lenis` (Lenis Scroll) untuk inisiasi smooth momentum scrolling di desktop dan mobile.

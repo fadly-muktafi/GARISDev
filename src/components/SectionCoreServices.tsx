@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
 import {
   Compass,
   Globe,
@@ -11,7 +8,7 @@ import {
   Wrench,
 } from 'lucide-react';
 import { CORE_SERVICES } from '@/lib/data';
-import { SpotlightCard } from './ui/spotlight-card';
+import { Reveal } from './ui/reveal';
 
 const SERVICE_ICON_MAP = {
   compass: Compass,
@@ -24,71 +21,57 @@ const SERVICE_ICON_MAP = {
 
 export function SectionCoreServices() {
   return (
-    <section id="layanan" className="py-20 md:py-28 bg-ground-base border-b border-white/5 scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
-        {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-          <div className="flex flex-col gap-3 max-w-2xl">
-            <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-ink-primary tracking-tight">
-              Kapabilitas Rekayasa Teknologi Enterprise
+    <section id="layanan" className="bg-paper-deep py-20 md:py-28">
+      <div className="shell">
+        <div className="grid gap-7 lg:grid-cols-2 lg:items-end lg:gap-16">
+          <Reveal>
+            <h2 className="max-w-[20ch] text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em]">
+              Enam disiplin, satu standar
+              <span className="text-brand">.</span>
             </h2>
-          </div>
-          <p className="font-sans text-sm sm:text-base text-ink-secondary max-w-md">
-            Enam pilar layanan terintegrasi dari perancangan arsitektur sistem, pembangunan aplikasi modern, hingga pengawalan stabilitas infrastruktur teknologi.
-          </p>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <p className="max-w-[44ch] text-[14px] leading-relaxed text-ink-muted lg:text-[15px]">
+              Dari perumusan arsitektur hingga pengawalan operasional harian,
+              setiap pilar dikerjakan oleh tim yang sama, dengan dokumentasi,
+              pengujian, dan pertanggungjawaban yang jelas.
+            </p>
+          </Reveal>
         </div>
 
-        {/* 6 Services Bento Grid (3 Cols on Desktop, 2 on Tablet, 1 on Mobile) with Card Spotlight */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {CORE_SERVICES.map((service, idx) => {
-            const IconComponent = SERVICE_ICON_MAP[service.iconName] || Compass;
-            const glowColor =
-              idx % 2 === 0 ? 'rgba(129, 140, 248, 0.20)' : 'rgba(56, 189, 248, 0.16)';
+        <div className="mt-12 grid gap-4 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
+          {CORE_SERVICES.map((service, index) => {
+            const Icon = SERVICE_ICON_MAP[service.iconName] || Compass;
 
             return (
-              <motion.div
+              <Reveal
                 key={service.title}
-                initial={{ opacity: 0, transform: 'translateY(20px)' }}
-                whileInView={{ opacity: 1, transform: 'translateY(0px)' }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.32, delay: idx * 0.05, ease: [0.23, 1, 0.32, 1] }}
+                delay={(index % 3) * 0.05}
                 className="h-full"
               >
-                <SpotlightCard
-                  glowColor={glowColor}
-                  className="h-full rounded-2xl border border-white/[0.08] hover:border-violet-500/40 bg-ground-elevated p-7 hover:bg-ground-surface transition-colors duration-300"
-                  contentClassName="flex h-full flex-col justify-between gap-6"
-                >
-                  <div className="flex flex-col gap-4">
-                    {/* Service Icon */}
-                    <div className="w-12 h-12 rounded-xl bg-ground-surface border border-white/10 flex items-center justify-center text-accent-violet-light group-hover:scale-105 group-hover:text-accent-cyan transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]">
-                      <IconComponent className="w-6 h-6" strokeWidth={1.8} />
-                    </div>
+                <article className="group relative flex h-full flex-col bg-paper p-7 transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white md:p-8">
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-brand transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-x-100"
+                  />
 
-                    {/* Title & Description */}
-                    <div className="flex flex-col gap-2">
-                      <h3 className="font-display font-bold text-lg md:text-xl text-ink-primary group-hover:text-white transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]">
-                        {service.title}
-                      </h3>
-                      <p className="font-sans text-sm text-ink-secondary leading-relaxed">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
+                  <Icon
+                    className="h-[22px] w-[22px] text-ink-soft transition-colors duration-200 group-hover:text-brand"
+                    strokeWidth={1.25}
+                    aria-hidden="true"
+                  />
 
-                  {/* Tag Pills */}
-                  <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
-                    {service.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="py-1 px-2.5 rounded-md bg-ground-surface text-ink-secondary text-xs font-mono border border-white/5"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </SpotlightCard>
-              </motion.div>
+                  <h3 className="mt-7 max-w-[18ch] font-display text-[19px] font-medium leading-snug tracking-[-0.02em] md:text-[20px]">
+                    {service.title}
+                  </h3>
+                  <p className="mt-3 max-w-[42ch] text-[13.5px] leading-relaxed text-ink-muted">
+                    {service.description}
+                  </p>
+                  <p className="mt-auto pt-8 text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+                    {service.tags.join(' · ')}
+                  </p>
+                </article>
+              </Reveal>
             );
           })}
         </div>

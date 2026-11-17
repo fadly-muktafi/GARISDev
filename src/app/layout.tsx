@@ -1,11 +1,26 @@
 import type { Metadata, Viewport } from 'next';
+import { Inter_Tight, Instrument_Serif } from 'next/font/google';
 import { SmoothScrollProvider } from '@/components/SmoothScrollProvider';
 import './globals.css';
 
+const interTight = Inter_Tight({
+  subsets: ['latin'],
+  variable: '--font-inter-tight',
+  display: 'swap',
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-instrument-serif',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: 'PT Global Agra Ripta Solusindo (GARISDev) — Official Company Profile',
+  title: 'GARISDev · Rekayasa Digital, Skala Nasional',
   description:
-    'Profil resmi PT Global Agra Ripta Solusindo (GARISDev). Rekayasa perangkat lunak enterprise, arsitektur sistem cloud native, dan ekosistem platform digital flagship teruji sejak 2014.',
+    'PT Global Agra Ripta Solusindo (GARISDev) merancang sistem enterprise, platform operasional, dan integrasi data untuk korporasi serta institusi pemerintah Indonesia sejak 2014.',
   keywords: [
     'GARISDev',
     'PT Global Agra Ripta Solusindo',
@@ -26,9 +41,9 @@ export const metadata: Metadata = {
     canonical: 'https://garisdev.co.id',
   },
   openGraph: {
-    title: 'PT Global Agra Ripta Solusindo (GARISDev) — Official Company Profile',
+    title: 'GARISDev · Rekayasa Digital, Skala Nasional',
     description:
-      'Rekayasa perangkat lunak enterprise, arsitektur sistem cloud native, dan ekosistem platform digital flagship teruji sejak 2014.',
+      'Sistem enterprise, platform operasional, dan integrasi data untuk korporasi serta institusi pemerintah Indonesia sejak 2014.',
     url: 'https://garisdev.co.id',
     siteName: 'GARISDev',
     locale: 'id_ID',
@@ -38,29 +53,29 @@ export const metadata: Metadata = {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'GARISDev — Rekayasa Perangkat Lunak & Terobosan Solusi Digital Enterprise',
+        alt: 'GARISDev, PT Global Agra Ripta Solusindo',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PT Global Agra Ripta Solusindo (GARISDev) — Official Company Profile',
+    title: 'GARISDev · Rekayasa Digital, Skala Nasional',
     description:
-      'Rekayasa perangkat lunak enterprise, arsitektur sistem cloud native, dan ekosistem platform digital flagship teruji sejak 2014.',
+      'Sistem enterprise, platform operasional, dan integrasi data untuk korporasi serta institusi pemerintah Indonesia sejak 2014.',
     images: [
       {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'GARISDev — Rekayasa Perangkat Lunak & Terobosan Solusi Digital Enterprise',
+        alt: 'GARISDev, PT Global Agra Ripta Solusindo',
       },
     ],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#090A0F',
+  themeColor: '#F6F4EF',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -72,12 +87,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
-      <body className="bg-ground-base text-ink-primary font-sans selection:bg-accent-indigo-btn selection:text-white">
+    <html lang="id" className={`${interTight.variable} ${instrumentSerif.variable}`}>
+      <body className="bg-paper font-sans text-ink selection:bg-brand selection:text-white">
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>

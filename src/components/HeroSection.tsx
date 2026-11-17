@@ -1,80 +1,116 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Server, Cpu, MessageCircle, Layers } from 'lucide-react';
+import Image from 'next/image';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowDown } from 'lucide-react';
 import { COMPANY_INFO } from '@/lib/data';
-import { BackgroundBeams } from './ui/background-beams';
-import { ShimmerButton } from './ui/shimmer-button';
+import { DownloadButton } from './ui/download-button';
+
+const HERO_FACTS = [
+  { value: '12', label: 'Tahun aktif' },
+  { value: '6', label: 'Platform' },
+  { value: '9+', label: 'Institusi' },
+];
 
 export function HeroSection() {
+  const reduce = useReducedMotion();
+
+  const rise = (delay: number) =>
+    reduce
+      ? {}
+      : {
+          initial: { opacity: 0, transform: 'translateY(16px)' },
+          animate: { opacity: 1, transform: 'translateY(0px)' },
+          transition: { duration: 0.32, delay, ease: [0.23, 1, 0.32, 1] },
+        };
+
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-ground-base border-b border-white/5">
-      {/* Engineering grid + light beams */}
-      <BackgroundBeams />
-
-      {/* Ambient Top Spotlight (Soft Violet-Indigo #5846F6 glow at 15-20% opacity) */}
-      <div
-        className="absolute -top-24 left-1/2 -translate-x-1/2 w-[720px] sm:w-[980px] lg:w-[1240px] h-[420px] sm:h-[500px] pointer-events-none -z-0 opacity-20 blur-[120px] rounded-full"
-        style={{
-          background: 'radial-gradient(ellipse at 50% 20%, #5846F6 0%, #4338CA 40%, transparent 72%)',
-        }}
-        aria-hidden="true"
-      />
-
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="atas" className="relative bg-paper pt-16 md:pt-20">
+      <div className="shell">
         <motion.div
-          initial={{ opacity: 0, transform: 'translateY(20px)' }}
-          animate={{ opacity: 1, transform: 'translateY(0px)' }}
-          transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
-          className="flex flex-col items-center text-center gap-6 md:gap-7"
+          {...rise(0.02)}
+          className="flex items-center justify-between gap-4 border-b border-line pb-4 pt-6 text-[10px] uppercase tracking-[0.18em] text-ink-faint"
         >
-          {/* Headline (Enforce Max 2 Lines Across All Viewports) */}
-          <h1 className="font-display font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-ink-primary tracking-tight leading-[1.2] sm:leading-[1.15] max-w-4xl mx-auto">
-            Rekayasa Perangkat Lunak & Terobosan Solusi Digital
-          </h1>
-
-          {/* Subheadline */}
-          <p className="font-sans text-base sm:text-lg md:text-xl text-ink-secondary leading-relaxed max-w-3xl mx-auto">
-            PT Global Agra Ripta Solusindo (GARISDev) merancang arsitektur sistem enterprise, produk digital terukur, dan transformasi teknologi terpercaya bagi korporasi dan institusi pemerintah.
-          </p>
-
-          {/* Dual CTAs (Centered with Shimmer Button) */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2 w-full sm:w-auto">
-            <ShimmerButton
-              href={COMPANY_INFO.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto py-3.5 px-8 rounded-full bg-gradient-to-r from-accent-indigo-btn via-accent-violet to-accent-indigo-btn text-white font-display font-semibold text-sm sm:text-base hover:brightness-110 hover:shadow-[0_0_28px_rgba(99,102,241,0.3)] min-h-[48px]"
-            >
-              <MessageCircle className="w-5 h-5 text-accent-emerald shrink-0" strokeWidth={2} />
-              <span>Konsultasi Solusi</span>
-            </ShimmerButton>
-
-            <a
-              href="#layanan"
-              className="press-feedback w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-7 rounded-full bg-ground-surface hover:bg-white/[0.05] text-ink-primary border border-white/10 hover:border-white/20 font-display font-medium text-sm sm:text-base transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] min-h-[48px]"
-            >
-              <span>Eksplorasi Solusi ↓</span>
-            </a>
-          </div>
-
-          {/* Quick Proof Badges (Centered, General capabilities) */}
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 pt-5 text-xs sm:text-sm text-ink-secondary border-t border-white/5 w-full max-w-2xl mx-auto">
-            <div className="flex items-center gap-2">
-              <Server className="w-4 h-4 text-accent-cyan" />
-              <span>Cloud Native Architecture</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-accent-violet-light" />
-              <span>Zero-Trust Security</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Layers className="w-4 h-4 text-accent-emerald" />
-              <span>Enterprise Integration</span>
-            </div>
-          </div>
+          <span className="truncate sm:hidden">Jakarta, Indonesia</span>
+          <span className="hidden truncate sm:inline">{COMPANY_INFO.legalName}</span>
+          <span className="tnum shrink-0">Est. 2014</span>
         </motion.div>
+
+        <div className="grid gap-10 pb-14 pt-10 md:pt-14 lg:grid-cols-[1.04fr_0.96fr] lg:items-center lg:gap-14 lg:pb-24 lg:pt-16">
+          <div>
+            <motion.h1
+              {...rise(0.08)}
+              className="max-w-[14ch] font-display text-[clamp(2.2rem,8.6vw,3.6rem)] font-medium leading-[0.94] tracking-[-0.05em] lg:max-w-none lg:text-[clamp(3rem,4.6vw,4.4rem)]"
+            >
+              Rekayasa digital,
+              <br />
+              <span className="font-serif font-normal italic tracking-[-0.02em]">
+                skala nasional
+              </span>
+              <span className="text-brand">.</span>
+            </motion.h1>
+
+            <motion.p
+              {...rise(0.16)}
+              className="mt-7 max-w-[40ch] text-[15px] leading-relaxed text-ink-muted lg:text-[16px]"
+            >
+              Kami membangun sistem enterprise, platform operasional, dan
+              integrasi data untuk institusi yang tidak boleh berhenti.
+            </motion.p>
+
+            <motion.div
+              {...rise(0.24)}
+              className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center"
+            >
+              <DownloadButton variant="brand" showMeta />
+              <a
+                href="#layanan"
+                className="press group inline-flex min-h-[52px] items-center justify-center gap-2 px-2 text-[13px] font-medium text-ink-soft hover:text-ink sm:justify-start"
+              >
+                <span className="link-underline">Lihat kapabilitas</span>
+                <ArrowDown
+                  className="h-4 w-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-y-0.5"
+                  strokeWidth={1.5}
+                />
+              </a>
+            </motion.div>
+
+            <motion.dl
+              {...rise(0.3)}
+              className="mt-12 grid grid-cols-3 gap-4 border-t border-line pt-5"
+            >
+              {HERO_FACTS.map((fact) => (
+                <div key={fact.label}>
+                  <dt className="sr-only">{fact.label}</dt>
+                  <dd className="tnum font-display text-[19px] font-medium leading-none tracking-[-0.02em] text-ink lg:text-[22px]">
+                    {fact.value}
+                  </dd>
+                  <dd className="mt-2 text-[9px] uppercase leading-tight tracking-[0.14em] text-ink-faint lg:text-[10px]">
+                    {fact.label}
+                  </dd>
+                </div>
+              ))}
+            </motion.dl>
+          </div>
+
+          <motion.figure {...rise(0.2)} className="group relative">
+            <div className="relative aspect-[5/6] w-full overflow-hidden bg-paper-deep sm:aspect-[16/10] md:aspect-[16/9] lg:aspect-auto lg:h-[min(64vh,600px)]">
+              <Image
+                src="/assets/photos/hero-office.jpg"
+                alt="Ruang rapat GARISDev dengan meja kerja panjang dan cahaya alami"
+                fill
+                priority
+                sizes="(min-width: 1024px) 47vw, 100vw"
+                className="object-cover object-center transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.015]"
+              />
+            </div>
+            <figcaption className="mt-3 flex items-center gap-2.5 text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand" aria-hidden="true" />
+              Kantor pusat, Jakarta Selatan
+            </figcaption>
+          </motion.figure>
+        </div>
       </div>
     </section>
   );

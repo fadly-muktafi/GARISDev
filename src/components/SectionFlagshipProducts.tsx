@@ -1,133 +1,117 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { FLAGSHIP_PRODUCTS, PRODUCT_CATEGORIES } from '@/lib/data';
 import { cn } from '@/lib/utils';
-import { SpotlightCard } from './ui/spotlight-card';
+import { Reveal } from './ui/reveal';
+import { ProductPreview } from './ui/product-preview';
 
 export function SectionFlagshipProducts() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const reduce = useReducedMotion();
 
   const filteredProducts =
     activeCategory === 'all'
       ? FLAGSHIP_PRODUCTS
-      : FLAGSHIP_PRODUCTS.filter((p) => p.category === activeCategory || p.id === activeCategory);
+      : FLAGSHIP_PRODUCTS.filter(
+          (product) => product.category === activeCategory || product.id === activeCategory
+        );
 
   return (
-    <section id="produk" className="py-20 md:py-28 bg-ground-base border-b border-white/5 scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
-        {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-          <div className="flex flex-col gap-3 max-w-2xl">
-            <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-ink-primary tracking-tight">
-              Solusi Digital Flagship Siap Implementasi
+    <section id="produk" className="bg-night py-20 text-paper md:py-28">
+      <div className="shell">
+        <div className="grid gap-7 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:gap-16">
+          <Reveal>
+            <h2 className="max-w-[20ch] text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em]">
+              Enam platform. Siap beroperasi.
             </h2>
-          </div>
-          <p className="font-sans text-sm sm:text-base text-ink-secondary max-w-md">
-            Ekosistem platform perangkat lunak siap pakai berstandar enterprise yang telah teruji untuk efisiensi operasional lintas industri.
-          </p>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <p className="max-w-[44ch] text-[14px] leading-relaxed text-paper/65 lg:text-[15px]">
+              Perangkat lunak yang sudah dipakai di lapangan: dari meja resepsionis
+              dan lantai produksi hingga ruang kendali darurat.
+            </p>
+          </Reveal>
         </div>
 
-        {/* Filter Tabs with Framer Motion Sliding Pill (layoutId="productTab") */}
         <div
-          className="flex items-center gap-1.5 p-1 rounded-full bg-ground-surface/70 border border-white/[0.08] backdrop-blur-sm overflow-x-auto pb-1 scrollbar-none md:flex-wrap md:overflow-visible md:pb-1 w-fit max-w-full"
-          role="tablist"
+          role="group"
+          aria-label="Filter kategori platform"
+          className="no-scrollbar mt-10 flex gap-7 overflow-x-auto border-b border-paper/10 pb-0 [mask-image:linear-gradient(to_right,#000_92%,transparent)] md:mt-14 md:flex-wrap md:overflow-visible md:[mask-image:none]"
         >
-          {PRODUCT_CATEGORIES.map((cat) => {
-            const isActive = activeCategory === cat.id;
+          {PRODUCT_CATEGORIES.map((category) => {
+            const isActive = activeCategory === category.id;
 
             return (
               <button
-                key={cat.id}
+                key={category.id}
                 type="button"
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setActiveCategory(cat.id)}
+                aria-pressed={isActive}
+                onClick={() => setActiveCategory(category.id)}
                 className={cn(
-                  'relative press-feedback whitespace-nowrap px-4 py-2.5 rounded-full text-xs sm:text-sm font-display font-semibold transition-colors duration-200 min-h-[44px] flex items-center justify-center z-10',
+                  'press shrink-0 border-b pb-3 text-[10px] font-medium uppercase tracking-[0.16em] transition-colors duration-200 sm:text-[11px]',
                   isActive
-                    ? 'text-white font-semibold'
-                    : 'text-ink-secondary hover:text-ink-primary'
+                    ? 'border-brand-light text-paper'
+                    : 'border-transparent text-paper/55 hover:text-paper/85'
                 )}
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="productTab"
-                    className="absolute inset-0 rounded-full bg-gradient-to-r from-accent-indigo-btn to-accent-violet shadow-[0_0_20px_rgba(99,102,241,0.35)] -z-10"
-                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                  />
-                )}
-                <span className="hidden sm:inline relative z-10">{cat.label}</span>
-                <span className="inline sm:hidden relative z-10">{cat.mobileLabel}</span>
+                <span className="hidden sm:inline">{category.label}</span>
+                <span className="inline sm:hidden">{category.mobileLabel}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Product Cards Grid with 3D Micro-Tilt Interaction */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="popLayout">
-            {filteredProducts.map((product) => (
-              <motion.div
-                key={product.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-                className="h-full [perspective:1000px] group/card3d"
-              >
-                <SpotlightCard
-                  glowColor={`${product.badgeColor}28`}
-                  className="h-full rounded-2xl border border-white/[0.08] hover:border-violet-500/40 bg-ground-elevated p-7 hover:bg-ground-surface transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/card3d:[transform:rotateX(2deg)_rotateY(-2deg)_translateY(-6px)] group-hover/card3d:shadow-[0_20px_40px_-15px_rgba(99,102,241,0.25)]"
-                  contentClassName="flex h-full flex-col justify-between gap-6"
+        <motion.div layout className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {filteredProducts.map((product) => {
+              return (
+                <motion.div
+                  key={product.id}
+                  layout
+                  initial={{ opacity: 0, transform: reduce ? 'none' : 'translateY(10px)' }}
+                  animate={{ opacity: 1, transform: 'translateY(0px)' }}
+                  exit={{ opacity: 0, transform: reduce ? 'none' : 'scale(0.98)' }}
+                  transition={{ duration: 0.24, ease: [0.23, 1, 0.32, 1] }}
                 >
-                  <div className="flex flex-col gap-4">
-                    {/* Card Header: Name & Module Badge */}
-                    <div className="flex items-center justify-between gap-2">
-                      <h3 className="font-display font-bold text-xl text-ink-primary group-hover:text-white transition-colors duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]">
-                        {product.name}
-                      </h3>
-                      <span
-                        className="py-1 px-3 rounded-full bg-ground-surface text-[11px] font-bold tracking-wider font-display border border-white/5"
-                        style={{ color: product.badgeColor }}
-                      >
+                  <article className="group relative flex min-h-[380px] flex-col justify-between overflow-hidden bg-night-elevated p-6 transition-colors duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-night-surface md:min-h-[360px] md:p-7">
+                    <ProductPreview variant={product.preview} />
+
+                    <div className="relative z-10 flex items-start justify-between gap-4">
+                      <span className="max-w-[18ch] text-[9.5px] uppercase leading-relaxed tracking-[0.16em] text-paper/55">
                         {product.badge}
                       </span>
                     </div>
 
-                    {/* Description */}
-                    <p className="font-sans text-sm text-ink-secondary leading-relaxed">
-                      {product.description}
-                    </p>
-                  </div>
+                    <div className="relative z-10 mt-24">
+                      <h3 className="font-display text-[clamp(1.7rem,2.4vw,2rem)] font-medium leading-none tracking-[-0.035em]">
+                        {product.name}
+                      </h3>
+                      <p className="mt-3 max-w-[34ch] text-[12.5px] leading-relaxed text-paper/60">
+                        {product.description}
+                      </p>
+                      <p className="mt-5 text-[9.5px] uppercase tracking-[0.15em] text-paper/50">
+                        {product.modules.join(' · ')}
+                      </p>
+                    </div>
 
-                  {/* Modules Pills */}
-                  <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
-                    {product.modules.map((mod) => (
-                      <span
-                        key={mod}
-                        className="py-1 px-2.5 rounded-md bg-ground-surface text-ink-secondary text-xs font-mono border border-white/5"
-                      >
-                        {mod}
-                      </span>
-                    ))}
-                  </div>
-                </SpotlightCard>
-              </motion.div>
-            ))}
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-brand-light transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-x-100"
+                    />
+                  </article>
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </motion.div>
 
-        {/* Tested Other Solutions Banner */}
-        <div className="p-5 md:p-6 rounded-2xl bg-ground-surface border border-white/5 flex items-center gap-3.5">
-          <div className="w-9 h-9 rounded-xl bg-ground-elevated border border-accent-amber/25 flex items-center justify-center shrink-0">
-            <Sparkles className="w-4 h-4 text-accent-amber" />
-          </div>
-          <p className="font-sans text-xs sm:text-sm text-ink-secondary">
-            <strong className="text-ink-primary font-semibold">Solusi Teruji Lainnya:</strong> E-Government Application, Geospatial Housing Mapping (GIS), Agricultural Insurance Claim (E-Claim Jasindo), & Matkomlek Asset Management.
+        <div className="mt-12 flex flex-col gap-2 border-t border-paper/10 pt-6 sm:flex-row sm:items-baseline sm:justify-between">
+          <span className="text-[10px] uppercase tracking-[0.18em] text-paper/45">Solusi teruji lainnya</span>
+          <p className="max-w-[62ch] text-[12.5px] leading-relaxed text-paper/65">
+            E-Government Application · Geospatial Housing Mapping (GIS) · Agricultural
+            Insurance Claim (Jasindo) · Matkomlek Asset Management
           </p>
         </div>
       </div>

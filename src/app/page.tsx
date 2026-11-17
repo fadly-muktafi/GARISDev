@@ -3,39 +3,27 @@ import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
 import { SectionClients } from '@/components/SectionClients';
 import { SectionCoreServices } from '@/components/SectionCoreServices';
+import { SectionInterlude } from '@/components/SectionInterlude';
 import { SectionFlagshipProducts } from '@/components/SectionFlagshipProducts';
-import { SectionSuportifValues } from '@/components/SectionSuportifValues';
+import { SectionSportifValues } from '@/components/SectionSportifValues';
 import { SectionPrimaryAction } from '@/components/SectionPrimaryAction';
 import { Footer } from '@/components/Footer';
 
 export default function HomePage() {
   return (
-    <div className="relative min-h-screen bg-ground-base flex flex-col selection:bg-accent-indigo-btn selection:text-white">
-      {/* Sticky Header Navigation */}
+    <div className="flex min-h-screen flex-col bg-paper">
       <Header />
 
-      {/* Main Single-Page Blueprint */}
-      <main className="flex-1 flex flex-col">
-        {/* Section 2: Hero */}
+      <main className="flex flex-1 flex-col">
         <HeroSection />
-
-        {/* Section 3: Klien & Mitra Strategis */}
         <SectionClients />
-
-        {/* Section 4: Core Services */}
         <SectionCoreServices />
-
-        {/* Section 5: Flagship Products */}
+        <SectionInterlude />
         <SectionFlagshipProducts />
-
-        {/* Section 6: Corporate Values (Filosofi SUPORTIF) */}
-        <SectionSuportifValues />
-
-        {/* Section 7: Primary Conversion Action */}
+        <SectionSportifValues />
         <SectionPrimaryAction />
       </main>
 
-      {/* Section 8: Footer */}
       <Footer />
     </div>
   );

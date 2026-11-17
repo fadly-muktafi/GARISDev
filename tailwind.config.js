@@ -8,42 +8,48 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ground: {
-          base: '#090A0F',
-          elevated: '#11131B',
-          surface: '#181B26',
-        },
-        accent: {
-          violet: '#6366F1',
-          'violet-light': '#818CF8',
-          magenta: '#9333EA',
-          'magenta-light': '#C084FC',
-          cyan: '#38BDF8',
-          amber: '#F59E0B',
-          emerald: '#22C55E',
-          'indigo-btn': '#4F46E5',
+        paper: {
+          DEFAULT: '#F6F4EF',
+          deep: '#EDE9E1',
+          dim: '#E4DFD5',
         },
         ink: {
-          primary: '#F8FAFC',
-          secondary: '#94A3B8',
-          muted: '#64748B',
+          DEFAULT: '#14120F',
+          soft: '#3D3932',
+          muted: '#514C44',
+          faint: '#6B655B',
         },
-        border: {
-          subtle: 'rgba(255, 255, 255, 0.06)',
-          glass: 'rgba(255, 255, 255, 0.1)',
-        }
+        brand: {
+          DEFAULT: '#5B21B6',
+          deep: '#3F1277',
+          light: '#A78BFA',
+          tint: 'rgba(91, 33, 182, 0.10)',
+        },
+        night: {
+          DEFAULT: '#0E0D0B',
+          elevated: '#171411',
+          surface: '#201C17',
+        },
+        line: {
+          DEFAULT: 'rgba(20, 18, 15, 0.14)',
+          light: 'rgba(246, 244, 239, 0.16)',
+        },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'Inter', 'sans-serif'],
-        display: ['var(--font-plus-jakarta)', 'Plus Jakarta Sans', 'sans-serif'],
+        sans: ['var(--font-inter-tight)', 'Inter Tight', 'sans-serif'],
+        display: ['var(--font-inter-tight)', 'Inter Tight', 'sans-serif'],
+        serif: ['var(--font-instrument-serif)', 'Georgia', 'serif'],
+      },
+      maxWidth: {
+        shell: '1320px',
+      },
+      letterSpacing: {
+        tightest: '-0.05em',
       },
       transitionTimingFunction: {
         'ease-out-expo': 'cubic-bezier(0.23, 1, 0.32, 1)',
         'ease-drawer': 'cubic-bezier(0.32, 0.72, 0, 1)',
       },
-      animation: {
-        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      }
     },
   },
   plugins: [],
