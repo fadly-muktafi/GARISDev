@@ -63,45 +63,39 @@ export interface CoreServiceItem {
   title: string;
   description: string;
   iconName: 'compass' | 'globe' | 'smartphone' | 'git-merge' | 'layout-dashboard' | 'wrench';
-  tags: string[];
+  tags?: string[];
 }
 
 export const CORE_SERVICES: CoreServiceItem[] = [
   {
     title: 'Digital Strategy & Consulting',
-    description: 'Perencanaan roadmap arsitektur teknologi, analisis kelayakan sistem, dan audit digitalisasi enterprise secara menyeluruh.',
+    description: 'Perencanaan arsitektur teknologi terpadu, analisis kelayakan sistem, dan penyusunan roadmap transformasi digital enterprise.',
     iconName: 'compass',
-    tags: ['Roadmap', 'Feasibility', 'Enterprise Audit'],
   },
   {
     title: 'Web Application Development',
-    description: 'Pembangunan web application modern berperforma tinggi, aman, scalable, dan berlisensi arsitektur cloud native.',
+    description: 'Pengembangan aplikasi web modern yang scalable, aman, dan berkinerja tinggi sesuai kebutuhan proses bisnis nyata.',
     iconName: 'globe',
-    tags: ['Cloud Native', 'Next.js', 'Microservices'],
   },
   {
     title: 'Mobile App Development',
-    description: 'Pengembangan aplikasi iOS dan Android native serta cross-platform untuk rekayasa operasional dan kebutuhan korporat.',
+    description: 'Pengembangan aplikasi mobile native (iOS & Android) dan cross-platform dengan performa optimal untuk operasional bisnis.',
     iconName: 'smartphone',
-    tags: ['iOS Native', 'Android', 'Flutter'],
   },
   {
     title: 'System Integration',
-    description: 'Menghubungkan berbagai sistem heterogen melalui API terpadu, middleware aman, dan pipeline transmisi data efisien.',
+    description: 'Integrasi sistem heterogen melalui arsitektur API terpadu, middleware aman, dan pipeline transmisi data antar-aplikasi.',
     iconName: 'git-merge',
-    tags: ['REST & GraphQL', 'Secure Middleware'],
   },
   {
     title: 'Dashboard & Business Intelligence',
-    description: 'Visualisasi data real-time, monitoring operasional, dan analitik prediktif untuk optimalisasi pengambilan keputusan strategis.',
+    description: 'Visualisasi data real-time, monitoring operasional, dan analitik data untuk memperkuat kontrol dan pengambilan keputusan manajemen.',
     iconName: 'layout-dashboard',
-    tags: ['Real-time Telemetry', 'Decision BI'],
   },
   {
     title: 'Maintenance & Technology Support',
-    description: 'Dukungan pemeliharaan sistem terencana, mitigasi risiko keamanan, dan optimalisasi performa berkelanjutan.',
+    description: 'Layanan pemeliharaan sistem terencana, mitigasi keamanan berkala, dan optimalisasi performa teknologi secara berkelanjutan.',
     iconName: 'wrench',
-    tags: ['Dedicated Support', 'Security Audit'],
   },
 ];
 
@@ -194,36 +188,36 @@ export const SPORTIF_VALUES: SportifItem[] = [
   {
     letter: 'S',
     title: 'Sustainability',
-    description: 'Menjaga kualitas layanan, stabilitas kode, dan keandalan sistem jangka panjang bagi mitra klien.',
+    description: 'Mempertahankan kualitas layanan terbaik, keandalan kode, dan dukungan sistem jangka panjang bagi mitra klien.',
   },
   {
     letter: 'P',
     title: 'Professional',
-    description: 'Kompetensi rekayasa tingkat tinggi, efisiensi kerja prima, dan tanggung jawab penuh atas SLA operasional.',
+    description: 'Mengutamakan kompetensi teknis, efektivitas, efisiensi kerja, serta tanggung jawab penuh atas solusi yang dikembangkan.',
   },
   {
     letter: 'O',
     title: 'Observe',
-    description: 'Senantiasa proaktif mengamati dinamika teknologi termutakhir untuk diadopsi menjadi solusi nyata.',
+    description: 'Proaktif mengamati dan mengadopsi perkembangan teknologi terkini agar dapat diaplikasikan secara optimal pada kebutuhan klien.',
   },
   {
     letter: 'R',
     title: 'Relationship',
-    description: 'Membangun kemitraan strategis yang harmonis, saling menguntungkan, dan berkelanjutan.',
+    description: 'Membangun kemitraan strategis yang sinergis dan berkelanjutan dengan prinsip saling menguntungkan.',
   },
   {
     letter: 'T',
     title: 'Trust',
-    description: 'Menjaga integritas data tanpa kompromi serta memelihara kepercayaan mutlak seluruh pemangku kepentingan.',
+    description: 'Menjaga kepercayaan klien dan seluruh pemangku kepentingan melalui integritas kerja dan keamanan data.',
   },
   {
     letter: 'I',
     title: 'Innovation',
-    description: 'Menghadirkan terobosan kreatif dan arsitektur solutif yang memecahkan tantangan operasional secara elegan.',
+    description: 'Menciptakan inovasi dan terobosan teknologi dalam rangka memberikan solusi terbaik bagi efisiensi operasional.',
   },
   {
     letter: 'F',
     title: 'Flexible',
-    description: 'Tangkas dan adaptif terhadap dinamika industri, skalabilitas bisnis, dan kebutuhan spesifik setiap klien.',
+    description: 'Mampu beradaptasi dan menyesuaikan solusi dengan dinamika kebutuhan bisnis serta perkembangan teknologi terkini.',
   },
 ];

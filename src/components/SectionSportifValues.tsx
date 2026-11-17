@@ -12,20 +12,19 @@ export function SectionSportifValues() {
   const value = SPORTIF_VALUES[active];
 
   return (
-    <section id="nilai" className="bg-paper py-20 md:py-24">
+    <section id="nilai" className="bg-paper-deep py-20 md:py-24">
       <div className="shell">
         <div className="grid gap-7 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16">
           <Reveal>
             <h2 className="max-w-[24ch] text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em]">
-              Tujuh huruf. Satu cara kerja
-              <span className="text-brand">.</span>
+              Tata nilai perusahaan SPORTIF
             </h2>
           </Reveal>
           <Reveal delay={0.06}>
-            <p className="max-w-[44ch] text-[14px] leading-relaxed text-ink-muted lg:text-[15px]">
-              SPORTIF bukan akronim di dinding kantor. Ia menjadi standar
-              keputusan harian, dari cara kami menulis kode hingga cara kami
-              menjaga hubungan dengan klien.
+            <p className="max-w-[46ch] text-[14px] leading-relaxed text-ink-muted lg:text-[15px]">
+              GARISDev memegang teguh tata nilai SPORTIF sebagai landasan profesionalisme,
+              kualitas rekayasa, dan komitmen layanan berkelanjutan dalam setiap pengembangan
+              produk dan kemitraan strategis.
             </p>
           </Reveal>
         </div>
@@ -106,7 +105,7 @@ export function SectionSportifValues() {
               exit={{ opacity: 0, transform: reduce ? 'none' : 'translateY(-6px)' }}
               transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
             >
-              <h3 className="font-serif text-[clamp(2rem,3.4vw,2.85rem)] italic leading-none tracking-[-0.02em]">
+              <h3 className="font-display text-[clamp(2rem,3.4vw,2.85rem)] font-medium leading-none tracking-[-0.03em] text-ink">
                 {value.title}
               </h3>
             </motion.div>

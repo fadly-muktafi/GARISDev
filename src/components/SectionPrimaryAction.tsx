@@ -13,18 +13,18 @@ const CONTACTS = [
 
 export function SectionPrimaryAction() {
   return (
-    <section id="kontak" className="bg-brand py-20 text-paper md:py-28">
+    <section id="kontak" className="bg-paper py-20 text-ink md:py-28 border-t border-line">
       <div className="shell">
         <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
           <div>
             <Reveal>
-              <h2 className="max-w-[15ch] text-balance font-display text-[clamp(2rem,4.4vw,3.3rem)] font-medium leading-[1.02] tracking-[-0.04em]">
-                Bawa presisi ini ke meja Anda.
+              <h2 className="max-w-[20ch] text-balance font-display text-[clamp(2rem,4.4vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.035em]">
+                Dokumen profil perusahaan dan konsultasi teknis
               </h2>
-              <p className="mt-6 max-w-[44ch] text-[14px] leading-relaxed text-paper/85 lg:text-[15px]">
-                Unduh dokumen resmi perusahaan untuk evaluasi internal: rekam
-                jejak proyek, kompetensi tim, legalitas, dan arsitektur solusi
-                GARISDev.
+              <p className="mt-6 max-w-[46ch] text-[15px] leading-relaxed text-ink-muted lg:text-[16px]">
+                Dapatkan dokumen resmi Company Profile PT Global Agra Ripta Solusindo
+                untuk meninjau kapabilitas rekayasa teknologi, portofolio solusi, dan
+                rekam jejak implementasi sistem secara komprehensif.
               </p>
             </Reveal>
 
@@ -37,12 +37,12 @@ export function SectionPrimaryAction() {
                     {...(contact.external
                       ? { target: '_blank', rel: 'noopener noreferrer' }
                       : {})}
-                    className="group flex items-baseline justify-between gap-4 border-t border-paper/25 py-4 last:border-b"
+                    className="group flex items-baseline justify-between gap-4 border-t border-line py-4 last:border-b"
                   >
-                    <span className="text-[10px] uppercase tracking-[0.18em] text-paper/75">
+                    <span className="text-[10px] uppercase tracking-[0.18em] text-ink-faint">
                       {contact.label}
                     </span>
-                    <span className="flex items-center gap-2 text-[13.5px] font-medium text-paper/90 transition-colors duration-200 group-hover:text-paper">
+                    <span className="flex items-center gap-2 text-[13.5px] font-medium text-ink transition-colors duration-200 group-hover:text-brand">
                       {contact.value}
                       <ArrowUpRight
                         className="h-3.5 w-3.5 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -58,7 +58,7 @@ export function SectionPrimaryAction() {
                 href={COMPANY_INFO.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-underline mt-5 inline-block max-w-[46ch] text-[11.5px] leading-relaxed text-paper/75 hover:text-paper"
+                className="link-underline mt-5 inline-block max-w-[46ch] text-[12px] leading-relaxed text-ink-muted hover:text-ink"
               >
                 {COMPANY_INFO.address}
               </a>
@@ -66,8 +66,8 @@ export function SectionPrimaryAction() {
           </div>
 
           <Reveal delay={0.1} className="lg:justify-self-end">
-            <div className="relative w-full max-w-[460px] bg-paper p-7 text-ink sm:p-9">
-              <span className="absolute inset-x-0 top-0 h-1 bg-ink" aria-hidden="true" />
+            <div className="relative w-full max-w-[460px] bg-white border border-line p-7 text-ink shadow-sm sm:p-9">
+              <span className="absolute inset-x-0 top-0 h-1 bg-brand" aria-hidden="true" />
 
               <div className="flex items-center justify-between gap-4">
                 <Image
@@ -109,12 +109,12 @@ export function SectionPrimaryAction() {
               </dl>
 
               <DownloadButton
-                variant="ink"
+                variant="brand"
                 className="mt-8 min-h-[54px] w-full"
                 label="Unduh Company Profile"
               />
               <p className="mt-3 text-center text-[10.5px] text-ink-faint">
-                Tanpa formulir. Unduhan langsung.
+                Tanpa formulir. Unduhan langsung dokumen PDF.
               </p>
             </div>
           </Reveal>

@@ -11,14 +11,14 @@ export function SectionClients() {
         <div className="grid gap-7 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:gap-16">
           <Reveal>
             <h2 className="max-w-[22ch] text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em]">
-              Institusi yang menuntut keandalan mutlak.
+              Kemitraan strategis dan klien terpercaya
             </h2>
           </Reveal>
           <Reveal delay={0.06}>
-            <p className="max-w-[42ch] text-[14px] leading-relaxed text-ink-muted lg:text-[15px]">
-              Sejak 2014, GARISDev dipercaya lembaga negara dan korporasi nasional
-              untuk membangun sistem yang harus tetap bekerja, tanpa toleransi
-              terhadap kegagalan.
+            <p className="max-w-[44ch] text-[14px] leading-relaxed text-ink-muted lg:text-[15px]">
+              Sejak tahun 2014, GARISDev dipercaya berbagai kementerian, instansi pertahanan,
+              lembaga pemerintah, serta korporasi nasional dalam mengembangkan dan mengelola
+              solusi teknologi informasi yang andal.
             </p>
           </Reveal>
         </div>

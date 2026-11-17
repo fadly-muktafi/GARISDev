@@ -3,7 +3,6 @@ import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
 import { SectionClients } from '@/components/SectionClients';
 import { SectionCoreServices } from '@/components/SectionCoreServices';
-import { SectionInterlude } from '@/components/SectionInterlude';
 import { SectionFlagshipProducts } from '@/components/SectionFlagshipProducts';
 import { SectionSportifValues } from '@/components/SectionSportifValues';
 import { SectionPrimaryAction } from '@/components/SectionPrimaryAction';
@@ -18,7 +17,6 @@ export default function HomePage() {
         <HeroSection />
         <SectionClients />
         <SectionCoreServices />
-        <SectionInterlude />
         <SectionFlagshipProducts />
         <SectionSportifValues />
         <SectionPrimaryAction />

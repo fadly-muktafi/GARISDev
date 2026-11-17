@@ -19,18 +19,19 @@ export function SectionFlagshipProducts() {
         );
 
   return (
-    <section id="produk" className="bg-night py-20 text-paper md:py-28">
+    <section id="produk" className="bg-paper py-20 text-ink md:py-28 border-t border-line">
       <div className="shell">
         <div className="grid gap-7 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:gap-16">
           <Reveal>
-            <h2 className="max-w-[20ch] text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em]">
-              Enam platform. Siap beroperasi.
+            <h2 className="max-w-[22ch] text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em]">
+              Portofolio platform dan solusi digital unggulan
             </h2>
           </Reveal>
           <Reveal delay={0.06}>
-            <p className="max-w-[44ch] text-[14px] leading-relaxed text-paper/65 lg:text-[15px]">
-              Perangkat lunak yang sudah dipakai di lapangan: dari meja resepsionis
-              dan lantai produksi hingga ruang kendali darurat.
+            <p className="max-w-[46ch] text-[14px] leading-relaxed text-ink-muted lg:text-[15px]">
+              Solusi perangkat lunak terintegrasi yang dikembangkan untuk menjawab
+              kebutuhan operasional nyata di sektor perhotelan, hunian vertikal,
+              pengelolaan pusat perbelanjaan, hingga manajemen darurat medis.
             </p>
           </Reveal>
         </div>
@@ -38,7 +39,7 @@ export function SectionFlagshipProducts() {
         <div
           role="group"
           aria-label="Filter kategori platform"
-          className="no-scrollbar mt-10 flex gap-7 overflow-x-auto border-b border-paper/10 pb-0 [mask-image:linear-gradient(to_right,#000_92%,transparent)] md:mt-14 md:flex-wrap md:overflow-visible md:[mask-image:none]"
+          className="no-scrollbar mt-10 flex gap-7 overflow-x-auto border-b border-line pb-0 [mask-image:linear-gradient(to_right,#000_92%,transparent)] md:mt-14 md:flex-wrap md:overflow-visible md:[mask-image:none]"
         >
           {PRODUCT_CATEGORIES.map((category) => {
             const isActive = activeCategory === category.id;
@@ -52,8 +53,8 @@ export function SectionFlagshipProducts() {
                 className={cn(
                   'press shrink-0 border-b pb-3 text-[10px] font-medium uppercase tracking-[0.16em] transition-colors duration-200 sm:text-[11px]',
                   isActive
-                    ? 'border-brand-light text-paper'
-                    : 'border-transparent text-paper/55 hover:text-paper/85'
+                    ? 'border-brand text-brand'
+                    : 'border-transparent text-ink-muted hover:text-ink'
                 )}
               >
                 <span className="hidden sm:inline">{category.label}</span>
@@ -75,30 +76,30 @@ export function SectionFlagshipProducts() {
                   exit={{ opacity: 0, transform: reduce ? 'none' : 'scale(0.98)' }}
                   transition={{ duration: 0.24, ease: [0.23, 1, 0.32, 1] }}
                 >
-                  <article className="group relative flex min-h-[380px] flex-col justify-between overflow-hidden bg-night-elevated p-6 transition-colors duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-night-surface md:min-h-[360px] md:p-7">
+                  <article className="group relative flex min-h-[380px] flex-col justify-between overflow-hidden bg-white p-6 transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:shadow-md md:min-h-[360px] md:p-7 border border-line">
                     <ProductPreview variant={product.preview} />
 
                     <div className="relative z-10 flex items-start justify-between gap-4">
-                      <span className="max-w-[18ch] text-[9.5px] uppercase leading-relaxed tracking-[0.16em] text-paper/55">
+                      <span className="max-w-[18ch] text-[9.5px] font-semibold uppercase leading-relaxed tracking-[0.16em] text-brand">
                         {product.badge}
                       </span>
                     </div>
 
                     <div className="relative z-10 mt-24">
-                      <h3 className="font-display text-[clamp(1.7rem,2.4vw,2rem)] font-medium leading-none tracking-[-0.035em]">
+                      <h3 className="font-display text-[clamp(1.7rem,2.4vw,2rem)] font-medium leading-none tracking-[-0.035em] text-ink">
                         {product.name}
                       </h3>
-                      <p className="mt-3 max-w-[34ch] text-[12.5px] leading-relaxed text-paper/60">
+                      <p className="mt-3 max-w-[34ch] text-[13px] leading-relaxed text-ink-muted">
                         {product.description}
                       </p>
-                      <p className="mt-5 text-[9.5px] uppercase tracking-[0.15em] text-paper/50">
+                      <p className="mt-5 text-[9.5px] font-medium uppercase tracking-[0.15em] text-ink-faint">
                         {product.modules.join(' · ')}
                       </p>
                     </div>
 
                     <span
                       aria-hidden="true"
-                      className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-brand-light transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-x-100"
+                      className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-brand transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-x-100"
                     />
                   </article>
                 </motion.div>
@@ -107,11 +108,11 @@ export function SectionFlagshipProducts() {
           </AnimatePresence>
         </motion.div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-paper/10 pt-6 sm:flex-row sm:items-baseline sm:justify-between">
-          <span className="text-[10px] uppercase tracking-[0.18em] text-paper/45">Solusi teruji lainnya</span>
-          <p className="max-w-[62ch] text-[12.5px] leading-relaxed text-paper/65">
-            E-Government Application · Geospatial Housing Mapping (GIS) · Agricultural
-            Insurance Claim (Jasindo) · Matkomlek Asset Management
+        <div className="mt-12 flex flex-col gap-2 border-t border-line pt-6 sm:flex-row sm:items-baseline sm:justify-between">
+          <span className="text-[10px] uppercase tracking-[0.18em] text-ink-faint">Solusi sistem lainnya</span>
+          <p className="max-w-[64ch] text-[12.5px] leading-relaxed text-ink-muted">
+            E-Government Application System · Academic Information System · Hospital Information System ·
+            Geospatial Mapping (GIS) · HRIS &amp; Payroll · Financial &amp; Budget Planning
           </p>
         </div>
       </div>

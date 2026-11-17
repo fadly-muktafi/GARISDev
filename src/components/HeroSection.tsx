@@ -8,9 +8,9 @@ import { COMPANY_INFO } from '@/lib/data';
 import { DownloadButton } from './ui/download-button';
 
 const HERO_FACTS = [
-  { value: '12', label: 'Tahun aktif' },
-  { value: '6', label: 'Platform' },
-  { value: '9+', label: 'Institusi' },
+  { value: '12', label: 'Tahun Pengalaman' },
+  { value: '6', label: 'Solusi Flagship' },
+  { value: '9+', label: 'Mitra Strategis' },
 ];
 
 export function HeroSection() {
@@ -41,22 +41,20 @@ export function HeroSection() {
           <div>
             <motion.h1
               {...rise(0.08)}
-              className="max-w-[14ch] font-display text-[clamp(2.2rem,8.6vw,3.6rem)] font-medium leading-[0.94] tracking-[-0.05em] lg:max-w-none lg:text-[clamp(3rem,4.6vw,4.4rem)]"
+              className="max-w-[16ch] font-display text-[clamp(2.2rem,7.6vw,3.6rem)] font-medium leading-[0.98] tracking-[-0.04em] lg:max-w-none lg:text-[clamp(2.8rem,4.4vw,4.2rem)]"
             >
-              Rekayasa digital,
+              Pengembangan perangkat lunak &amp;
               <br />
-              <span className="font-serif font-normal italic tracking-[-0.02em]">
-                skala nasional
-              </span>
-              <span className="text-brand">.</span>
+              rekayasa teknologi informasi
             </motion.h1>
 
             <motion.p
               {...rise(0.16)}
-              className="mt-7 max-w-[40ch] text-[15px] leading-relaxed text-ink-muted lg:text-[16px]"
+              className="mt-7 max-w-[44ch] text-[15px] leading-relaxed text-ink-muted lg:text-[16px]"
             >
-              Kami membangun sistem enterprise, platform operasional, dan
-              integrasi data untuk institusi yang tidak boleh berhenti.
+              Mitra teknologi end-to-end yang memfokuskan diri pada pengembangan software
+              dan rekayasa teknologi informasi untuk menghadirkan solusi digital yang praktis,
+              scalable, serta terintegrasi.
             </motion.p>
 
             <motion.div
@@ -68,7 +66,7 @@ export function HeroSection() {
                 href="#layanan"
                 className="press group inline-flex min-h-[52px] items-center justify-center gap-2 px-2 text-[13px] font-medium text-ink-soft hover:text-ink sm:justify-start"
               >
-                <span className="link-underline">Lihat kapabilitas</span>
+                <span className="link-underline">Eksplorasi layanan</span>
                 <ArrowDown
                   className="h-4 w-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-y-0.5"
                   strokeWidth={1.5}

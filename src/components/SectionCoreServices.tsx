@@ -25,16 +25,15 @@ export function SectionCoreServices() {
       <div className="shell">
         <div className="grid gap-7 lg:grid-cols-2 lg:items-end lg:gap-16">
           <Reveal>
-            <h2 className="max-w-[20ch] text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em]">
-              Enam disiplin, satu standar
-              <span className="text-brand">.</span>
+            <h2 className="max-w-[22ch] text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em]">
+              Layanan rekayasa teknologi dan produk digital
             </h2>
           </Reveal>
           <Reveal delay={0.06}>
-            <p className="max-w-[44ch] text-[14px] leading-relaxed text-ink-muted lg:text-[15px]">
-              Dari perumusan arsitektur hingga pengawalan operasional harian,
-              setiap pilar dikerjakan oleh tim yang sama, dengan dokumentasi,
-              pengujian, dan pertanggungjawaban yang jelas.
+            <p className="max-w-[46ch] text-[14px] leading-relaxed text-ink-muted lg:text-[15px]">
+              Sebagai mitra teknologi end-to-end, GARISDev menggabungkan strategi teknologi,
+              pengembangan aplikasi terpadu, integrasi sistem, dan inovasi untuk menghasilkan
+              solusi yang praktis, scalable, serta sesuai kebutuhan bisnis nyata.
             </p>
           </Reveal>
         </div>
@@ -66,9 +65,6 @@ export function SectionCoreServices() {
                   </h3>
                   <p className="mt-3 max-w-[42ch] text-[13.5px] leading-relaxed text-ink-muted">
                     {service.description}
-                  </p>
-                  <p className="mt-auto pt-8 text-[10px] uppercase tracking-[0.16em] text-ink-faint">
-                    {service.tags.join(' · ')}
                   </p>
                 </article>
               </Reveal>
