@@ -42,10 +42,7 @@ export function SectionPrimaryAction() {
           {/* Kolom Kiri: Alamat, Foto Gedung, dan Kontak Resmi */}
           <div>
             <Reveal>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-brand">
-                Hubungi Kami &amp; Kantor Pusat
-              </span>
-              <h2 className="mt-2 max-w-[20ch] text-balance font-display text-[clamp(1.9rem,4vw,3.1rem)] font-medium leading-[1.05] tracking-[-0.035em]">
+              <h2 className="max-w-[20ch] text-balance font-display text-[clamp(1.9rem,4vw,3.1rem)] font-medium leading-[1.05] tracking-[-0.035em]">
                 Konsultasi Solusi &amp; Profil Perusahaan
               </h2>
               <p className="mt-4 max-w-[48ch] text-[15px] leading-relaxed text-ink-muted">
@@ -68,8 +65,8 @@ export function SectionPrimaryAction() {
                 <div className="flex items-start gap-3 p-4 bg-white border-t border-line/60">
                   <MapPin className="h-4 w-4 shrink-0 text-brand mt-0.5" strokeWidth={1.75} />
                   <div>
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand block">
-                      Kantor Pusat GARISDev:
+                    <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-faint block">
+                      Kantor Pusat
                     </span>
                     <a
                       href={COMPANY_INFO.mapsUrl}
@@ -139,16 +136,10 @@ export function SectionPrimaryAction() {
                   sizes="100px"
                   className="h-5 w-auto object-contain"
                 />
-                <span className="rounded bg-paper px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-ink-faint font-medium">
-                  {COMPANY_PROFILE.format} · Edisi {COMPANY_PROFILE.edition}
-                </span>
               </div>
 
               <div className="mt-8">
-                <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-brand">
-                  Dokumen Resmi Korporat
-                </span>
-                <h3 className="mt-1 font-display text-[22px] font-medium leading-tight tracking-[-0.03em] sm:text-[25px]">
+                <h3 className="font-display text-[22px] font-medium leading-tight tracking-[-0.03em] sm:text-[25px]">
                   PT Global Agra Ripta Solusindo
                 </h3>
                 <p className="mt-3 text-[13px] leading-relaxed text-ink-muted">

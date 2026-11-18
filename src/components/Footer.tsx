@@ -18,9 +18,9 @@ export function Footer() {
         {/* Bagian Atas: CTA Banner Visi Resmi */}
         <div className="flex flex-col gap-8 border-b border-paper/10 pb-12 lg:flex-row lg:items-center lg:justify-between md:pb-16">
           <div className="max-w-[48ch]">
-            <span className="text-[10px] uppercase tracking-[0.18em] text-brand-light font-semibold">
-              Visi Perseroan
-            </span>
+            <p className="text-[11px] uppercase tracking-[0.16em] text-paper/40 font-medium">
+              Visi Perusahaan
+            </p>
             <p className="mt-2 text-balance font-display text-[clamp(1.5rem,3.2vw,2.4rem)] font-medium leading-[1.12] tracking-[-0.03em] text-paper">
               &ldquo;Menjadi mitra teknologi terpercaya yang mendorong transformasi digital dan pertumbuhan berkelanjutan.&rdquo;
             </p>
@@ -100,7 +100,7 @@ export function Footer() {
                     href="#produk"
                     className="link-underline text-[12.5px] leading-snug text-paper/70 hover:text-paper"
                   >
-                    {product.name} — <span className="text-paper/45">{product.subheading}</span>
+                    {product.name}
                   </a>
                 </li>
               ))}

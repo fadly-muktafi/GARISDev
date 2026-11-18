@@ -29,10 +29,7 @@ export function SectionSportifValues() {
       <div className="shell">
         <div className="grid gap-7 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16">
           <Reveal>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-brand">
-              Budaya &amp; Integritas Kerja
-            </span>
-            <h2 className="mt-2 max-w-[24ch] text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em] text-ink">
+            <h2 className="max-w-[24ch] text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em] text-ink">
               Tata Nilai Perusahaan SPORTIF
             </h2>
           </Reveal>
@@ -58,8 +55,9 @@ export function SectionSportifValues() {
                   </div>
 
                   <div className="flex-1">
-                    <h3 className="font-display text-[16px] sm:text-[17px] font-medium leading-snug tracking-[-0.02em] text-ink">
-                      {item.letter} — {item.title}
+                    <h3 className="font-display text-[16px] sm:text-[17px] font-semibold leading-snug tracking-[-0.02em] text-ink">
+                      <span className="text-brand mr-2 font-bold">{item.letter}</span>
+                      <span>{item.title}</span>
                     </h3>
                     <p className="mt-1 text-[13px] leading-relaxed text-ink-muted">
                       {item.description}

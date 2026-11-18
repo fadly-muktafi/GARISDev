@@ -1,16 +1,26 @@
 'use client';
 
 import React from 'react';
-import { Smartphone, Database, BarChart3, Server } from 'lucide-react';
-import { TECH_CAPABILITIES } from '@/lib/data';
 import { Reveal } from './ui/reveal';
 
-const CATEGORY_ICON_MAP: Record<string, React.ElementType> = {
-  'Mobile & Web Framework': Smartphone,
-  'Enterprise Database': Database,
-  'Business Intelligence & Analytics': BarChart3,
-  'Infrastructure, Network & Communication': Server,
-};
+const TECH_MATRIX = [
+  {
+    category: 'Pengembangan Web & Mobile',
+    items: ['Android', 'iOS Apple Developer', 'Flutter', 'Laravel', 'Goravel', 'Inertia.js'],
+  },
+  {
+    category: 'Basis Data Enterprise',
+    items: ['Oracle Database', 'Microsoft SQL Server', 'Tibero Database', 'PostgreSQL', 'MySQL'],
+  },
+  {
+    category: 'Business Intelligence & Analitik',
+    items: ['Tableau', 'IBM Cognos'],
+  },
+  {
+    category: 'Infrastruktur, Jaringan & Komunikasi',
+    items: ['Linux', 'Dell Server', 'MikroTik', 'Cloudflare', 'Tailscale', 'Asterisk'],
+  },
+];
 
 export function SectionTechnologyCapability() {
   return (
@@ -18,10 +28,7 @@ export function SectionTechnologyCapability() {
       <div className="shell">
         <div className="grid gap-7 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:gap-16">
           <Reveal>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-brand">
-              Stack &amp; Ekosistem Teknologi
-            </span>
-            <h2 className="mt-2 text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em] text-ink">
+            <h2 className="text-balance font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.04] tracking-[-0.035em] text-ink">
               Teknologi &amp; Kapabilitas Infrastruktur
             </h2>
           </Reveal>
@@ -32,46 +39,30 @@ export function SectionTechnologyCapability() {
           </Reveal>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {TECH_CAPABILITIES.map((group, index) => {
-            const Icon = CATEGORY_ICON_MAP[group.category] || Server;
-
-            return (
-              <Reveal key={group.category} delay={index * 0.05}>
-                <div className="flex h-full flex-col justify-between rounded-xl border border-line bg-white p-6 shadow-2xs transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-brand/40 hover:shadow-sm">
-                  <div>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand/10 text-brand">
-                      <Icon className="h-5 w-5" strokeWidth={1.5} />
-                    </div>
-
-                    <h3 className="mt-4 font-display text-[17px] font-medium leading-snug tracking-[-0.02em] text-ink">
-                      {group.category}
-                    </h3>
-                    <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink-muted">
-                      {group.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-6 border-t border-line/60 pt-4">
-                    <span className="mb-2 block text-[9.5px] font-semibold uppercase tracking-[0.15em] text-ink-faint">
-                      Teknologi Utama:
-                    </span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {group.items.map((tech) => (
-                        <span
-                          key={tech.name}
-                          className="inline-flex items-center gap-1.5 rounded bg-paper px-2.5 py-1 text-[11.5px] font-medium text-ink"
-                        >
-                          <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />
-                          {tech.name}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+        {/* Matriks Spesifikasi Teknologi 4 Baris Horizontal */}
+        <div className="mt-14 divide-y divide-neutral-200 border-y border-neutral-200">
+          {TECH_MATRIX.map((row, index) => (
+            <Reveal key={row.category} delay={index * 0.05}>
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 py-6 items-center">
+                <div className="md:col-span-4 lg:col-span-3">
+                  <h3 className="font-display text-[16px] sm:text-[17px] font-semibold text-ink">
+                    {row.category}
+                  </h3>
                 </div>
-              </Reveal>
-            );
-          })}
+
+                <div className="md:col-span-8 lg:col-span-9 flex flex-wrap gap-2">
+                  {row.items.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3.5 py-1.5 bg-white border border-neutral-200 text-neutral-800 text-sm font-medium rounded-md shadow-2xs transition-colors hover:border-neutral-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

@@ -18,7 +18,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: 'GARISDev · Pengembangan Perangkat Lunak & Rekayasa Teknologi Informasi',
+  title: 'GARISDev | Pengembangan Perangkat Lunak & Rekayasa Teknologi Informasi',
   description:
     'PT Global Agra Ripta Solusindo (GARISDev) memfokuskan diri pada pengembangan software dan rekayasa teknologi informasi untuk menghadirkan solusi digital yang praktis, scalable, serta terintegrasi sejak 2014.',
   keywords: [
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     canonical: 'https://garisdev.co.id',
   },
   openGraph: {
-    title: 'GARISDev · Pengembangan Perangkat Lunak & Rekayasa Teknologi Informasi',
+    title: 'GARISDev | Pengembangan Perangkat Lunak & Rekayasa Teknologi Informasi',
     description:
       'Solusi pengembangan software dan rekayasa teknologi informasi untuk korporasi serta institusi pemerintah Indonesia sejak 2014.',
     url: 'https://garisdev.co.id',
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GARISDev · Rekayasa Digital, Skala Nasional',
+    title: 'GARISDev | Rekayasa Digital, Skala Nasional',
     description:
       'Sistem enterprise, platform operasional, dan integrasi data untuk korporasi serta institusi pemerintah Indonesia sejak 2014.',
     images: [

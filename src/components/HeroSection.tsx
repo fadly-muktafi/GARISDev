@@ -31,7 +31,7 @@ export function HeroSection() {
           {...rise(0.02)}
           className="flex items-center justify-between gap-4 border-b border-line pb-4 pt-6 text-[10px] uppercase tracking-[0.18em] text-ink-faint"
         >
-          <span className="truncate">PT GLOBAL AGRA RIPTA SOLUSINDO · BERPENGALAMAN SEJAK 2014</span>
+          <span className="truncate">PT GLOBAL AGRA RIPTA SOLUSINDO</span>
           <span className="tnum shrink-0 hidden sm:inline">Jakarta Selatan</span>
         </motion.div>
 
@@ -100,10 +100,6 @@ export function HeroSection() {
                 className="object-contain p-2 sm:p-4 transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.015]"
               />
             </div>
-            <figcaption className="mt-3 flex items-center gap-2 text-[10.5px] uppercase tracking-[0.14em] text-ink-faint">
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand" aria-hidden="true" />
-              Ekosistem Dashboard Eksekutif &amp; Aplikasi Mobile Operasional GARISDev
-            </figcaption>
           </motion.figure>
         </div>
       </div>

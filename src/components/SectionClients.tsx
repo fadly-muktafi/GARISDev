@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import { CheckCircle2 } from 'lucide-react';
 import { CLIENTS, STRATEGIC_PROJECTS } from '@/lib/data';
 import { InfiniteMarquee } from './ui/infinite-marquee';
 import { Reveal } from './ui/reveal';
@@ -79,10 +78,7 @@ export function SectionClients() {
         <div className="mt-20 border-t border-line pt-16 md:mt-28 md:pt-20">
           <div className="grid gap-7 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:gap-16">
             <Reveal>
-              <span className="text-[10px] uppercase tracking-[0.18em] text-brand font-semibold">
-                Portofolio Proyek Nyata
-              </span>
-              <h3 className="mt-2 text-balance font-display text-[clamp(1.75rem,3.8vw,2.85rem)] font-medium leading-[1.06] tracking-[-0.03em] text-ink">
+              <h3 className="text-balance font-display text-[clamp(1.75rem,3.8vw,2.85rem)] font-medium leading-[1.06] tracking-[-0.03em] text-ink">
                 Rekam Jejak Implementasi &amp; Proyek Strategis
               </h3>
             </Reveal>
@@ -93,38 +89,29 @@ export function SectionClients() {
             </Reveal>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 divide-y divide-neutral-200 border-y border-neutral-200">
             {STRATEGIC_PROJECTS.map((project, index) => (
-              <Reveal key={project.title} delay={(index % 3) * 0.06}>
-                <article className="group flex h-full flex-col justify-between bg-white p-6 sm:p-7 border border-line transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-brand/40 hover:shadow-sm">
-                  <div>
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="text-[9.5px] font-semibold uppercase tracking-[0.14em] text-brand">
-                        {project.category}
-                      </span>
-                      <span className="tnum rounded bg-paper px-2 py-0.5 text-[11px] font-medium text-ink">
-                        {project.year}
-                      </span>
-                    </div>
-
-                    <h4 className="mt-4 font-display text-[18px] font-medium leading-snug tracking-[-0.02em] text-ink md:text-[19px]">
+              <Reveal key={project.title} delay={index * 0.04}>
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline py-6 transition-colors duration-150 hover:bg-paper-deep/30 px-2 sm:px-0">
+                  <div className="md:col-span-4">
+                    <h4 className="font-display text-[17px] font-semibold tracking-[-0.015em] text-ink sm:text-[18px]">
                       {project.title}
                     </h4>
-
-                    <p className="mt-1 text-[11.5px] font-medium text-ink-faint">
+                    <p className="mt-1 text-[13px] text-neutral-500">
                       {project.client}
                     </p>
-
-                    <p className="mt-3.5 text-[13px] leading-relaxed text-ink-muted">
+                  </div>
+                  <div className="md:col-span-2">
+                    <span className="tnum text-[14px] font-medium text-neutral-600">
+                      {project.year}
+                    </span>
+                  </div>
+                  <div className="md:col-span-6">
+                    <p className="text-[14px] leading-relaxed text-slate-700">
                       {project.description}
                     </p>
                   </div>
-
-                  <div className="mt-6 flex items-center gap-1.5 border-t border-line/60 pt-4 text-[10px] uppercase tracking-[0.14em] text-ink-faint">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-brand" strokeWidth={1.75} aria-hidden="true" />
-                    <span>Sistem Terverifikasi</span>
-                  </div>
-                </article>
+                </div>
               </Reveal>
             ))}
           </div>
