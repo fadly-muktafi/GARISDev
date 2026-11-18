@@ -1,127 +1,194 @@
 import React from 'react';
 import Image from 'next/image';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ArrowUp, Download } from 'lucide-react';
 import {
   COMPANY_INFO,
+  COMPANY_PROFILE,
+  CORE_SERVICES,
   FLAGSHIP_PRODUCTS,
-  NAV_ITEMS,
 } from '@/lib/data';
 
 const COLUMN_LABEL =
-  'text-[10px] uppercase tracking-[0.18em] text-paper/40';
+  'text-[10px] uppercase tracking-[0.18em] text-paper/40 font-semibold';
 
 export function Footer() {
   return (
     <footer className="bg-night pt-16 text-paper md:pt-20">
       <div className="shell">
-        <div className="flex flex-col gap-8 border-b border-paper/10 pb-12 md:flex-row md:items-end md:justify-between md:pb-16">
-          <h2 className="max-w-[22ch] text-balance font-display text-[clamp(1.7rem,4.2vw,3rem)] font-medium leading-[1.05] tracking-[-0.035em]">
-            Mitra teknologi terpercaya untuk transformasi digital berkelanjutan
-          </h2>
+        {/* Bagian Atas: CTA Banner Visi Resmi */}
+        <div className="flex flex-col gap-8 border-b border-paper/10 pb-12 lg:flex-row lg:items-center lg:justify-between md:pb-16">
+          <div className="max-w-[48ch]">
+            <span className="text-[10px] uppercase tracking-[0.18em] text-brand-light font-semibold">
+              Visi Perseroan
+            </span>
+            <p className="mt-2 text-balance font-display text-[clamp(1.5rem,3.2vw,2.4rem)] font-medium leading-[1.12] tracking-[-0.03em] text-paper">
+              &ldquo;Menjadi mitra teknologi terpercaya yang mendorong transformasi digital dan pertumbuhan berkelanjutan.&rdquo;
+            </p>
+          </div>
 
-          <a
-            href="#kontak"
-            className="press group inline-flex w-fit items-center gap-3 border-b border-paper/25 pb-2 text-[11px] uppercase tracking-[0.16em] text-paper/70 hover:border-paper hover:text-paper"
-          >
-            Hubungi kami
-            <ArrowUpRight
-              className="h-4 w-4 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              strokeWidth={1.5}
-              aria-hidden="true"
-            />
-          </a>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="#kontak"
+              className="press inline-flex min-h-[46px] items-center justify-center gap-2 rounded-lg bg-brand px-5 text-[12.5px] font-medium tracking-[-0.01em] text-paper transition-colors duration-200 hover:bg-brand-deep"
+            >
+              <span>Hubungi Tim Kami</span>
+              <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+            </a>
+
+            <a
+              href={COMPANY_PROFILE.href}
+              download={COMPANY_PROFILE.fileName}
+              className="press inline-flex min-h-[46px] items-center justify-center gap-2 rounded-lg border border-paper/20 px-5 text-[12.5px] font-medium tracking-[-0.01em] text-paper/85 transition-colors duration-200 hover:border-paper hover:text-paper"
+            >
+              <Download className="h-4 w-4" strokeWidth={1.5} />
+              <span>Unduh Company Profile</span>
+            </a>
+          </div>
         </div>
 
-        <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-[1.8fr_1fr_1.2fr] lg:gap-14">
+        {/* Bagian Tengah: Grid 4 Kolom Proporsional */}
+        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 pb-14">
+          {/* Kolom 1: Identitas & Alamat */}
           <div>
             <Image
               src="/assets/garisdev-logo-white-cropped.png"
               alt="GARISDev, PT Global Agra Ripta Solusindo"
               width={1053}
               height={279}
-              sizes="130px"
+              sizes="140px"
               className="h-7 w-auto object-contain"
             />
-            <p className="mt-6 max-w-[36ch] text-[13px] leading-relaxed text-paper/60">
-              Mitra rekayasa perangkat lunak enterprise untuk korporasi dan
-              institusi pemerintah Indonesia. Beroperasi sejak 2014.
+            <p className="mt-5 text-[13px] font-semibold text-paper/90">
+              {COMPANY_INFO.legalName}
             </p>
-
-            <div className="mt-6 flex flex-col gap-2 text-[12px]">
-              <a
-                href={COMPANY_INFO.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link-underline w-fit max-w-[38ch] leading-relaxed text-paper/70 hover:text-paper"
-              >
-                {COMPANY_INFO.address}
-              </a>
-              <a
-                href={`tel:${COMPANY_INFO.phone.replace(/[^+\d]/g, '')}`}
-                className="link-underline w-fit text-paper/70 hover:text-paper"
-              >
-                {COMPANY_INFO.phone}
-              </a>
-              <a
-                href={`mailto:${COMPANY_INFO.email}`}
-                className="link-underline w-fit text-paper/70 hover:text-paper"
-              >
-                {COMPANY_INFO.email}
-              </a>
-            </div>
+            <p className="mt-2 text-[12px] leading-relaxed text-paper/60">
+              {COMPANY_INFO.address}
+            </p>
+            <p className="mt-4 text-[11px] text-paper/40">
+              Beroperasi sejak 2014 di Jakarta Selatan, Indonesia.
+            </p>
           </div>
 
-          <nav aria-label="Navigasi footer">
-            <p className={`${COLUMN_LABEL} border-t border-paper/15 pt-4`}>Navigasi</p>
-            <ul className="mt-5 flex flex-col gap-2.5">
-              {NAV_ITEMS.map((item) => (
-                <li key={item.id}>
+          {/* Kolom 2: Layanan Utama */}
+          <div>
+            <p className={`${COLUMN_LABEL} border-t border-paper/15 pt-3`}>
+              Layanan Utama
+            </p>
+            <ul className="mt-4 flex flex-col gap-2.5">
+              {CORE_SERVICES.map((service) => (
+                <li key={service.title}>
                   <a
-                    href={item.href}
-                    className="link-underline text-[12.5px] text-paper/75 hover:text-paper"
+                    href="#layanan"
+                    className="link-underline text-[12.5px] leading-snug text-paper/70 hover:text-paper"
                   >
-                    {item.label}
+                    {service.title}
                   </a>
                 </li>
               ))}
             </ul>
-          </nav>
+          </div>
 
+          {/* Kolom 3: Produk & Solusi */}
           <div>
-            <p className={`${COLUMN_LABEL} border-t border-paper/15 pt-4`}>Platform Unggulan</p>
-            <ul className="mt-5 flex flex-col gap-2.5">
+            <p className={`${COLUMN_LABEL} border-t border-paper/15 pt-3`}>
+              Produk &amp; Solusi
+            </p>
+            <ul className="mt-4 flex flex-col gap-2.5">
               {FLAGSHIP_PRODUCTS.map((product) => (
                 <li key={product.id}>
                   <a
                     href="#produk"
-                    className="link-underline text-[12.5px] text-paper/75 hover:text-paper"
+                    className="link-underline text-[12.5px] leading-snug text-paper/70 hover:text-paper"
                   >
-                    {product.name}
+                    {product.name} — <span className="text-paper/45">{product.subheading}</span>
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="#produk"
+                  className="link-underline text-[12.5px] leading-snug text-brand-light hover:text-paper"
+                >
+                  + E-Government &amp; GIS Solutions
+                </a>
+              </li>
             </ul>
+          </div>
+
+          {/* Kolom 4: Kontak Resmi */}
+          <div>
+            <p className={`${COLUMN_LABEL} border-t border-paper/15 pt-3`}>
+              Kontak Resmi
+            </p>
+            <div className="mt-4 flex flex-col gap-3 text-[12.5px]">
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.14em] text-paper/40 block">
+                  Telepon Kantor
+                </span>
+                <a
+                  href={`tel:${COMPANY_INFO.phone.replace(/[^+\d]/g, '')}`}
+                  className="link-underline mt-0.5 inline-block text-paper/80 hover:text-paper"
+                >
+                  {COMPANY_INFO.phone}
+                </a>
+              </div>
+
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.14em] text-paper/40 block">
+                  WhatsApp Konsultasi
+                </span>
+                <a
+                  href={COMPANY_INFO.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline mt-0.5 inline-block text-paper/80 hover:text-paper"
+                >
+                  {COMPANY_INFO.whatsapp}
+                </a>
+              </div>
+
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.14em] text-paper/40 block">
+                  Email
+                </span>
+                <a
+                  href={`mailto:${COMPANY_INFO.email}`}
+                  className="link-underline mt-0.5 inline-block text-paper/80 hover:text-paper"
+                >
+                  {COMPANY_INFO.email}
+                </a>
+              </div>
+
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.14em] text-paper/40 block">
+                  Website
+                </span>
+                <a
+                  href={COMPANY_INFO.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline mt-0.5 inline-block text-paper/80 hover:text-paper"
+                >
+                  {COMPANY_INFO.website}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-16 overflow-hidden md:mt-20" aria-hidden="true">
-          <p className="select-none font-display text-[clamp(2.6rem,25vw,22rem)] font-medium leading-[0.76] tracking-[-0.06em] text-paper">
-            GARISDEV
-          </p>
-        </div>
-
-        <div className="mt-8 flex flex-col gap-3 border-t border-paper/10 pt-5 text-[10px] uppercase tracking-[0.14em] text-paper/45 sm:flex-row sm:items-center sm:justify-between">
+        {/* Bagian Bawah: Baris Hak Cipta & Kembali ke Atas */}
+        <div className="flex flex-col gap-3 border-t border-paper/10 py-6 text-[11px] text-paper/45 sm:flex-row sm:items-center sm:justify-between">
           <span>
-            © 2026 {COMPANY_INFO.legalName}. Seluruh hak cipta dilindungi.
+            © 2026 PT Global Agra Ripta Solusindo (GARISDev). Seluruh Hak Cipta Dilindungi.
           </span>
-          <div className="flex items-center gap-5">
-            <span>Jakarta, Indonesia</span>
+          <div className="flex items-center gap-6">
+            <span>Jakarta Selatan, Indonesia</span>
             <a
               href="#atas"
-              className="press inline-flex items-center gap-1 text-paper/60 hover:text-paper"
+              className="press inline-flex items-center gap-1.5 font-medium text-paper/70 hover:text-paper"
             >
-              Ke atas
-              <ArrowUpRight className="h-3 w-3 -rotate-45" strokeWidth={1.5} />
+              <span>Kembali ke Atas</span>
+              <ArrowUp className="h-3.5 w-3.5" strokeWidth={1.75} />
             </a>
           </div>
         </div>

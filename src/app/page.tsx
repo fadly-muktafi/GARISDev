@@ -5,6 +5,7 @@ import { SectionClients } from '@/components/SectionClients';
 import { SectionCoreServices } from '@/components/SectionCoreServices';
 import { SectionFlagshipProducts } from '@/components/SectionFlagshipProducts';
 import { SectionSportifValues } from '@/components/SectionSportifValues';
+import { SectionTechnologyCapability } from '@/components/SectionTechnologyCapability';
 import { SectionPrimaryAction } from '@/components/SectionPrimaryAction';
 import { Footer } from '@/components/Footer';
 
@@ -19,6 +20,7 @@ export default function HomePage() {
         <SectionCoreServices />
         <SectionFlagshipProducts />
         <SectionSportifValues />
+        <SectionTechnologyCapability />
         <SectionPrimaryAction />
       </main>
 
