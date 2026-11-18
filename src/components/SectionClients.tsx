@@ -32,21 +32,28 @@ export function SectionClients() {
           <div className="rule mt-4" />
 
           <InfiniteMarquee duration={58} className="py-6 md:py-9">
-            {CLIENTS.map((client) => (
-              <div
-                key={client.name}
-                className="group/logo flex h-12 w-24 shrink-0 items-center justify-center sm:h-14 sm:w-40"
-                title={client.name}
-              >
-                <Image
-                  src={client.logo}
-                  alt={`Logo ${client.name}`}
-                  width={400}
-                  height={160}
-                  className="max-h-7 w-auto max-w-[92px] object-contain opacity-80 mix-blend-multiply grayscale transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/logo:opacity-100 group-hover/logo:grayscale-0 sm:max-h-10 sm:max-w-[132px]"
-                />
-              </div>
-            ))}
+            {CLIENTS.map((client) => {
+              const isMomNJo = client.logo.includes('07_mom_n_jo') || client.name.toLowerCase().includes('mom n jo');
+              return (
+                <div
+                  key={client.name}
+                  className="group/logo flex h-12 w-24 shrink-0 items-center justify-center sm:h-14 sm:w-40"
+                  title={client.name}
+                >
+                  <Image
+                    src={client.logo}
+                    alt={`Logo ${client.name}`}
+                    width={400}
+                    height={160}
+                    className={`max-h-7 w-auto max-w-[92px] object-contain transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] sm:max-h-10 sm:max-w-[132px] ${
+                      isMomNJo
+                        ? 'brightness-0 opacity-70 hover:opacity-100 group-hover/logo:opacity-100'
+                        : 'opacity-80 mix-blend-multiply grayscale group-hover/logo:opacity-100 group-hover/logo:grayscale-0'
+                    }`}
+                  />
+                </div>
+              );
+            })}
           </InfiniteMarquee>
         </div>
 

@@ -35,7 +35,7 @@ export function HeroSection() {
           <span className="tnum shrink-0 hidden sm:inline">Jakarta Selatan</span>
         </motion.div>
 
-        <div className="grid gap-10 pb-14 pt-10 md:pt-14 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-14 lg:pb-24 lg:pt-16">
+        <div className="grid gap-10 pb-14 pt-8 md:pt-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-start lg:gap-14 lg:pb-20 lg:pt-10">
           <div>
             <motion.h1
               {...rise(0.08)}
@@ -46,7 +46,7 @@ export function HeroSection() {
 
             <motion.p
               {...rise(0.16)}
-              className="mt-6 max-w-[50ch] text-[15px] leading-relaxed text-ink-muted lg:text-[16px]"
+              className="mt-6 max-w-[50ch] text-[15px] leading-relaxed text-slate-700 lg:text-[16px]"
             >
               Berlokasi di Jakarta Selatan dengan pengalaman teknis sejak tahun 2014, GARISDev menghadirkan pengembangan aplikasi web dan mobile, sistem E-Government, integrasi data enterprise, serta dashboard analitik yang efektif, aman, dan terukur bagi pelanggan maupun stakeholder.
             </motion.p>
@@ -89,8 +89,8 @@ export function HeroSection() {
             </motion.dl>
           </div>
 
-          <motion.figure {...rise(0.2)} className="group relative">
-            <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden border border-line/60 bg-white p-4 shadow-sm sm:aspect-[16/11] md:p-6 lg:aspect-auto lg:h-[min(60vh,520px)]">
+          <motion.figure {...rise(0.2)} className="group relative w-full">
+            <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden border border-line/60 bg-white p-3 shadow-sm sm:aspect-[16/11] md:p-5 lg:aspect-auto lg:h-[500px] xl:h-[520px]">
               <Image
                 src="/assets/mockup-dashboard-mobile-garisdev.png"
                 alt="Ekosistem Dashboard Eksekutif & Aplikasi Mobile Operasional GARISDev"
